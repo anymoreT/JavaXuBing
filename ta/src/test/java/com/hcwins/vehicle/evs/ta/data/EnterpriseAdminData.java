@@ -3,7 +3,7 @@ package com.hcwins.vehicle.evs.ta.data;
 /**
  * Created by tommy on 3/24/15.
  */
-public class EnterpriseAdmin {
+public class EnterpriseAdminData {
     public String mobile;
 
     @Override

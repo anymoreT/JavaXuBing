@@ -4,6 +4,7 @@ import com.hcwins.vehicle.evs.ta.APISet;
 import com.hcwins.vehicle.evs.ta.DataSet;
 import com.hcwins.vehicle.evs.ta.EVSUtil;
 import com.hcwins.vehicle.evs.ta.TestBed;
+import org.skife.jdbi.v2.Handle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -21,6 +22,7 @@ public class EVSTestBase {
     TestBed testBed;
     APISet apiSet;
     DataSet dataSet;
+    Handle handle;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -30,11 +32,16 @@ public class EVSTestBase {
         testBed = evsUtil.getTestBed();
         apiSet = evsUtil.getAPISet();
         dataSet = evsUtil.getDataSet();
+        handle = evsUtil.getDBHandle();
     }
 
     @AfterSuite
     public void afterSuite() {
-        //TODO
+        try {
+            handle.close();
+        } catch (Exception e) {
+            logger.error("failed to close db connection");
+        }
         logger.debug("after suite");
     }
 

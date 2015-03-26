@@ -12,6 +12,7 @@ public class TestBed {
     public String name;
     public String host;
     public String apiBaseUrl;
+    public String jdbcConnectionString;
 
     @Override
     public String toString() {
@@ -19,6 +20,7 @@ public class TestBed {
                 "name='" + name + '\'' +
                 ", host='" + host + '\'' +
                 ", apiBaseUrl='" + apiBaseUrl + '\'' +
+                ", jdbcConnectionString='" + jdbcConnectionString + '\'' +
                 '}';
     }
 

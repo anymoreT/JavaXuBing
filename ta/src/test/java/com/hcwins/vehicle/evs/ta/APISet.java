@@ -1,9 +1,9 @@
 package com.hcwins.vehicle.evs.ta;
 
-import com.hcwins.vehicle.evs.ta.apiset.Enterprise;
+import com.hcwins.vehicle.evs.ta.apiset.EnterpriseAPI;
 
 public class APISet {
-    public Enterprise enterprise;
+    public EnterpriseAPI enterprise;
 
     @Override
     public String toString() {
