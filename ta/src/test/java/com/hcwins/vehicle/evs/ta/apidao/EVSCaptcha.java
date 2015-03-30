@@ -1,5 +1,6 @@
 package com.hcwins.vehicle.evs.ta.apidao;
 
+import com.hcwins.vehicle.evs.ta.EVSUtil;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
@@ -10,7 +11,8 @@ import java.util.Date;
 /**
  * Created by tommy on 3/25/15.
  */
-public class EVSCaptcha {
+@Annotations.Entity(table = "EVS_Captcha", mapper = EVSCaptcha.Mapper.class)
+public class EVSCaptcha extends BaseEntity {
     /*
 Table: EVS_Captcha
 Columns:
@@ -25,27 +27,24 @@ module varchar(255)
 status varchar(255)
     */
 
-    public enum Status {
+    protected String captcha;
+    protected Date lastAccessTime;
+    protected long maxInactiveInternal;
+    protected String mobile;
+    protected Module module;
+    protected Status status;
+
+    public static enum Status {
         NEW,
         VERIFIED,
         EXPIRED
     }
 
-    public enum Module {
+    public static enum Module {
         USER_REGIST, //个人用户注册
         ENTEPRISE_REGISTER, //企业管理员注册
         ENTEPRISE_PASS, //企业管理员忘记密码
     }
-
-    public long id;
-    public Date createTime;
-    public Date updateTime;
-    public String captcha;
-    public Date lastAccessTime;
-    public long maxInactiveInternal;
-    public String mobile;
-    public Module module;
-    public Status status;
 
     public static long Conf_MaxInactiveInternal = 30 * 60 * 1000L;
 
@@ -61,6 +60,54 @@ status varchar(255)
         this.status = status;
     }
 
+    public String getCaptcha() {
+        return captcha;
+    }
+
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
+    }
+
+    public Date getLastAccessTime() {
+        return lastAccessTime;
+    }
+
+    public void setLastAccessTime(Date lastAccessTime) {
+        this.lastAccessTime = lastAccessTime;
+    }
+
+    public long getMaxInactiveInternal() {
+        return maxInactiveInternal;
+    }
+
+    public void setMaxInactiveInternal(long maxInactiveInternal) {
+        this.maxInactiveInternal = maxInactiveInternal;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public static class Mapper implements ResultSetMapper<EVSCaptcha> {
         public EVSCaptcha map(int index, ResultSet r, StatementContext ctx) throws SQLException {
             return new EVSCaptcha(
@@ -72,7 +119,8 @@ status varchar(255)
                     r.getLong("maxInactiveInternal"),
                     r.getString("mobile"),
                     Module.valueOf(r.getString("module")),
-                    Status.valueOf(r.getString("status")));
+                    Status.valueOf(r.getString("status"))
+            );
         }
     }
 
@@ -90,4 +138,6 @@ status varchar(255)
                 ", status=" + status +
                 '}';
     }
+
+    public static EVSCaptchaDao dao = EVSUtil.getDAO(EVSCaptchaDao.class);
 }

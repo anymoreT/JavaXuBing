@@ -18,7 +18,6 @@ import org.testng.annotations.BeforeSuite;
 public class EVSTestBase {
     static final Logger logger = LoggerFactory.getLogger(EVSTestBase.class);
 
-    EVSUtil evsUtil;
     TestBed testBed;
     APISet apiSet;
     DataSet dataSet;
@@ -27,12 +26,10 @@ public class EVSTestBase {
     @BeforeSuite
     public void beforeSuite() {
         logger.debug("before suite");
-
-        evsUtil = EVSUtil.getInstance();
-        testBed = evsUtil.getTestBed();
-        apiSet = evsUtil.getAPISet();
-        dataSet = evsUtil.getDataSet();
-        handle = evsUtil.getDBHandle();
+        testBed = EVSUtil.getTestBed();
+        apiSet = EVSUtil.getAPISet();
+        dataSet = EVSUtil.getDataSet();
+        handle = EVSUtil.getDBHandle();
     }
 
     @AfterSuite
@@ -48,12 +45,12 @@ public class EVSTestBase {
     @BeforeClass
     public void beforeClass() {
         logger.debug("before class");
-        //TODO
+        //TODO:
     }
 
     @AfterClass
     public void afterClass() {
-        //TODO
+        //TODO:
         logger.debug("after class");
     }
 }

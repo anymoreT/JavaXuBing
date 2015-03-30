@@ -9,8 +9,7 @@ import java.util.Map;
  * Created by tommy on 3/24/15.
  */
 public abstract class BaseRequest {
-    protected String loggerId = EVSUtil.getInstance().getLoggerId();
-
+    protected String loggerId = EVSUtil.getLoggerId();
     public String token;
 
     protected Response lastResponse;
@@ -18,15 +17,11 @@ public abstract class BaseRequest {
     public abstract String getAPI();
 
     public String getJson() {
-        return EVSUtil.getInstance().gson.toJson(this);
-    }
-
-    public Response getLastResponse() {
-        return lastResponse;
+        return EVSUtil.getGson().toJson(this);
     }
 
     public Response post(Map<String, String> header, int expectedHttpStatusCode) {
-        lastResponse = EVSUtil.getInstance().callPostJson(getAPI(), getJson(), header, expectedHttpStatusCode);
+        lastResponse = EVSUtil.callPostJson(getAPI(), getJson(), header, expectedHttpStatusCode);
         return lastResponse;
     }
 
@@ -41,4 +36,14 @@ public abstract class BaseRequest {
     public Response post() {
         return post(200);
     }
+
+    public Response getLastResponse() {
+        return lastResponse;
+    }
+
+    public <ResponseType> ResponseType getLastResponseAsObj(Class<ResponseType> responseClass) {
+        return EVSUtil.getGson().fromJson(getLastResponse().asString(), responseClass);
+    }
+
+    public abstract <BaseResponse> BaseResponse getLastResponseAsObj();
 }

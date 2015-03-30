@@ -19,8 +19,6 @@ import java.util.Date;
 import java.util.Map;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 
 /**
  * Created by tommy on 3/23/15.
@@ -32,58 +30,22 @@ public class EVSUtil {
     static final String apiSetYaml = System.getProperty("API", EVSUtil.class.getResource("/APISet.yml").getFile());
     static final String dataSetYaml = System.getProperty("DATA", EVSUtil.class.getResource("/DataSet.yml").getFile());
 
-    private static TestBed testBed;
-    private static APISet apiSet;
-    private static DataSet dataSet;
-    private static DBI dbi;
-    private static Handle handle;
+    private TestBed testBed;
+    private APISet apiSet;
+    private DataSet dataSet;
+    private DBI dbi;
+    private Handle handle;
 
-    public final Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.PROTECTED).create();
+    private Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.PROTECTED).create();
 
     private static EVSUtil evsUtil = new EVSUtil();
-
-    public static EVSUtil getInstance() {
-        return evsUtil;
-    }
 
     private EVSUtil() {
         this.testBed = loadTestBed();
         this.apiSet = loadAPISet();
         this.dataSet = loadDataSet();
         this.handle = initDBHandle();
-        testBed.setUp();
-    }
-
-    public TestBed getTestBed() {
-        if (null == testBed) {
-            throw new SkipException("missing testbed");
-        } else {
-            return testBed;
-        }
-    }
-
-    public APISet getAPISet() {
-        if (null == apiSet) {
-            throw new SkipException("missing api set");
-        } else {
-            return apiSet;
-        }
-    }
-
-    public DataSet getDataSet() {
-        if (null == dataSet) {
-            throw new SkipException("missing data set");
-        } else {
-            return dataSet;
-        }
-    }
-
-    public Handle getDBHandle() {
-        if (null == handle) {
-            throw new SkipException("missing db handle");
-        } else {
-            return handle;
-        }
+        this.testBed.setUp();
     }
 
     private TestBed loadTestBed() {
@@ -139,11 +101,68 @@ public class EVSUtil {
         return handle;
     }
 
-    public String getTimeStamp() {
+    private static EVSUtil getInstance() {
+        return evsUtil;
+    }
+
+    public static TestBed getTestBed() {
+        if (null == getInstance().testBed) {
+            throw new SkipException("missing testbed");
+        } else {
+            return getInstance().testBed;
+        }
+    }
+
+    public static APISet getAPISet() {
+        if (null == getInstance().apiSet) {
+            throw new SkipException("missing api set");
+        } else {
+            return getInstance().apiSet;
+        }
+    }
+
+    public static DataSet getDataSet() {
+        if (null == getInstance().dataSet) {
+            throw new SkipException("missing data set");
+        } else {
+            return getInstance().dataSet;
+        }
+    }
+
+    public static Handle getDBHandle() {
+        if (null == getInstance().handle) {
+            throw new SkipException("missing db handle");
+        } else {
+            return getInstance().handle;
+        }
+    }
+
+    public static <SqlObjectType> SqlObjectType getDAO(Class<SqlObjectType> sqlObjectType) {
+        if (null == getInstance().handle) {
+            throw new SkipException("missing db handle");
+        } else {
+            return getInstance().handle.attach(sqlObjectType);
+        }
+    }
+
+    public static Gson getGson() {
+        return getInstance().gson;
+    }
+
+    public static String getTimeStamp() {
         return new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
     }
 
-    public String getLoggerId() {
+    public static void sleep(String msg, int seconds) {
+        try {
+            logger.debug("sleeping {} seconds: {}", seconds, msg);
+            Thread.sleep(seconds * 1000L);
+        } catch (InterruptedException e) {
+            //
+        }
+    }
+
+    public static String getLoggerId() {
         String loggerId = "";
 
         StackTraceElement[] stack = (new Throwable()).getStackTrace();
@@ -158,11 +177,11 @@ public class EVSUtil {
         return loggerId;
     }
 
-    public void updateHeader(Map<String, String> header) {
+    public static void updateHeader(Map<String, String> header) {
 //
     }
 
-    public Response callPost(String url, RequestSpecification requestSpec, int expectedHttpStatusCode) {
+    public static Response callPost(String url, RequestSpecification requestSpec, int expectedHttpStatusCode) {
         Response response = requestSpec.post(url);
         logger.debug("status code: {} content: {}", response.getStatusCode(), response.asString());
 
@@ -173,8 +192,8 @@ public class EVSUtil {
         return response;
     }
 
-    public Response callPostJson(String api, String json, Map<String, String> headers, int expectedHttpStatusCode) {
-        String url = testBed.apiBaseUrl + api;
+    public static Response callPostJson(String api, String json, Map<String, String> headers, int expectedHttpStatusCode) {
+        String url = getTestBed().apiBaseUrl + api;
 
         updateHeader(headers);
 
@@ -188,15 +207,15 @@ public class EVSUtil {
         return response;
     }
 
-    public Response callPostJson(String api, String json, Map<String, String> headers) {
+    public static Response callPostJson(String api, String json, Map<String, String> headers) {
         return callPostJson(api, json, headers, 200);
     }
 
-    public Response callPostJson(String api, String json, int expectedHttpStatusCode) {
+    public static Response callPostJson(String api, String json, int expectedHttpStatusCode) {
         return callPostJson(api, json, null, expectedHttpStatusCode);
     }
 
-    public Response callPostJson(String api, String json) {
+    public static Response callPostJson(String api, String json) {
         return callPostJson(api, json, 200);
     }
 }
