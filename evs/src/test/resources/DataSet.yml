@@ -1,0 +1,10 @@
+!com.hcwins.vehicle.ta.evs.DataSet
+enterprises:
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
+      enterpriseName: try
+
+enterpriseAdmins:
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
+      mobile: 15881100000
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
+      mobile: 15881100001

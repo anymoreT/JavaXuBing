@@ -1,0 +1,7 @@
+!com.hcwins.vehicle.ta.evs.TestBed
+name: FT 0 EVS
+# host: 121.43.224.69
+host: 127.0.0.1
+# apiBaseUrl: http://121.43.224.69:8080/evs
+apiBaseUrl: http://127.0.0.1:8080/evs
+jdbcConnectionString: jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8

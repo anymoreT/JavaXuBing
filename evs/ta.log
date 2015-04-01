@@ -1,0 +1,1068 @@
+2015-03-23 17:53:51,645 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.ymldd
+2015-03-23 17:53:51,671 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.ymldd (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.DummyAT.setUp(DummyAT.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:170) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:104) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.privateRun(TestRunner.java:767) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.run(TestRunner.java:617) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 17:54:28,186 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.ymldd
+2015-03-23 17:54:28,210 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.ymldd (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.DummyAT.setUp(DummyAT.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:170) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:104) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.privateRun(TestRunner.java:767) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.run(TestRunner.java:617) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 17:55:25,108 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.ymldd
+2015-03-23 17:55:25,130 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.ymldd (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.DummyAT.setUp(DummyAT.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:170) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:104) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.privateRun(TestRunner.java:767) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.run(TestRunner.java:617) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 17:55:57,542 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.ymldd
+2015-03-23 17:55:57,565 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.ymldd (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.DummyAT.setUp(DummyAT.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:170) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:104) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.privateRun(TestRunner.java:767) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.run(TestRunner.java:617) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 17:57:08,643 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-23 17:57:08,760 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:45] - success to load test bed - TestBed{name='FT 0 EVS', host='121.43.224.69', baseUrl='evs'}
+2015-03-23 17:57:08,761 DEBUG [main] c.h.v.e.t.TestBed [TestBed.java:26] - trying to setup testbed
+2015-03-23 17:58:05,668 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-23 17:58:05,782 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:45] - success to load test bed - TestBed{name='FT 0 EVS', host='121.43.224.69', baseUrl='evs'}
+2015-03-23 17:58:05,783 DEBUG [main] c.h.v.e.t.TestBed [TestBed.java:26] - trying to setup testbed
+2015-03-23 17:58:22,182 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-23 17:58:22,298 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:45] - success to load test bed - TestBed{name='FT 0 EVS', host='121.43.224.69', baseUrl='evs'}
+2015-03-23 17:58:22,298 DEBUG [main] c.h.v.e.t.TestBed [TestBed.java:26] - trying to setup testbed
+2015-03-23 17:59:48,939 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-23 17:59:49,063 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:45] - success to load test bed - TestBed{name='FT 0 EVS', host='121.43.224.69', baseUrl='evs'}
+2015-03-23 17:59:49,063 DEBUG [main] c.h.v.e.t.TestBed [TestBed.java:26] - trying to setup testbed
+2015-03-23 18:00:20,975 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22
+2015-03-23 18:00:21,001 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22 (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.Dummy2AT.setUp(Dummy2AT.java:26) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:170) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:104) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.privateRun(TestRunner.java:767) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.run(TestRunner.java:617) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 18:13:22,325 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22
+2015-03-23 18:13:22,348 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22 (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at EVSTestBase.setUp(EVSTestBase.java:21) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.Dummy2AT.setUp(Dummy2AT.java:21) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:170) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:104) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.privateRun(TestRunner.java:767) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.run(TestRunner.java:617) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 18:15:03,759 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22
+2015-03-23 18:15:03,783 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22 (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at EVSTestBase.setUp(EVSTestBase.java:21) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.Dummy2AT.setUp(Dummy2AT.java:21) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:170) [testng-6.8.21.jar:na]
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:104) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.privateRun(TestRunner.java:767) [testng-6.8.21.jar:na]
+	at org.testng.TestRunner.run(TestRunner.java:617) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 18:28:57,807 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:21] - beforeclass
+2015-03-23 18:28:57,828 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:28] - afterclass
+2015-03-23 18:28:57,830 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:21] - beforeclass
+2015-03-23 18:28:57,831 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:28] - afterclass
+2015-03-23 18:30:48,878 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:22] - beforeSuite
+2015-03-23 18:30:48,895 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:28] - beforeclass
+2015-03-23 18:30:48,910 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:35] - afterclass
+2015-03-23 18:30:48,914 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:28] - beforeclass
+2015-03-23 18:30:48,917 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:35] - afterclass
+2015-03-23 18:32:26,514 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:22] - beforeSuite
+2015-03-23 18:32:26,521 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:28] - beforeSuite2
+2015-03-23 18:32:26,530 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:34] - beforeclass
+2015-03-23 18:32:26,547 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:41] - afterclass
+2015-03-23 18:32:26,551 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:34] - beforeclass
+2015-03-23 18:32:26,552 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:41] - afterclass
+2015-03-23 18:33:25,019 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:22] - beforeSuite
+2015-03-23 18:33:25,025 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:28] - beforeSuite2
+2015-03-23 18:33:25,026 DEBUG [main] c.h.v.e.t.a.Dummy2AT [Dummy2AT.java:22] - beforeSuite3
+2015-03-23 18:33:25,036 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:34] - beforeclass
+2015-03-23 18:33:25,053 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:41] - afterclass
+2015-03-23 18:33:25,058 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:34] - beforeclass
+2015-03-23 18:33:25,059 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:41] - afterclass
+2015-03-23 18:33:53,773 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:22] - beforeSuite
+2015-03-23 18:33:53,780 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:28] - beforeSuite2
+2015-03-23 18:33:53,780 DEBUG [main] c.h.v.e.t.a.DummyAT [DummyAT.java:23] - beforeSuite4
+2015-03-23 18:33:53,781 DEBUG [main] c.h.v.e.t.a.Dummy2AT [Dummy2AT.java:22] - beforeSuite3
+2015-03-23 18:33:53,791 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:34] - beforeclass
+2015-03-23 18:33:53,808 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:41] - afterclass
+2015-03-23 18:33:53,811 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:34] - beforeclass
+2015-03-23 18:33:53,813 DEBUG [main] c.h.v.e.t.a.EVSTestBase [EVSTestBase.java:41] - afterclass
+2015-03-23 18:35:38,347 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22
+2015-03-23 18:35:38,369 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22 (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at EVSTestBase.beforeSuite(EVSTestBase.java:22) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 18:38:50,142 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22
+2015-03-23 18:38:50,165 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22 (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at EVSTestBase.beforeSuite(EVSTestBase.java:23) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-23 18:46:38,396 DEBUG [main] c.h.v.e.t.EVSUtil [EVSUtil.java:42] - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22
+2015-03-23 18:46:38,419 ERROR [main] c.h.v.e.t.EVSUtil [EVSUtil.java:47] - failed to load testbed
+java.io.FileNotFoundException: /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml22 (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_31]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_31]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[na:1.8.0_31]
+	at EVSUtil.loadTestBed(EVSUtil.java:43) [test-classes/:na]
+	at EVSUtil.<init>(EVSUtil.java:27) [test-classes/:na]
+	at EVSUtil.<clinit>(EVSUtil.java:20) [test-classes/:na]
+	at EVSTestBase.beforeSuite(EVSTestBase.java:23) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-03-25 15:27:12 DEBUG EVSTestBase.beforeSuite: 29 - before suite
+2015-03-25 15:27:12 DEBUG EVSUtil.loadTestBed: 91 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-25 15:27:12 DEBUG EVSUtil.loadTestBed: 94 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-25 15:27:12 DEBUG EVSUtil.loadAPISet: 104 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-25 15:27:12 DEBUG EVSUtil.loadAPISet: 107 - success to load api set - APISet{enterprise=EnterpriseAPI@5a4aa2f2}
+2015-03-25 15:27:12 DEBUG EVSUtil.loadDataSet: 117 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-25 15:27:12 DEBUG EVSUtil.loadDataSet: 120 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-25 15:27:12 DEBUG EVSUtil.initDBHandle: 130 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-25 15:27:13 DEBUG EVSUtil.initDBHandle: 133 - success to connect to db
+2015-03-25 15:27:13 DEBUG TestBed.setUp: 30 - trying to setup testbed
+2015-03-25 15:27:13 DEBUG EVSTestBase.beforeClass: 50 - before class
+2015-03-25 15:27:13 DEBUG EVSTestBase.afterClass: 57 - after class
+2015-03-25 15:27:13 DEBUG EVSTestBase.afterSuite: 45 - after suite
+2015-03-25 15:28:25 DEBUG EVSTestBase.beforeSuite: 29 - before suite
+2015-03-25 15:28:26 DEBUG EVSUtil.loadTestBed: 91 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-25 15:28:26 DEBUG EVSUtil.loadTestBed: 94 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-25 15:28:26 DEBUG EVSUtil.loadAPISet: 104 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-25 15:28:26 DEBUG EVSUtil.loadAPISet: 107 - success to load api set - APISet{enterprise=EnterpriseAPI@5a4aa2f2}
+2015-03-25 15:28:26 DEBUG EVSUtil.loadDataSet: 117 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-25 15:28:26 DEBUG EVSUtil.loadDataSet: 120 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-25 15:28:26 DEBUG EVSUtil.initDBHandle: 130 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-25 15:28:26 DEBUG EVSUtil.initDBHandle: 133 - success to connect to db
+2015-03-25 15:28:26 DEBUG TestBed.setUp: 30 - trying to setup testbed
+2015-03-25 15:28:26 DEBUG EVSTestBase.beforeClass: 50 - before class
+2015-03-25 15:28:26 DEBUG EVSTestBase.afterClass: 57 - after class
+2015-03-25 15:28:26 DEBUG EVSTestBase.afterSuite: 45 - after suite
+2015-03-25 15:30:10 DEBUG EVSTestBase.beforeSuite: 29 - before suite
+2015-03-25 15:30:10 DEBUG EVSUtil.loadTestBed: 91 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-25 15:30:10 DEBUG EVSUtil.loadTestBed: 94 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-25 15:30:10 DEBUG EVSUtil.loadAPISet: 104 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-25 15:30:10 DEBUG EVSUtil.loadAPISet: 107 - success to load api set - APISet{enterprise=EnterpriseAPI@5a4aa2f2}
+2015-03-25 15:30:10 DEBUG EVSUtil.loadDataSet: 117 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-25 15:30:10 DEBUG EVSUtil.loadDataSet: 120 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-25 15:30:10 DEBUG EVSUtil.initDBHandle: 130 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-25 15:30:11 DEBUG EVSUtil.initDBHandle: 133 - success to connect to db
+2015-03-25 15:30:11 DEBUG TestBed.setUp: 30 - trying to setup testbed
+2015-03-25 15:30:11 DEBUG EVSTestBase.beforeClass: 50 - before class
+2015-03-25 15:30:11 DEBUG EVSUtil.callPostJson: 179 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":""}
+2015-03-25 15:30:13 DEBUG EVSUtil.callPost: 165 - status code: 400 content: {"result":{"code":203,"desc":"EMPTY_MOBILE"}}
+2015-03-25 15:30:13 DEBUG EVSUtil.callPostJson: 179 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000a"}
+2015-03-25 15:30:13 DEBUG EVSUtil.callPost: 165 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-03-25 15:30:13 DEBUG EVSUtil.callPostJson: 179 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-25 15:30:13 DEBUG EVSUtil.callPost: 165 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-25 15:30:13 DEBUG EVSTestBase.afterClass: 57 - after class
+2015-03-25 15:30:13 DEBUG EVSTestBase.afterSuite: 45 - after suite
+2015-03-26 08:56:33 DEBUG EVSTestBase.beforeSuite: 29 - before suite
+2015-03-26 08:56:33 DEBUG EVSUtil.loadTestBed: 92 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-26 08:56:33 DEBUG EVSUtil.loadTestBed: 95 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-26 08:56:33 DEBUG EVSUtil.loadAPISet: 105 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-26 08:56:33 DEBUG EVSUtil.loadAPISet: 108 - success to load api set - APISet{enterprise=EnterpriseAPI@4d339552}
+2015-03-26 08:56:33 DEBUG EVSUtil.loadDataSet: 118 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-26 08:56:33 DEBUG EVSUtil.loadDataSet: 121 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-26 08:56:33 DEBUG EVSUtil.initDBHandle: 131 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-26 08:56:34 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] obtained in 319 millis
+2015-03-26 08:56:34 DEBUG EVSUtil.initDBHandle: 135 - success to connect to db
+2015-03-26 08:56:34 DEBUG TestBed.setUp: 28 - trying to setup testbed
+2015-03-26 08:56:34 DEBUG EVSTestBase.beforeClass: 50 - before class
+2015-03-26 08:56:34 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPost: 167 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":""}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPost: 167 - status code: 400 content: {"result":{"code":203,"desc":"EMPTY_MOBILE"}}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000a"}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPost: 167 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"a------"}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPost: 167 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1"}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPost: 167 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"158811000001"}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPost: 167 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-26 08:56:36 DEBUG EVSUtil.callPost: 167 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-26 08:56:37 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-26 08:56:37 DEBUG EVSTestBase.afterClass: 57 - after class
+2015-03-26 08:56:37 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] released
+2015-03-26 08:56:37 DEBUG EVSTestBase.afterSuite: 45 - after suite
+2015-03-26 09:58:05 DEBUG EVSTestBase.beforeSuite: 29 - before suite
+2015-03-26 09:58:05 DEBUG EVSUtil.loadTestBed: 92 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-26 09:58:05 DEBUG EVSUtil.loadTestBed: 95 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-26 09:58:05 DEBUG EVSUtil.loadAPISet: 105 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-26 09:58:05 DEBUG EVSUtil.loadAPISet: 108 - success to load api set - APISet{enterprise=EnterpriseAPI@4d339552}
+2015-03-26 09:58:05 DEBUG EVSUtil.loadDataSet: 118 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-26 09:58:05 DEBUG EVSUtil.loadDataSet: 121 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-26 09:58:05 DEBUG EVSUtil.initDBHandle: 131 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-26 09:58:06 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] obtained in 619 millis
+2015-03-26 09:58:06 DEBUG EVSUtil.initDBHandle: 135 - success to connect to db
+2015-03-26 09:58:06 DEBUG TestBed.setUp: 28 - trying to setup testbed
+2015-03-26 09:58:06 DEBUG EVSTestBase.beforeClass: 50 - before class
+2015-03-26 09:58:06 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-26 09:58:08 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":""}
+2015-03-26 09:58:08 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000a"}
+2015-03-26 09:58:08 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"a------"}
+2015-03-26 09:58:08 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1"}
+2015-03-26 09:58:08 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"158811000001"}
+2015-03-26 09:58:08 DEBUG EVSUtil.callPostJson: 181 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-26 09:58:08 DEBUG EVSTestBase.afterClass: 57 - after class
+2015-03-26 09:58:08 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] released
+2015-03-26 09:58:08 DEBUG EVSTestBase.afterSuite: 45 - after suite
+2015-03-27 10:34:48 DEBUG EVSTestBase.beforeSuite: 28 - before suite
+2015-03-27 10:34:48 DEBUG EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-27 10:34:48 DEBUG EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-27 10:34:48 DEBUG EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-27 10:34:48 DEBUG EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=EnterpriseAPI@69b794e2}
+2015-03-27 10:34:48 DEBUG EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-27 10:34:48 DEBUG EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-27 10:34:48 DEBUG EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-27 10:34:48 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] obtained in 305 millis
+2015-03-27 10:34:48 DEBUG EVSUtil.initDBHandle: 97 - success to connect to db
+2015-03-27 10:34:48 DEBUG TestBed.setUp: 28 - trying to setup testbed
+2015-03-27 10:34:48 DEBUG EVSTestBase.beforeClass: 47 - before class
+2015-03-27 10:34:48 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 10:34:50 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 10:34:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 10:34:51 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 10:34:51 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 10:34:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 10:34:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 10:34:51 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 10:34:51 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 10:34:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 10:34:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 10:34:51  INFO EnterpriseRegistAT.testCaptchaRegistSuccess: 42 - tc:验证成功获取验证码
+2015-03-27 10:34:51 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 10:34:51 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 10:34:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 10:34:51 DEBUG EVSTestBase.afterClass: 54 - after class
+2015-03-27 10:34:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] released
+2015-03-27 10:34:51 DEBUG EVSTestBase.afterSuite: 42 - after suite
+2015-03-27 10:37:08 DEBUG EVSTestBase.beforeSuite: 28 - before suite
+2015-03-27 10:37:09 DEBUG EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-27 10:37:09 DEBUG EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-27 10:37:09 DEBUG EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-27 10:37:09 DEBUG EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=EnterpriseAPI@69b794e2}
+2015-03-27 10:37:09 DEBUG EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-27 10:37:09 DEBUG EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-27 10:37:09 DEBUG EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-27 10:37:09 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] obtained in 300 millis
+2015-03-27 10:37:09 DEBUG EVSUtil.initDBHandle: 97 - success to connect to db
+2015-03-27 10:37:09 DEBUG TestBed.setUp: 28 - trying to setup testbed
+2015-03-27 10:37:09 DEBUG EVSTestBase.beforeClass: 47 - before class
+2015-03-27 10:37:09 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 10:37:11 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 10:37:12 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 10:37:12 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 10:37:12 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 10:37:12 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 10:37:12 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 10:37:12 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 10:37:12 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 10:37:12 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 10:37:12 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 10:37:12  INFO EnterpriseRegistAT.testCaptchaRegistSuccess: 42 - tc:验证成功获取验证码
+2015-03-27 10:37:12 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 10:37:12 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 10:37:12 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 10:37:12 DEBUG EVSTestBase.afterClass: 54 - after class
+2015-03-27 10:37:12 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] released
+2015-03-27 10:37:12 DEBUG EVSTestBase.afterSuite: 42 - after suite
+2015-03-27 13:12:26 DEBUG EVSTestBase.beforeSuite: 28 - before suite
+2015-03-27 13:12:26 DEBUG EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-27 13:12:26 DEBUG EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-27 13:12:26 DEBUG EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-27 13:12:26 DEBUG EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=EnterpriseAPI@69b794e2}
+2015-03-27 13:12:26 DEBUG EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-27 13:12:26 DEBUG EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-27 13:12:26 DEBUG EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-27 13:12:27 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] obtained in 293 millis
+2015-03-27 13:12:27 DEBUG EVSUtil.initDBHandle: 97 - success to connect to db
+2015-03-27 13:12:27 DEBUG TestBed.setUp: 28 - trying to setup testbed
+2015-03-27 13:12:27 DEBUG EVSTestBase.beforeClass: 47 - before class
+2015-03-27 13:12:27 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 13:12:29 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 13:12:29 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 13:12:29 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 13:12:29 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 13:12:29 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 13:12:29 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 13:12:29 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 13:12:29 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 13:12:29 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 13:12:29 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 1 millis
+2015-03-27 13:12:29  INFO EnterpriseRegistAT.testCaptchaRegistSuccess: 42 - tc:验证成功获取验证码
+2015-03-27 13:12:29 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 13:12:30 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 13:12:30 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 13:12:30 DEBUG EVSTestBase.afterClass: 54 - after class
+2015-03-27 13:12:30 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] released
+2015-03-27 13:12:30 DEBUG EVSTestBase.afterSuite: 42 - after suite
+2015-03-27 13:14:46 DEBUG EVSTestBase.beforeSuite: 28 - before suite
+2015-03-27 13:14:46 DEBUG EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-27 13:14:46 DEBUG EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-27 13:14:46 DEBUG EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-27 13:14:46 DEBUG EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=EnterpriseAPI@69b794e2}
+2015-03-27 13:14:46 DEBUG EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-27 13:14:46 DEBUG EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-27 13:14:46 DEBUG EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-27 13:14:46 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] obtained in 287 millis
+2015-03-27 13:14:46 DEBUG EVSUtil.initDBHandle: 97 - success to connect to db
+2015-03-27 13:14:46 DEBUG TestBed.setUp: 28 - trying to setup testbed
+2015-03-27 13:14:46 DEBUG EVSTestBase.beforeClass: 47 - before class
+2015-03-27 13:14:46 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 13:14:49 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 13:14:49 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 13:14:49 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 13:14:49 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 13:14:49 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 13:14:49 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 13:14:49 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 13:14:49 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 13:14:49 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 13:14:49 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 1 millis
+2015-03-27 13:14:49  INFO EnterpriseRegistAT.testCaptchaRegistSuccess: 42 - tc:验证成功获取验证码
+2015-03-27 13:14:49 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 13:14:49 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 13:14:49 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 13:14:49 DEBUG EVSTestBase.afterClass: 54 - after class
+2015-03-27 13:14:49 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] released
+2015-03-27 13:14:49 DEBUG EVSTestBase.afterSuite: 42 - after suite
+2015-03-27 15:14:44 DEBUG EVSTestBase.beforeSuite: 28 - before suite
+2015-03-27 15:14:45 DEBUG EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-27 15:14:45 DEBUG EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-27 15:14:45 DEBUG EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-27 15:14:45 DEBUG EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=EnterpriseAPI@69b794e2}
+2015-03-27 15:14:45 DEBUG EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-27 15:14:45 DEBUG EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-27 15:14:45 DEBUG EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-27 15:14:45 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] obtained in 446 millis
+2015-03-27 15:14:45 DEBUG EVSUtil.initDBHandle: 97 - success to connect to db
+2015-03-27 15:14:45 DEBUG TestBed.setUp: 28 - trying to setup testbed
+2015-03-27 15:14:46 DEBUG EVSTestBase.beforeClass: 47 - before class
+2015-03-27 15:14:46 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 15:14:50 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 15:14:50 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 15:14:50 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 15:14:51 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 15:14:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 15:14:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 15:14:51 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 15:14:51 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 15:14:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 15:14:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 15:14:51  INFO EnterpriseRegistAT.testCaptchaRegistSuccess: 42 - tc:验证成功获取验证码
+2015-03-27 15:14:51 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 15:14:51 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 15:14:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 15:14:51 DEBUG EVSTestBase.afterClass: 54 - after class
+2015-03-27 15:14:51 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] released
+2015-03-27 15:14:51 DEBUG EVSTestBase.afterSuite: 42 - after suite
+2015-03-27 15:18:06 DEBUG EVSTestBase.beforeSuite: 28 - before suite
+2015-03-27 15:18:06 DEBUG EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/FuncTestTB.yml
+2015-03-27 15:18:07 DEBUG EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-03-27 15:18:07 DEBUG EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/APISet.yml
+2015-03-27 15:18:07 DEBUG EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=EnterpriseAPI@69b794e2}
+2015-03-27 15:18:07 DEBUG EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.evs.ta/ta/target/test-classes/DataSet.yml
+2015-03-27 15:18:07 DEBUG EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-03-27 15:18:07 DEBUG EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-03-27 15:18:07 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] obtained in 322 millis
+2015-03-27 15:18:07 DEBUG EVSUtil.initDBHandle: 97 - success to connect to db
+2015-03-27 15:18:07 DEBUG TestBed.setUp: 28 - trying to setup testbed
+2015-03-27 15:18:07 DEBUG EVSTestBase.beforeClass: 47 - before class
+2015-03-27 15:18:07 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 15:18:10 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 15:18:10 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 15:18:10 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 15:18:10 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 15:18:10 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-03-27 15:18:10 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 15:18:10 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 15:18:10 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 15:18:10 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 15:18:10 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-03-27 15:18:10  INFO EnterpriseRegistAT.testCaptchaRegistSuccess: 42 - tc:验证成功获取验证码
+2015-03-27 15:18:10 DEBUG EVSUtil.callPostJson: 191 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-03-27 15:18:10 DEBUG EVSUtil.callPost: 177 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-03-27 15:18:10 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-03-27 15:18:10 DEBUG EVSTestBase.afterClass: 54 - after class
+2015-03-27 15:18:10 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@3e2e18f2] released
+2015-03-27 15:18:10 DEBUG EVSTestBase.afterSuite: 42 - after suite
+2015-04-01 19:07:53 DEBUG com.hcwins.vehicle.evs.ta.apitest.EVSTestBase.beforeSuite: 28 - before suite
+2015-04-01 19:07:53 DEBUG com.hcwins.vehicle.evs.ta.EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/FuncTestTB.yml
+2015-04-01 19:07:53 ERROR com.hcwins.vehicle.evs.ta.EVSUtil.loadTestBed: 59 - failed to load testbed
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 1, column 5: Unable to find class specified by tag: TestBed
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.loadTestBed(EVSUtil.java:56) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.<init>(EVSUtil.java:44) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:07:53 DEBUG com.hcwins.vehicle.evs.ta.EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/APISet.yml
+2015-04-01 19:07:53 ERROR com.hcwins.vehicle.evs.ta.EVSUtil.loadAPISet: 72 - failed to load api set
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 1, column 11: Unable to find class specified by tag: APISet
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.loadAPISet(EVSUtil.java:69) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.<init>(EVSUtil.java:45) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:07:53 DEBUG com.hcwins.vehicle.evs.ta.EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/DataSet.yml
+2015-04-01 19:07:53 ERROR com.hcwins.vehicle.evs.ta.EVSUtil.loadDataSet: 85 - failed to load data set
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 1, column 12: Unable to find class specified by tag: DataSet
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.loadDataSet(EVSUtil.java:82) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.<init>(EVSUtil.java:46) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.evs.ta.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:205) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:108) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:07:53 ERROR com.hcwins.vehicle.evs.ta.EVSUtil.initDBHandle: 99 - failed to connect to db
+2015-04-01 19:08:28 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite: 28 - before suite
+2015-04-01 19:08:28 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/FuncTestTB.yml
+2015-04-01 19:08:28 ERROR com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 59 - failed to load testbed
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 1, column 5: Unable to find class specified by tag: TestBed
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed(EVSUtil.java:56) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<init>(EVSUtil.java:44) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:08:28 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/APISet.yml
+2015-04-01 19:08:28 ERROR com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 72 - failed to load api set
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 1, column 11: Unable to find class specified by tag: APISet
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet(EVSUtil.java:69) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<init>(EVSUtil.java:45) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:08:28 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/DataSet.yml
+2015-04-01 19:08:28 ERROR com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 85 - failed to load data set
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 1, column 12: Unable to find class specified by tag: DataSet
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet(EVSUtil.java:82) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<init>(EVSUtil.java:46) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:08:28 ERROR com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 99 - failed to connect to db
+2015-04-01 19:10:12 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite: 28 - before suite
+2015-04-01 19:10:12 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/FuncTestTB.yml
+2015-04-01 19:10:12 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-04-01 19:10:12 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/APISet.yml
+2015-04-01 19:10:12 ERROR com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 72 - failed to load api set
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 2, column 18: Unable to find class specified by tag: com.hcwins.vehicle.ta.evs.EnterpriseAPI
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValueInternal(YamlReader.java:295) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:152) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet(EVSUtil.java:69) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<init>(EVSUtil.java:45) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:10:12 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/DataSet.yml
+2015-04-01 19:10:12 ERROR com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 85 - failed to load data set
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 3, column 21: Unable to find class specified by tag: com.hcwins.vehicle.ta.evs.EnterpriseData
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValueInternal(YamlReader.java:335) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:152) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValueInternal(YamlReader.java:295) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:152) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet(EVSUtil.java:82) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<init>(EVSUtil.java:46) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:10:12 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-04-01 19:10:13 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@6e4784bc] obtained in 300 millis
+2015-04-01 19:10:13 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 97 - success to connect to db
+2015-04-01 19:10:13 DEBUG com.hcwins.vehicle.ta.evs.TestBed.setUp: 28 - trying to setup testbed
+2015-04-01 19:11:15 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite: 28 - before suite
+2015-04-01 19:11:15 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/FuncTestTB.yml
+2015-04-01 19:11:16 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-04-01 19:11:16 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/APISet.yml
+2015-04-01 19:11:16 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=com.hcwins.vehicle.ta.evs.apiset.EnterpriseAPI@4d339552}
+2015-04-01 19:11:16 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/DataSet.yml
+2015-04-01 19:11:16 ERROR com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 85 - failed to load data set
+com.esotericsoftware.yamlbeans.YamlReader$YamlReaderException: Line 3, column 21: Unable to find class specified by tag: com.hcwins.vehicle.ta.evs.EnterpriseData
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:145) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValueInternal(YamlReader.java:335) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:152) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValueInternal(YamlReader.java:295) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.readValue(YamlReader.java:152) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:103) ~[yamlbeans-1.09.jar:na]
+	at com.esotericsoftware.yamlbeans.YamlReader.read(YamlReader.java:90) ~[yamlbeans-1.09.jar:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet(EVSUtil.java:82) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<init>(EVSUtil.java:46) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.EVSUtil.<clinit>(EVSUtil.java:41) [test-classes/:na]
+	at com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite(EVSTestBase.java:29) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215) [testng-6.8.21.jar:na]
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:140) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-6.8.21.jar:na]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149) [testng-6.8.21.jar:na]
+	at org.testng.TestNG.run(TestNG.java:1057) [testng-6.8.21.jar:na]
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:129) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:113) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:111) [surefire-testng-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
+2015-04-01 19:11:16 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-04-01 19:11:16 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@34b7ac2f] obtained in 284 millis
+2015-04-01 19:11:16 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 97 - success to connect to db
+2015-04-01 19:11:16 DEBUG com.hcwins.vehicle.ta.evs.TestBed.setUp: 28 - trying to setup testbed
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite: 28 - before suite
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/FuncTestTB.yml
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/APISet.yml
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=com.hcwins.vehicle.ta.evs.apiset.EnterpriseAPI@4d339552}
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/DataSet.yml
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-04-01 19:12:00 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] obtained in 283 millis
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 97 - success to connect to db
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.TestBed.setUp: 28 - trying to setup testbed
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeClass: 47 - before class
+2015-04-01 19:12:00 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":""}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":203,"desc":"EMPTY_MOBILE"}}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":" "}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000a"}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000"}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000 "}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"158811000001"}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-01 19:12:03 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[update EVS_Captcha set module=? where id=?] took 19 millis
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 1 millis
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[update EVS_Captcha set status=? where id=?] took 2 millis
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 1 millis
+2015-04-01 19:12:04 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 1 millis
+2015-04-01 19:12:04 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.sleep: 158 - sleeping 5 seconds: slow down the execution for different create time
+2015-04-01 19:12:09 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-01 19:12:09 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-01 19:12:09 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-01 19:12:09 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.afterClass: 54 - after class
+2015-04-01 19:12:09 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] released
+2015-04-01 19:12:09 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.afterSuite: 42 - after suite

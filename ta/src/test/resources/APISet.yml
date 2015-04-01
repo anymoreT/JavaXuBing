@@ -1,3 +1,0 @@
-!com.hcwins.vehicle.evs.ta.APISet
-enterprise: !com.hcwins.vehicle.evs.ta.apiset.EnterpriseAPI
-    captchaRegist: /enterprise/captchaRegist
