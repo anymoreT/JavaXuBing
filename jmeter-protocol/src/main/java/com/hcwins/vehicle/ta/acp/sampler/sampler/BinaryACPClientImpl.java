@@ -22,7 +22,7 @@
  * Input/Output strings are passed as hex-encoded binary strings.
  *
  */
-package org.apache.jmeter.protocol.tcp.sampler;
+package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,12 +44,12 @@ import org.apache.log.Logger;
  *
  * Input data is assumed to be in hex, and is converted to binary
  */
-public class BinaryTCPClientImpl extends AbstractTCPClient {
+public class BinaryACPClientImpl extends AbstractACPClient {
     private static final Logger log = LoggingManager.getLoggerForClass();
 
     private static final int eomInt = JMeterUtils.getPropDefault("tcp.BinaryTCPClient.eomByte", 1000); // $NON_NLS-1$
 
-    public BinaryTCPClientImpl() {
+    public BinaryACPClientImpl() {
         super();
         setEolByte(eomInt);
         if (useEolByte) {

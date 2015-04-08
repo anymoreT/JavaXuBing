@@ -21,14 +21,14 @@
  * For example, character data or binary data with character length or binary length
  *
  */
-package org.apache.jmeter.protocol.tcp.sampler;
+package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
-public abstract class TCPClientDecorator extends AbstractTCPClient {
+public abstract class ACPClientDecorator extends AbstractACPClient {
 
-    protected final TCPClient tcpClient; // the data implementation
+    protected final ACPClient ACPClient; // the data implementation
 
-    public TCPClientDecorator(TCPClient tcpClient) {
-        this.tcpClient = tcpClient;
+    public ACPClientDecorator(ACPClient ACPClient) {
+        this.ACPClient = ACPClient;
     }
 
     /**

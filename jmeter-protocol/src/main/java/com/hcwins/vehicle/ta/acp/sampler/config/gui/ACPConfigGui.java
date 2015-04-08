@@ -16,7 +16,7 @@
  *
  */
 
-package org.apache.jmeter.protocol.tcp.config.gui;
+package com.hcwins.vehicle.ta.acp.sampler.config.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -38,17 +38,17 @@ import org.apache.jmeter.gui.util.JSyntaxTextArea;
 import org.apache.jmeter.gui.util.JTextScrollPane;
 import org.apache.jmeter.gui.util.TristateCheckBox;
 import org.apache.jmeter.gui.util.VerticalPanel;
-import org.apache.jmeter.protocol.tcp.sampler.TCPSampler;
+import com.hcwins.vehicle.ta.acp.sampler.sampler.ACPSampler;
 import org.apache.jmeter.testelement.TestElement;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.gui.JLabeledTextField;
 
-public class TCPConfigGui extends AbstractConfigGui {
+public class ACPConfigGui extends AbstractConfigGui {
 
     private static final long serialVersionUID = 240L;
 
     private ServerPanel serverPanel;
-    
+
     private JLabeledTextField classname;
 
     private JCheckBox reUseConnection;
@@ -67,11 +67,11 @@ public class TCPConfigGui extends AbstractConfigGui {
 
     private boolean displayName = true;
 
-    public TCPConfigGui() {
+    public ACPConfigGui() {
         this(true);
     }
 
-    public TCPConfigGui(boolean displayName) {
+    public ACPConfigGui(boolean displayName) {
         this.displayName = displayName;
         init();
     }
@@ -85,22 +85,22 @@ public class TCPConfigGui extends AbstractConfigGui {
     public void configure(TestElement element) {
         super.configure(element);
         // N.B. this will be a config element, so we cannot use the getXXX() methods
-        classname.setText(element.getPropertyAsString(TCPSampler.CLASSNAME));
-        serverPanel.setServer(element.getPropertyAsString(TCPSampler.SERVER));
+        classname.setText(element.getPropertyAsString(ACPSampler.CLASSNAME));
+        serverPanel.setServer(element.getPropertyAsString(ACPSampler.SERVER));
         // Default to original behaviour, i.e. re-use connection
-        reUseConnection.setSelected(element.getPropertyAsBoolean(TCPSampler.RE_USE_CONNECTION, TCPSampler.RE_USE_CONNECTION_DEFAULT));
-        serverPanel.setPort(element.getPropertyAsString(TCPSampler.PORT));
+        reUseConnection.setSelected(element.getPropertyAsBoolean(ACPSampler.RE_USE_CONNECTION, ACPSampler.RE_USE_CONNECTION_DEFAULT));
+        serverPanel.setPort(element.getPropertyAsString(ACPSampler.PORT));
         // filename.setText(element.getPropertyAsString(TCPSampler.FILENAME));
-        serverPanel.setResponseTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT));
-        serverPanel.setConnectTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT_CONNECT));
-        setNoDelay.setTristateFromProperty(element, TCPSampler.NODELAY);
+        serverPanel.setResponseTimeout(element.getPropertyAsString(ACPSampler.TIMEOUT));
+        serverPanel.setConnectTimeout(element.getPropertyAsString(ACPSampler.TIMEOUT_CONNECT));
+        setNoDelay.setTristateFromProperty(element, ACPSampler.NODELAY);
 //        setNoDelay.setSelected(element.getPropertyAsBoolean(TCPSampler.NODELAY));
-        requestData.setInitialText(element.getPropertyAsString(TCPSampler.REQUEST));
+        requestData.setInitialText(element.getPropertyAsString(ACPSampler.REQUEST));
         requestData.setCaretPosition(0);
-        closeConnection.setTristateFromProperty(element, TCPSampler.CLOSE_CONNECTION);
+        closeConnection.setTristateFromProperty(element, ACPSampler.CLOSE_CONNECTION);
 //        closeConnection.setSelected(element.getPropertyAsBoolean(TCPSampler.CLOSE_CONNECTION, TCPSampler.CLOSE_CONNECTION_DEFAULT));
-        soLinger.setText(element.getPropertyAsString(TCPSampler.SO_LINGER));
-        eolByte.setText(element.getPropertyAsString(TCPSampler.EOL_BYTE));
+        soLinger.setText(element.getPropertyAsString(ACPSampler.SO_LINGER));
+        eolByte.setText(element.getPropertyAsString(ACPSampler.EOL_BYTE));
     }
 
     @Override
@@ -119,20 +119,20 @@ public class TCPConfigGui extends AbstractConfigGui {
     public void modifyTestElement(TestElement element) {
         configureTestElement(element);
         // N.B. this will be a config element, so we cannot use the setXXX() methods
-        element.setProperty(TCPSampler.CLASSNAME, classname.getText(), "");
-        element.setProperty(TCPSampler.SERVER, serverPanel.getServer());
-        element.setProperty(TCPSampler.RE_USE_CONNECTION, reUseConnection.isSelected());
-        element.setProperty(TCPSampler.PORT, serverPanel.getPort());
+        element.setProperty(ACPSampler.CLASSNAME, classname.getText(), "");
+        element.setProperty(ACPSampler.SERVER, serverPanel.getServer());
+        element.setProperty(ACPSampler.RE_USE_CONNECTION, reUseConnection.isSelected());
+        element.setProperty(ACPSampler.PORT, serverPanel.getPort());
         // element.setProperty(TCPSampler.FILENAME, filename.getText());
-        setNoDelay.setPropertyFromTristate(element, TCPSampler.NODELAY);
+        setNoDelay.setPropertyFromTristate(element, ACPSampler.NODELAY);
 //        element.setProperty(TCPSampler.NODELAY, setNoDelay.isSelected());
-        element.setProperty(TCPSampler.TIMEOUT, serverPanel.getResponseTimeout());
-        element.setProperty(TCPSampler.TIMEOUT_CONNECT, serverPanel.getConnectTimeout(),"");
-        element.setProperty(TCPSampler.REQUEST, requestData.getText());
-        closeConnection.setPropertyFromTristate(element, TCPSampler.CLOSE_CONNECTION); // Don't use default for saving tristates
+        element.setProperty(ACPSampler.TIMEOUT, serverPanel.getResponseTimeout());
+        element.setProperty(ACPSampler.TIMEOUT_CONNECT, serverPanel.getConnectTimeout(),"");
+        element.setProperty(ACPSampler.REQUEST, requestData.getText());
+        closeConnection.setPropertyFromTristate(element, ACPSampler.CLOSE_CONNECTION); // Don't use default for saving tristates
 //        element.setProperty(TCPSampler.CLOSE_CONNECTION, closeConnection.isSelected(), TCPSampler.CLOSE_CONNECTION_DEFAULT);
-        element.setProperty(TCPSampler.SO_LINGER, soLinger.getText(), "");
-        element.setProperty(TCPSampler.EOL_BYTE, eolByte.getText(), "");
+        element.setProperty(ACPSampler.SO_LINGER, soLinger.getText(), "");
+        element.setProperty(ACPSampler.EOL_BYTE, eolByte.getText(), "");
     }
 
     /**
@@ -147,7 +147,7 @@ public class TCPConfigGui extends AbstractConfigGui {
         requestData.setInitialText(""); //$NON-NLS-1$
         reUseConnection.setSelected(true);
         setNoDelay.setSelected(false); // TODO should this be indeterminate?
-        closeConnection.setSelected(TCPSampler.CLOSE_CONNECTION_DEFAULT); // TODO should this be indeterminate?
+        closeConnection.setSelected(ACPSampler.CLOSE_CONNECTION_DEFAULT); // TODO should this be indeterminate?
         soLinger.setText(""); //$NON-NLS-1$
         eolByte.setText(""); //$NON-NLS-1$
     }
@@ -190,7 +190,7 @@ public class TCPConfigGui extends AbstractConfigGui {
     private JPanel createCloseConnectionPanel() {
         JLabel label = new JLabel(JMeterUtils.getResString("closeconnection")); // $NON-NLS-1$
 
-        closeConnection = new TristateCheckBox("", TCPSampler.CLOSE_CONNECTION_DEFAULT);
+        closeConnection = new TristateCheckBox("", ACPSampler.CLOSE_CONNECTION_DEFAULT);
         label.setLabelFor(closeConnection);
 
         JPanel closeConnectionPanel = new JPanel(new FlowLayout());

@@ -16,12 +16,12 @@
  *
  */
 
-package org.apache.jmeter.protocol.tcp.sampler;
+package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 /**
  * Basic implementation of TCPClient interface.
  */
-public abstract class AbstractTCPClient implements TCPClient {
+public abstract class AbstractACPClient implements ACPClient {
     private String charset;
     protected byte eolByte;
     protected boolean useEolByte = false;

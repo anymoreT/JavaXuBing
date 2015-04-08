@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package org.apache.jmeter.protocol.tcp.sampler;
+package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 /**
  * Exception that contains partial response (Text read until exception occured)

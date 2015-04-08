@@ -26,7 +26,7 @@
  * Length prefix is binary of length specified by property "tcp.length.prefix.length".
  *
  */
-package org.apache.jmeter.protocol.tcp.sampler;
+package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,14 +41,14 @@ import org.apache.log.Logger;
  * Implements binary length-prefixed binary data.
  * This is used in ISO8583 for example.
  */
-public class LengthPrefixedBinaryTCPClientImpl extends TCPClientDecorator {
+public class LengthPrefixedBinaryACPClientImpl extends ACPClientDecorator {
     private static final Logger log = LoggingManager.getLoggerForClass();
 
     private final int lengthPrefixLen = JMeterUtils.getPropDefault("tcp.binarylength.prefix.length", 2); // $NON-NLS-1$
 
-    public LengthPrefixedBinaryTCPClientImpl() {
-        super(new BinaryTCPClientImpl());
-        tcpClient.setEolByte(Byte.MAX_VALUE+1);
+    public LengthPrefixedBinaryACPClientImpl() {
+        super(new BinaryACPClientImpl());
+        ACPClient.setEolByte(Byte.MAX_VALUE+1);
     }
 
 
@@ -61,7 +61,7 @@ public class LengthPrefixedBinaryTCPClientImpl extends TCPClientDecorator {
         if(log.isDebugEnabled()) {
             log.debug("Wrote: " + s.length()/2 + " bytes");
         }
-        this.tcpClient.write(os, s);        
+        this.ACPClient.write(os, s);
     }
 
     /**
@@ -69,7 +69,7 @@ public class LengthPrefixedBinaryTCPClientImpl extends TCPClientDecorator {
      */
     @Override
     public void write(OutputStream os, InputStream is) throws IOException {
-        this.tcpClient.write(os, is);
+        this.ACPClient.write(os, is);
     }
 
     /**
@@ -108,7 +108,7 @@ public class LengthPrefixedBinaryTCPClientImpl extends TCPClientDecorator {
      */
     @Override
     public byte getEolByte() {
-        return tcpClient.getEolByte();
+        return ACPClient.getEolByte();
     }
 
     /**

@@ -16,28 +16,28 @@
  *
  */
 
-package org.apache.jmeter.protocol.tcp.control.gui;
+package com.hcwins.vehicle.ta.acp.sampler.control.gui;
 
 import java.awt.BorderLayout;
 
 import javax.swing.BorderFactory;
 import org.apache.jmeter.config.gui.LoginConfigGui;
 import org.apache.jmeter.gui.util.VerticalPanel;
-import org.apache.jmeter.protocol.tcp.config.gui.TCPConfigGui;
-import org.apache.jmeter.protocol.tcp.sampler.TCPSampler;
+import com.hcwins.vehicle.ta.acp.sampler.config.gui.ACPConfigGui;
+import com.hcwins.vehicle.ta.acp.sampler.sampler.ACPSampler;
 import org.apache.jmeter.samplers.gui.AbstractSamplerGui;
 import org.apache.jmeter.testelement.TestElement;
 import org.apache.jmeter.util.JMeterUtils;
 
-public class TCPSamplerGui extends AbstractSamplerGui {
+public class ACPSamplerGui extends AbstractSamplerGui {
 
     private static final long serialVersionUID = 240L;
 
     private LoginConfigGui loginPanel;
 
-    private TCPConfigGui tcpDefaultPanel;
+    private ACPConfigGui tcpDefaultPanel;
 
-    public TCPSamplerGui() {
+    public ACPSamplerGui() {
         init();
     }
 
@@ -50,7 +50,7 @@ public class TCPSamplerGui extends AbstractSamplerGui {
 
     @Override
     public TestElement createTestElement() {
-        TCPSampler sampler = new TCPSampler();
+        ACPSampler sampler = new ACPSampler();
         modifyTestElement(sampler);
         return sampler;
     }
@@ -92,7 +92,7 @@ public class TCPSamplerGui extends AbstractSamplerGui {
 
         VerticalPanel mainPanel = new VerticalPanel();
 
-        tcpDefaultPanel = new TCPConfigGui(false);
+        tcpDefaultPanel = new ACPConfigGui(false);
         mainPanel.add(tcpDefaultPanel);
 
         loginPanel = new LoginConfigGui(false);

@@ -16,7 +16,7 @@
  *
  */
 
-package org.apache.jmeter.protocol.tcp.sampler;
+package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,7 +53,7 @@ import org.apache.log.Logger;
  * A sampler which understands Tcp requests.
  *
  */
-public class TCPSampler extends AbstractSampler implements ThreadListener, Interruptible {
+public class ACPSampler extends AbstractSampler implements ThreadListener, Interruptible {
     private static final long serialVersionUID = 280L;
 
     private static final Logger log = LoggingManager.getLoggerForClass();
@@ -147,13 +147,13 @@ public class TCPSampler extends AbstractSampler implements ThreadListener, Inter
         }
     };
 
-    private transient TCPClient protocolHandler;
+    private transient ACPClient protocolHandler;
     
     private transient boolean firstSample; // Are we processing the first sample?
 
     private transient volatile Socket currentSocket; // used for handling interrupt
 
-    public TCPSampler() {
+    public ACPSampler() {
         log.debug("Created " + this); //$NON-NLS-1$
     }
 
@@ -344,26 +344,26 @@ public class TCPSampler extends AbstractSampler implements ThreadListener, Inter
 
     }
 
-    private TCPClient getProtocol() {
-        TCPClient TCPClient = null;
+    private ACPClient getProtocol() {
+        ACPClient ACPClient = null;
         Class<?> javaClass = getClass(getClassname());
         if (javaClass == null){
             return null;
         }
         try {
-            TCPClient = (TCPClient) javaClass.newInstance();
+            ACPClient = (ACPClient) javaClass.newInstance();
             if (getPropertyAsString(EOL_BYTE, "").length()>0){
-                TCPClient.setEolByte(getEolByte());
+                ACPClient.setEolByte(getEolByte());
                 log.info("Using eolByte=" + getEolByte());
             }
 
             if (log.isDebugEnabled()) {
-                log.debug(this + "Created: " + getClassname() + "@" + Integer.toHexString(TCPClient.hashCode())); //$NON-NLS-1$
+                log.debug(this + "Created: " + getClassname() + "@" + Integer.toHexString(ACPClient.hashCode())); //$NON-NLS-1$
             }
         } catch (Exception e) {
             log.error(this + " Exception creating: " + getClassname(), e); //$NON-NLS-1$
         }
-        return TCPClient;
+        return ACPClient;
     }
 
     @Override

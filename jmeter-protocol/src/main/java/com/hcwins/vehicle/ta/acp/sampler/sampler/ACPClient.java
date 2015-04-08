@@ -22,7 +22,7 @@
  * Interface for generic TCP protocol handler
  *
  */
-package org.apache.jmeter.protocol.tcp.sampler;
+package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +31,7 @@ import java.io.OutputStream;
 /**
  * Interface required by TCPSampler for TCPClient implementations.
  */
-public interface TCPClient {
+public interface ACPClient {
 
     /**
      * Versions of JMeter after 2.3.2 invoke this method when the thread starts.

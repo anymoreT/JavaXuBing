@@ -24,7 +24,7 @@
  * The protocol handler class name is defined by the property tcp.handler
  *
  */
-package org.apache.jmeter.protocol.tcp.sampler;
+package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,14 +44,14 @@ import org.apache.log.Logger;
  * the end of the stream is reached.
  * The EOL byte is defined by the property "tcp.eolByte".
  */
-public class TCPClientImpl extends AbstractTCPClient {
+public class ACPClientImpl extends AbstractACPClient {
     private static final Logger log = LoggingManager.getLoggerForClass();
 
     private static final int eolInt = JMeterUtils.getPropDefault("tcp.eolByte", 1000); // $NON-NLS-1$
     private static final String charset = JMeterUtils.getPropDefault("tcp.charset", Charset.defaultCharset().name()); // $NON-NLS-1$
     // default is not in range of a byte
 
-    public TCPClientImpl() {
+    public ACPClientImpl() {
         super();
         setEolByte(eolInt);
         if (useEolByte) {
