@@ -1,41 +1,15 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 package com.hcwins.vehicle.ta.acp.sampler.control.gui;
 
-import java.awt.BorderLayout;
-
-import javax.swing.BorderFactory;
-import org.apache.jmeter.config.gui.LoginConfigGui;
-import org.apache.jmeter.gui.util.VerticalPanel;
 import com.hcwins.vehicle.ta.acp.sampler.config.gui.ACPConfigGui;
 import com.hcwins.vehicle.ta.acp.sampler.sampler.ACPSampler;
+import org.apache.jmeter.gui.util.VerticalPanel;
 import org.apache.jmeter.samplers.gui.AbstractSamplerGui;
 import org.apache.jmeter.testelement.TestElement;
-import org.apache.jmeter.util.JMeterUtils;
+
+import java.awt.*;
 
 public class ACPSamplerGui extends AbstractSamplerGui {
-
-    private static final long serialVersionUID = 240L;
-
-    private LoginConfigGui loginPanel;
-
-    private ACPConfigGui tcpDefaultPanel;
+    private ACPConfigGui acpDefaultPanel;
 
     public ACPSamplerGui() {
         init();
@@ -44,8 +18,8 @@ public class ACPSamplerGui extends AbstractSamplerGui {
     @Override
     public void configure(TestElement element) {
         super.configure(element);
-        loginPanel.configure(element);
-        tcpDefaultPanel.configure(element);
+
+        acpDefaultPanel.configure(element);
     }
 
     @Override
@@ -55,49 +29,40 @@ public class ACPSamplerGui extends AbstractSamplerGui {
         return sampler;
     }
 
-    /**
-     * Modifies a given TestElement to mirror the data in the gui components.
-     *
-     * @see org.apache.jmeter.gui.JMeterGUIComponent#modifyTestElement(TestElement)
-     */
     @Override
     public void modifyTestElement(TestElement sampler) {
         sampler.clear();
-        sampler.addTestElement(tcpDefaultPanel.createTestElement());
-        sampler.addTestElement(loginPanel.createTestElement());
+        sampler.addTestElement(acpDefaultPanel.createTestElement());
         this.configureTestElement(sampler);
     }
 
-    /**
-     * Implements JMeterGUIComponent.clearGui
-     */
     @Override
     public void clearGui() {
         super.clearGui();
 
-        tcpDefaultPanel.clearGui();
-        loginPanel.clearGui();
+        acpDefaultPanel.clearGui();
+    }
+
+    @Override
+    public String getStaticLabel() {
+        return "ACP Sampler";
     }
 
     @Override
     public String getLabelResource() {
-        return "tcp_sample_title"; // $NON-NLS-1$
+        return "ACP Sampler";
     }
 
     private void init() {
         setLayout(new BorderLayout(0, 5));
-        setBorder(makeBorder());
 
+        setBorder(makeBorder());
         add(makeTitlePanel(), BorderLayout.NORTH);
 
         VerticalPanel mainPanel = new VerticalPanel();
 
-        tcpDefaultPanel = new ACPConfigGui(false);
-        mainPanel.add(tcpDefaultPanel);
-
-        loginPanel = new LoginConfigGui(false);
-        loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config"))); // $NON-NLS-1$
-        mainPanel.add(loginPanel);
+        acpDefaultPanel = new ACPConfigGui(false);
+        mainPanel.add(acpDefaultPanel);
 
         add(mainPanel, BorderLayout.CENTER);
     }
