@@ -11,15 +11,16 @@ import java.io.OutputStream;
 public class ACPClientGPS extends AbstractACPClient {
     private static final Logger log = LoggingManager.getLoggerForClass();
 
-    public ACPClientGPS() {
-        super();
+    public ACPClientGPS(ACPSampler acpSampler) {
+        super(acpSampler);
     }
 
     @Override
     public void write(OutputStream os, String s) throws IOException {
         if (log.isDebugEnabled()) {
-            log.debug("WriteS: " + s);
+            log.debug(acpSampler + " WriteS: " + s);
         }
+        os.write(s.getBytes(getCharset()));
         os.flush();
     }
 
@@ -35,7 +36,7 @@ public class ACPClientGPS extends AbstractACPClient {
                 break;
             }
             if (log.isDebugEnabled()) {
-                log.debug("ReadS: " + w.size() + " -> " + w.toString());
+                log.debug(acpSampler + " ReadS: " + w.size() + " -> " + w.toString());
             }
             return w.toString();
         } catch (IOException e) {

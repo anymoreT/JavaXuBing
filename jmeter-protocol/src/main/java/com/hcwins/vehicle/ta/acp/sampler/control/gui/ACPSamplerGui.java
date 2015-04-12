@@ -16,6 +16,16 @@ public class ACPSamplerGui extends AbstractSamplerGui {
     }
 
     @Override
+    public String getStaticLabel() {
+        return "ACP Sampler";
+    }
+
+    @Override
+    public String getLabelResource() {
+        return "ACP Sampler";
+    }
+
+    @Override
     public void configure(TestElement element) {
         super.configure(element);
 
@@ -41,16 +51,6 @@ public class ACPSamplerGui extends AbstractSamplerGui {
         super.clearGui();
 
         acpDefaultPanel.clearGui();
-    }
-
-    @Override
-    public String getStaticLabel() {
-        return "ACP Sampler";
-    }
-
-    @Override
-    public String getLabelResource() {
-        return "ACP Sampler";
     }
 
     private void init() {

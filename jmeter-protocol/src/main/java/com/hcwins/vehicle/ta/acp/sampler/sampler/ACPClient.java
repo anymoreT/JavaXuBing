@@ -12,4 +12,6 @@ public interface ACPClient {
     void write(OutputStream os, String s) throws IOException;
 
     String read(InputStream is) throws ACPException;
+
+    String getCharset();
 }

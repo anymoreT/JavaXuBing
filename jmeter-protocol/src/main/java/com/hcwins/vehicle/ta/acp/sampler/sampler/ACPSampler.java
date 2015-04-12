@@ -13,8 +13,8 @@ import org.apache.log.Logger;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Constructor;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.util.*;
 
 public class ACPSampler extends AbstractSampler implements ThreadListener, Interruptible {
@@ -186,7 +186,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
                 String resData = acpClient.read(is);
                 res.setResponseCodeOK();
                 res.setResponseMessageOK();
-                res.setResponseData(resData, Charset.defaultCharset().name());
+                res.setResponseData(resData, acpClient.getCharset());
 
                 isSuccessful = true;
             }
@@ -207,6 +207,9 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             res.setSuccessful(isSuccessful);
 
             if (!reUseConnection || closeConnection) {
+                if (log.isDebugEnabled()) {
+                    log.debug(this + " Not set re-use flag or has close flag");
+                }
                 closeSocket(socketKey);
             }
         }
@@ -235,7 +238,9 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
         }
 
         try {
-            acpClient = (ACPClient) javaClass.newInstance();
+            Constructor<?> c = javaClass.getDeclaredConstructor(ACPSampler.class);
+            c.setAccessible(true);
+            acpClient = (ACPClient) c.newInstance(this);
         } catch (Exception e) {
             log.error(this + " Exception creating: " + getClassname(), e);
         }
@@ -296,11 +301,11 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
                 }
                 cp.put(socketKey, con);
             } catch (UnknownHostException e) {
-                log.warn("Unknown host for " + socketKey, e);
+                log.warn(this + " Unknown host for " + socketKey, e);
                 cp.put(ERRKEY, e.toString());
                 return null;
             } catch (IOException e) {
-                log.warn("Could not create socket for " + socketKey, e);
+                log.warn(this + " Could not create socket for " + socketKey, e);
                 cp.put(ERRKEY, e.toString());
                 return null;
             }
@@ -314,7 +319,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             con.setSoTimeout(getTimeout()); // timeout of zero is interpreted as an infinite timeout
             con.setTcpNoDelay(isNoDelay());
         } catch (SocketException se) {
-            log.warn("Could not set timeout or nodelay for " + socketKey + ": " + con, se);
+            log.warn(this + " Could not set timeout or nodelay for " + socketKey + ": " + con, se);
             cp.put(ERRKEY, se.toString());
         }
 
@@ -331,7 +336,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             try {
                 con.close();
             } catch (IOException e) {
-                log.warn("Error closing socket " + socketKey + ": " + con + " " + e);
+                log.warn(this + " Error closing socket " + socketKey + ": " + con + " " + e);
             }
         }
     }
@@ -348,7 +353,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
                 try {
                     ((Socket) element.getValue()).close();
                 } catch (IOException e) {
-                    log.warn("Error closing socket " + element.getKey() + ": " + element.getValue() + " " + e);
+                    log.warn(this + " Error closing socket " + element.getKey() + ": " + element.getValue() + " " + e);
                 }
             }
         }
