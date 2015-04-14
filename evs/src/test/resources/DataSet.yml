@@ -2,9 +2,18 @@
 enterprises:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
       enterpriseName: try
+      enterpriseWebsite: www.hcwins.cn
 
 enterpriseAdmins:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
       mobile: 15881100000
+      realName: hanmeimei
+      email: meimei.han@hcwins.com
+      password: 123456
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
       mobile: 15881100001
+
+enterpriseRegionDatas:
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData
+      provinceId: 510000
+      cityId: 510100

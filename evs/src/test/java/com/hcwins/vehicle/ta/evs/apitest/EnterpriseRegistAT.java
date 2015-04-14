@@ -4,6 +4,8 @@ import com.hcwins.vehicle.ta.evs.EVSUtil;
 import com.hcwins.vehicle.ta.evs.apidao.EVSCaptcha;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.CaptchaRegist;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.CaptchaRegistResponse;
+import com.hcwins.vehicle.ta.evs.apiobj.enterprise.EnterpriseRegist;
+import com.hcwins.vehicle.ta.evs.apiobj.enterprise.EnterpriseRegistResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -23,12 +25,26 @@ import static org.hamcrest.Matchers.*;
 public class EnterpriseRegistAT extends EVSTestBase {
     static final Logger logger = LoggerFactory.getLogger(EnterpriseRegistAT.class);
 
+    String enterpriseName0;
+    String enterprisewebsite0;
+    String adminRealName0;
     String mobile0;
+    String email0;
+    String password0;
+    String provinceId0;
+    String cityId0;
 
     @BeforeClass
     public void beforeClass() {
         super.beforeClass();
+        enterpriseName0 = dataSet.enterprises.get(0).enterpriseName;
+        enterprisewebsite0 = dataSet.enterprises.get(0).enterpriseWebsite;
+        adminRealName0 = dataSet.enterpriseAdmins.get(0).realName;
         mobile0 = dataSet.enterpriseAdmins.get(0).mobile;
+        email0 = dataSet.enterpriseAdmins.get(0).email;
+        password0 = dataSet.enterpriseAdmins.get(0).password;
+        provinceId0 = dataSet.enterpriseRegionDatas.get(0).provinceId;
+        cityId0 = dataSet.enterpriseRegionDatas.get(0).cityId;
         //TODO:
     }
 
@@ -118,4 +134,13 @@ public class EnterpriseRegistAT extends EVSTestBase {
         CaptchaRegistResponse captchaRegistResponse = CaptchaRegist.postCaptchaRegistRequest(mobile);
         assertThat(captchaRegistResponse.result.code, equalTo(code));
     }
+
+    @Test(description = "企业注册: 验证当使用合法参数注册时企业注册成功")
+    public void testEnterpriseRegistSuccess() {
+        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName0, enterprisewebsite0, cityId0, adminRealName0, mobile0, email0, password0, provinceId0);
+        assertThat(enterpriseRegistResponse.result.code, equalTo(0));
+        assertThat(enterpriseRegistResponse.enterpriseStatus, equalTo(0));
+    }
+
+
 }
