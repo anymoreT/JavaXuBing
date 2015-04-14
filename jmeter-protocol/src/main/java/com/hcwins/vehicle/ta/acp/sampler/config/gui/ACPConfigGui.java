@@ -1,67 +1,28 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 package com.hcwins.vehicle.ta.acp.sampler.config.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
+import com.hcwins.vehicle.ta.acp.sampler.sampler.ACPSampler;
 import org.apache.jmeter.config.ConfigTestElement;
 import org.apache.jmeter.config.gui.AbstractConfigGui;
 import org.apache.jmeter.gui.ServerPanel;
-import org.apache.jmeter.gui.util.HorizontalPanel;
-import org.apache.jmeter.gui.util.JSyntaxTextArea;
-import org.apache.jmeter.gui.util.JTextScrollPane;
-import org.apache.jmeter.gui.util.TristateCheckBox;
-import org.apache.jmeter.gui.util.VerticalPanel;
-import com.hcwins.vehicle.ta.acp.sampler.sampler.ACPSampler;
+import org.apache.jmeter.gui.util.*;
 import org.apache.jmeter.testelement.TestElement;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.gui.JLabeledTextField;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 public class ACPConfigGui extends AbstractConfigGui {
-
-    private static final long serialVersionUID = 240L;
-
     private ServerPanel serverPanel;
 
-    private JLabeledTextField classname;
-
     private JCheckBox reUseConnection;
-
-    // NOTUSED yet private JTextField filename;
-
-    private TristateCheckBox setNoDelay;
-
     private TristateCheckBox closeConnection;
-
+    private TristateCheckBox setNoDelay;
     private JTextField soLinger;
 
-    private JTextField eolByte;
+    private JLabeledTextField classname;
 
     private JSyntaxTextArea requestData;
 
@@ -77,30 +38,33 @@ public class ACPConfigGui extends AbstractConfigGui {
     }
 
     @Override
+    public String getStaticLabel() {
+        return "ACP Sampler Config";
+    }
+
+    @Override
     public String getLabelResource() {
-        return "tcp_config_title"; // $NON-NLS-1$
+        return "ACP Sampler Config";
     }
 
     @Override
     public void configure(TestElement element) {
         super.configure(element);
-        // N.B. this will be a config element, so we cannot use the getXXX() methods
-        classname.setText(element.getPropertyAsString(ACPSampler.CLASSNAME));
+
         serverPanel.setServer(element.getPropertyAsString(ACPSampler.SERVER));
-        // Default to original behaviour, i.e. re-use connection
-        reUseConnection.setSelected(element.getPropertyAsBoolean(ACPSampler.RE_USE_CONNECTION, ACPSampler.RE_USE_CONNECTION_DEFAULT));
         serverPanel.setPort(element.getPropertyAsString(ACPSampler.PORT));
-        // filename.setText(element.getPropertyAsString(TCPSampler.FILENAME));
-        serverPanel.setResponseTimeout(element.getPropertyAsString(ACPSampler.TIMEOUT));
         serverPanel.setConnectTimeout(element.getPropertyAsString(ACPSampler.TIMEOUT_CONNECT));
+        serverPanel.setResponseTimeout(element.getPropertyAsString(ACPSampler.TIMEOUT));
+
+        reUseConnection.setSelected(element.getPropertyAsBoolean(ACPSampler.RE_USE_CONNECTION, ACPSampler.RE_USE_CONNECTION_DEFAULT));
+        closeConnection.setTristateFromProperty(element, ACPSampler.CLOSE_CONNECTION);
         setNoDelay.setTristateFromProperty(element, ACPSampler.NODELAY);
-//        setNoDelay.setSelected(element.getPropertyAsBoolean(TCPSampler.NODELAY));
+        soLinger.setText(element.getPropertyAsString(ACPSampler.SO_LINGER));
+
+        classname.setText(element.getPropertyAsString(ACPSampler.CLASSNAME));
+
         requestData.setInitialText(element.getPropertyAsString(ACPSampler.REQUEST));
         requestData.setCaretPosition(0);
-        closeConnection.setTristateFromProperty(element, ACPSampler.CLOSE_CONNECTION);
-//        closeConnection.setSelected(element.getPropertyAsBoolean(TCPSampler.CLOSE_CONNECTION, TCPSampler.CLOSE_CONNECTION_DEFAULT));
-        soLinger.setText(element.getPropertyAsString(ACPSampler.SO_LINGER));
-        eolByte.setText(element.getPropertyAsString(ACPSampler.EOL_BYTE));
     }
 
     @Override
@@ -110,63 +74,43 @@ public class ACPConfigGui extends AbstractConfigGui {
         return element;
     }
 
-    /**
-     * Modifies a given TestElement to mirror the data in the gui components.
-     *
-     * @see org.apache.jmeter.gui.JMeterGUIComponent#modifyTestElement(TestElement)
-     */
     @Override
     public void modifyTestElement(TestElement element) {
         configureTestElement(element);
-        // N.B. this will be a config element, so we cannot use the setXXX() methods
-        element.setProperty(ACPSampler.CLASSNAME, classname.getText(), "");
+
         element.setProperty(ACPSampler.SERVER, serverPanel.getServer());
-        element.setProperty(ACPSampler.RE_USE_CONNECTION, reUseConnection.isSelected());
         element.setProperty(ACPSampler.PORT, serverPanel.getPort());
-        // element.setProperty(TCPSampler.FILENAME, filename.getText());
+        element.setProperty(ACPSampler.TIMEOUT_CONNECT, serverPanel.getConnectTimeout(), "");
+        element.setProperty(ACPSampler.TIMEOUT, serverPanel.getResponseTimeout(), "");
+
+        element.setProperty(ACPSampler.RE_USE_CONNECTION, reUseConnection.isSelected());
+        closeConnection.setPropertyFromTristate(element, ACPSampler.CLOSE_CONNECTION);
         setNoDelay.setPropertyFromTristate(element, ACPSampler.NODELAY);
-//        element.setProperty(TCPSampler.NODELAY, setNoDelay.isSelected());
-        element.setProperty(ACPSampler.TIMEOUT, serverPanel.getResponseTimeout());
-        element.setProperty(ACPSampler.TIMEOUT_CONNECT, serverPanel.getConnectTimeout(),"");
-        element.setProperty(ACPSampler.REQUEST, requestData.getText());
-        closeConnection.setPropertyFromTristate(element, ACPSampler.CLOSE_CONNECTION); // Don't use default for saving tristates
-//        element.setProperty(TCPSampler.CLOSE_CONNECTION, closeConnection.isSelected(), TCPSampler.CLOSE_CONNECTION_DEFAULT);
         element.setProperty(ACPSampler.SO_LINGER, soLinger.getText(), "");
-        element.setProperty(ACPSampler.EOL_BYTE, eolByte.getText(), "");
+
+        element.setProperty(ACPSampler.CLASSNAME, classname.getText(), "");
+
+        element.setProperty(ACPSampler.REQUEST, requestData.getText(), "");
     }
 
-    /**
-     * Implements JMeterGUIComponent.clearGui
-     */
     @Override
     public void clearGui() {
         super.clearGui();
 
         serverPanel.clear();
-        classname.setText(""); //$NON-NLS-1$
-        requestData.setInitialText(""); //$NON-NLS-1$
-        reUseConnection.setSelected(true);
-        setNoDelay.setSelected(false); // TODO should this be indeterminate?
-        closeConnection.setSelected(ACPSampler.CLOSE_CONNECTION_DEFAULT); // TODO should this be indeterminate?
-        soLinger.setText(""); //$NON-NLS-1$
-        eolByte.setText(""); //$NON-NLS-1$
+
+        reUseConnection.setSelected(ACPSampler.RE_USE_CONNECTION_DEFAULT);
+        closeConnection.setSelected(ACPSampler.CLOSE_CONNECTION_DEFAULT);
+        setNoDelay.setSelected(ACPSampler.NODELAY_DEFAULT);
+        soLinger.setText("");
+
+        classname.setText("");
+
+        requestData.setInitialText("");
     }
 
-
-    private JPanel createNoDelayPanel() {
-        JLabel label = new JLabel(JMeterUtils.getResString("tcp_nodelay")); // $NON-NLS-1$
-
-        setNoDelay = new TristateCheckBox();
-        label.setLabelFor(setNoDelay);
-
-        JPanel nodelayPanel = new JPanel(new FlowLayout());
-        nodelayPanel.add(label);
-        nodelayPanel.add(setNoDelay);
-        return nodelayPanel;
-    }
-
-    private JPanel createClosePortPanel() {
-        JLabel label = new JLabel(JMeterUtils.getResString("reuseconnection")); //$NON-NLS-1$
+    private JPanel createReuseConnectionPanel() {
+        JLabel label = new JLabel(JMeterUtils.getResString("reuseconnection"));
 
         reUseConnection = new JCheckBox("", true);
         reUseConnection.addItemListener(new ItemListener() {
@@ -188,7 +132,7 @@ public class ACPConfigGui extends AbstractConfigGui {
     }
 
     private JPanel createCloseConnectionPanel() {
-        JLabel label = new JLabel(JMeterUtils.getResString("closeconnection")); // $NON-NLS-1$
+        JLabel label = new JLabel(JMeterUtils.getResString("closeconnection"));
 
         closeConnection = new TristateCheckBox("", ACPSampler.CLOSE_CONNECTION_DEFAULT);
         label.setLabelFor(closeConnection);
@@ -199,10 +143,22 @@ public class ACPConfigGui extends AbstractConfigGui {
         return closeConnectionPanel;
     }
 
-    private JPanel createSoLingerOption() {
-        JLabel label = new JLabel(JMeterUtils.getResString("solinger")); //$NON-NLS-1$ 
+    private JPanel createNoDelayPanel() {
+        JLabel label = new JLabel(JMeterUtils.getResString("tcp_nodelay"));
 
-        soLinger = new JTextField(5); // 5 columns size
+        setNoDelay = new TristateCheckBox("", ACPSampler.NODELAY_DEFAULT);
+        label.setLabelFor(setNoDelay);
+
+        JPanel noDelayPanel = new JPanel(new FlowLayout());
+        noDelayPanel.add(label);
+        noDelayPanel.add(setNoDelay);
+        return noDelayPanel;
+    }
+
+    private JPanel createSoLingerOption() {
+        JLabel label = new JLabel(JMeterUtils.getResString("solinger"));
+
+        soLinger = new JTextField(5);
         soLinger.setMaximumSize(new Dimension(soLinger.getPreferredSize()));
         label.setLabelFor(soLinger);
 
@@ -212,74 +168,46 @@ public class ACPConfigGui extends AbstractConfigGui {
         return soLingerPanel;
     }
 
-    private JPanel createEolBytePanel() {
-        JLabel label = new JLabel(JMeterUtils.getResString("eolbyte")); //$NON-NLS-1$ 
-
-        eolByte = new JTextField(3); // 3 columns size
-        eolByte.setMaximumSize(new Dimension(eolByte.getPreferredSize()));
-        label.setLabelFor(eolByte);
-
-        JPanel eolBytePanel = new JPanel(new FlowLayout());
-        eolBytePanel.add(label);
-        eolBytePanel.add(eolByte);
-        return eolBytePanel;
-    }
-
     private JPanel createRequestPanel() {
-        JLabel reqLabel = new JLabel(JMeterUtils.getResString("tcp_request_data")); // $NON-NLS-1$
+        JLabel reqLabel = new JLabel(JMeterUtils.getResString("tcp_request_data"));
+
         requestData = new JSyntaxTextArea(15, 80);
-        requestData.setLanguage("text"); //$NON-NLS-1$
+        requestData.setLanguage("text");
         reqLabel.setLabelFor(requestData);
 
         JPanel reqDataPanel = new JPanel(new BorderLayout(5, 0));
         reqDataPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder()));
-
         reqDataPanel.add(reqLabel, BorderLayout.WEST);
         reqDataPanel.add(new JTextScrollPane(requestData), BorderLayout.CENTER);
         return reqDataPanel;
     }
 
-    // private JPanel createFilenamePanel()//Not used yet
-    // {
-    //
-    // JLabel label = new JLabel(JMeterUtils.getResString("file_to_retrieve")); // $NON-NLS-1$
-    //
-    // filename = new JTextField(10);
-    // filename.setName(FILENAME);
-    // label.setLabelFor(filename);
-    //
-    // JPanel filenamePanel = new JPanel(new BorderLayout(5, 0));
-    // filenamePanel.add(label, BorderLayout.WEST);
-    // filenamePanel.add(filename, BorderLayout.CENTER);
-    // return filenamePanel;
-    // }
-
     private void init() {
         setLayout(new BorderLayout(0, 5));
 
-        serverPanel = new ServerPanel();
-        
         if (displayName) {
             setBorder(makeBorder());
             add(makeTitlePanel(), BorderLayout.NORTH);
         }
 
         VerticalPanel mainPanel = new VerticalPanel();
-        classname = new JLabeledTextField(JMeterUtils.getResString("tcp_classname")); // $NON-NLS-1$
-        mainPanel.add(classname);
+
+        serverPanel = new ServerPanel();
         mainPanel.add(serverPanel);
-        
+
         HorizontalPanel optionsPanel = new HorizontalPanel();
         optionsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder()));
-        optionsPanel.add(createClosePortPanel());
+        optionsPanel.add(createReuseConnectionPanel());
         optionsPanel.add(createCloseConnectionPanel());
         optionsPanel.add(createNoDelayPanel());
         optionsPanel.add(createSoLingerOption());
-        optionsPanel.add(createEolBytePanel());
         mainPanel.add(optionsPanel);
+
+        classname = new JLabeledTextField("ACPClient classname");
+        mainPanel.add(classname);
+
         mainPanel.add(createRequestPanel());
 
-        // mainPanel.add(createFilenamePanel());
         add(mainPanel, BorderLayout.CENTER);
     }
 }

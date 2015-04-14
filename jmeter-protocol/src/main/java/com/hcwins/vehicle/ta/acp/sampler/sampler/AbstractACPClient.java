@@ -1,79 +1,24 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
-/**
- * Basic implementation of TCPClient interface.
- */
+import java.nio.charset.Charset;
+
 public abstract class AbstractACPClient implements ACPClient {
-    private String charset;
-    protected byte eolByte;
-    protected boolean useEolByte = false;
+    protected ACPSampler acpSampler;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public byte getEolByte() {
-        return eolByte;
+    public AbstractACPClient(ACPSampler acpSampler) {
+        this.acpSampler = acpSampler;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setEolByte(int eolInt) {
-        if (eolInt >= Byte.MIN_VALUE && eolInt <= Byte.MAX_VALUE) {
-            this.eolByte = (byte) eolInt;
-            useEolByte = true;
-        } else {
-            useEolByte = false;
-        }
+    public void setUp() {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setupTest() {
+    public void tearDown() {
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void teardownTest() {
-    }
-
-    /**
-     * @return the charset
-     */
     @Override
     public String getCharset() {
-        return charset;
+        return Charset.defaultCharset().name();
     }
-
-    /**
-     * @param charset the charset to set
-     */
-    public void setCharset(String charset) {
-        this.charset = charset;
-    }
-
 }
