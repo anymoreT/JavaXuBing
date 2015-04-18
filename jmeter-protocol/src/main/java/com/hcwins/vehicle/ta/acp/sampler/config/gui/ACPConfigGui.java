@@ -11,6 +11,8 @@ import org.apache.jorphan.gui.JLabeledTextField;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -104,7 +106,7 @@ public class ACPConfigGui extends AbstractConfigGui {
         setNoDelay.setSelected(ACPSampler.NODELAY_DEFAULT);
         soLinger.setText("");
 
-        classname.setText("");
+        classname.setText("ACPClientLocationReceiveMessage");
 
         requestData.setInitialText("");
     }
@@ -168,10 +170,26 @@ public class ACPConfigGui extends AbstractConfigGui {
         return soLingerPanel;
     }
 
+    private JPanel createClientPanel() {
+        classname = new JLabeledTextField("ACPClient classname");
+        JButton defaultButton = new JButton("Load Default");
+        defaultButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                requestData.setText(ACPSampler.getDefaultRequestData(classname.getText()));
+            }
+        });
+
+        HorizontalPanel clientPanel = new HorizontalPanel();
+        clientPanel.add(classname, "Center");
+        clientPanel.add(defaultButton, "East");
+        return clientPanel;
+    }
+
     private JPanel createRequestPanel() {
         JLabel reqLabel = new JLabel(JMeterUtils.getResString("tcp_request_data"));
 
-        requestData = new JSyntaxTextArea(15, 80);
+        requestData = new JSyntaxTextArea(30, 80);
         requestData.setLanguage("text");
         reqLabel.setLabelFor(requestData);
 
@@ -203,8 +221,7 @@ public class ACPConfigGui extends AbstractConfigGui {
         optionsPanel.add(createSoLingerOption());
         mainPanel.add(optionsPanel);
 
-        classname = new JLabeledTextField("ACPClient classname");
-        mainPanel.add(classname);
+        mainPanel.add(createClientPanel());
 
         mainPanel.add(createRequestPanel());
 

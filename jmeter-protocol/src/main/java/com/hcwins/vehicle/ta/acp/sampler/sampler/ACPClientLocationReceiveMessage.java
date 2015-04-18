@@ -1,5 +1,6 @@
 package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
+import com.hcwins.vehicle.ta.acp.sampler.data.ACPLocationReceiveMessageData;
 import org.apache.jorphan.logging.LoggingManager;
 import org.apache.log.Logger;
 
@@ -8,11 +9,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class ACPClientGPS extends AbstractACPClient {
+public class ACPClientLocationReceiveMessage extends AbstractACPClient {
     private static final Logger log = LoggingManager.getLoggerForClass();
 
-    public ACPClientGPS(ACPSampler acpSampler) {
+    public ACPClientLocationReceiveMessage() {
+        //
+    }
+
+    public ACPClientLocationReceiveMessage(ACPSampler acpSampler) {
         super(acpSampler);
+    }
+
+    @Override
+    public String getDefaultRequestData() {
+        return ACPLocationReceiveMessageData.getDefaultRequestData();
     }
 
     @Override
@@ -39,8 +49,8 @@ public class ACPClientGPS extends AbstractACPClient {
                 log.debug(acpSampler + " ReadS: " + w.size() + " -> " + w.toString());
             }
             return w.toString();
-        } catch (IOException e) {
-            throw new ACPException("Error reading from server, bytes read: " + w.size() + " -> " + w.toString(), e);
+        } catch (IOException ex) {
+            throw new ACPException("Error reading from server, bytes read: " + w.size() + " -> " + w.toString(), ex);
         }
     }
 }

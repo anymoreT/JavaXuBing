@@ -5,6 +5,10 @@ import java.nio.charset.Charset;
 public abstract class AbstractACPClient implements ACPClient {
     protected ACPSampler acpSampler;
 
+    public AbstractACPClient() {
+        //
+    }
+
     public AbstractACPClient(ACPSampler acpSampler) {
         this.acpSampler = acpSampler;
     }

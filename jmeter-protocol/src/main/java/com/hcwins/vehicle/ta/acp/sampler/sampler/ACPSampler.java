@@ -1,5 +1,6 @@
 package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jmeter.config.ConfigTestElement;
 import org.apache.jmeter.samplers.AbstractSampler;
 import org.apache.jmeter.samplers.Entry;
@@ -16,6 +17,10 @@ import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.net.*;
 import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ACPSampler extends AbstractSampler implements ThreadListener, Interruptible {
     private static final Logger log = LoggingManager.getLoggerForClass();
@@ -241,8 +246,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             Constructor<?> c = javaClass.getDeclaredConstructor(ACPSampler.class);
             c.setAccessible(true);
             acpClient = (ACPClient) c.newInstance(this);
-        } catch (Exception e) {
-            log.error(this + " Exception creating: " + getClassname(), e);
+        } catch (Exception ex) {
+            log.error(this + " Exception creating: " + getClassname(), ex);
         }
 
         return acpClient;
@@ -253,11 +258,11 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
 
         try {
             c = Class.forName(className, false, Thread.currentThread().getContextClassLoader());
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException ex) {
             try {
                 c = Class.forName(protoPrefix + className, false, Thread.currentThread().getContextClassLoader());
-            } catch (ClassNotFoundException e1) {
-                log.error(this + " Could not find protocol class '" + className + "'");
+            } catch (ClassNotFoundException ey) {
+                log.error(this + " Could not find protocol class '" + className + "'", ey);
             }
         }
 
@@ -300,13 +305,13 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
                     log.debug(this + " Created new connection " + socketKey + ": " + con);
                 }
                 cp.put(socketKey, con);
-            } catch (UnknownHostException e) {
-                log.warn(this + " Unknown host for " + socketKey, e);
-                cp.put(ERRKEY, e.toString());
+            } catch (UnknownHostException ex) {
+                log.warn(this + " Unknown host for " + socketKey, ex);
+                cp.put(ERRKEY, ex.toString());
                 return null;
-            } catch (IOException e) {
-                log.warn(this + " Could not create socket for " + socketKey, e);
-                cp.put(ERRKEY, e.toString());
+            } catch (IOException ex) {
+                log.warn(this + " Could not create socket for " + socketKey, ex);
+                cp.put(ERRKEY, ex.toString());
                 return null;
             }
         }
@@ -318,9 +323,9 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             }
             con.setSoTimeout(getTimeout()); // timeout of zero is interpreted as an infinite timeout
             con.setTcpNoDelay(isNoDelay());
-        } catch (SocketException se) {
-            log.warn(this + " Could not set timeout or nodelay for " + socketKey + ": " + con, se);
-            cp.put(ERRKEY, se.toString());
+        } catch (SocketException ex) {
+            log.warn(this + " Could not set timeout or nodelay for " + socketKey + ": " + con, ex);
+            cp.put(ERRKEY, ex.toString());
         }
 
         return con;
@@ -335,8 +340,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             }
             try {
                 con.close();
-            } catch (IOException e) {
-                log.warn(this + " Error closing socket " + socketKey + ": " + con + " " + e);
+            } catch (IOException ex) {
+                log.warn(this + " Error closing socket " + socketKey + ": " + con + " " + ex);
             }
         }
     }
@@ -352,8 +357,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             if (element.getKey().startsWith(ACPKEY)) {
                 try {
                     ((Socket) element.getValue()).close();
-                } catch (IOException e) {
-                    log.warn(this + " Error closing socket " + element.getKey() + ": " + element.getValue() + " " + e);
+                } catch (IOException ex) {
+                    log.warn(this + " Error closing socket " + element.getKey() + ": " + element.getValue() + " " + ex);
                 }
             }
         }
@@ -395,11 +400,42 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
         if (socket != null) {
             try {
                 socket.close();
-            } catch (IOException e) {
-                log.warn(this + " Error closing socket " + socket + " " + e);
+            } catch (IOException ex) {
+                log.warn(this + " Error closing socket " + socket + " " + ex);
             }
             return true;
         }
         return false;
+    }
+
+    private static final TreeMap<String, ACPClient> acpClientImpls = new TreeMap<String, ACPClient>();
+
+    static {
+        try {
+            String jarFileName = ACPSampler.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+            log.info("Searching in ACPClient in " + jarFileName);
+            JarFile jarFile = new JarFile(jarFileName);
+            Enumeration<JarEntry> entires = jarFile.entries();
+            Pattern pat = Pattern.compile(".*/(ACPClient[a-zA-Z]+Message)\\.class$");
+            while (entires.hasMoreElements()) {
+                Matcher mat = pat.matcher(entires.nextElement().getName());
+                if (mat.find()) {
+                    String className = mat.group(1);
+                    log.info("Found ACPClient " + className);
+                    ACPClient acpClient = ((ACPClient) Class.forName(ACPSampler.class.getPackage().getName() + "." + className, false, Thread.currentThread().getContextClassLoader()).newInstance());
+                    acpClientImpls.put(className, acpClient);
+                }
+            }
+        } catch (Exception ex) {
+            log.error("Error getting ACPClient implementations", ex);
+        }
+    }
+
+    public static String getDefaultRequestData(String className) {
+        if ("".equals(className) || !acpClientImpls.containsKey(className)) {
+            return StringUtils.join(acpClientImpls.keySet(), "\n");
+        } else {
+            return acpClientImpls.get(className).getDefaultRequestData();
+        }
     }
 }
