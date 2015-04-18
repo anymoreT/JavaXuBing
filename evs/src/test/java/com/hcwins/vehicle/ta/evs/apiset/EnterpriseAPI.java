@@ -5,4 +5,7 @@ package com.hcwins.vehicle.ta.evs.apiset;
  */
 public class EnterpriseAPI {
     public String captchaRegist;
+    public String enterpriseRegist;
+    public String VerifyMobileAndCaptcha;
+    public String CancelAdmin;
 }

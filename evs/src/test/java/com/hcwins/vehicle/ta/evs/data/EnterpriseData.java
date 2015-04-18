@@ -5,11 +5,13 @@ package com.hcwins.vehicle.ta.evs.data;
  */
 public class EnterpriseData {
     public String enterpriseName;
+    public String enterpriseWebsite;
 
     @Override
     public String toString() {
-        return "Enterprise{" +
+        return "EnterpriseData{" +
                 "enterpriseName='" + enterpriseName + '\'' +
+                ", enterpriseWebsite='" + enterpriseWebsite + '\'' +
                 '}';
     }
 }

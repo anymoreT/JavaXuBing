@@ -2,8 +2,17 @@ package com.hcwins.vehicle.ta.evs.apitest;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
 import com.hcwins.vehicle.ta.evs.apidao.EVSCaptcha;
+
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.CaptchaRegist;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.CaptchaRegistResponse;
+import com.hcwins.vehicle.ta.evs.apiobj.enterprise.EnterpriseRegist;
+import com.hcwins.vehicle.ta.evs.apiobj.enterprise.EnterpriseRegistResponse;
+
+import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdmin;
+import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredential;
+import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredentialDao;
+import com.hcwins.vehicle.ta.evs.apiobj.enterprise.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -23,12 +32,26 @@ import static org.hamcrest.Matchers.*;
 public class EnterpriseRegistAT extends EVSTestBase {
     static final Logger logger = LoggerFactory.getLogger(EnterpriseRegistAT.class);
 
+    String enterpriseName0;
+    String enterprisewebsite0;
+    String adminRealName0;
     String mobile0;
+    String email0;
+    String password0;
+    String provinceId0;
+    String cityId0;
 
     @BeforeClass
     public void beforeClass() {
         super.beforeClass();
+        enterpriseName0 = dataSet.enterprises.get(0).enterpriseName;
+        enterprisewebsite0 = dataSet.enterprises.get(0).enterpriseWebsite;
+        adminRealName0 = dataSet.enterpriseAdmins.get(0).realName;
         mobile0 = dataSet.enterpriseAdmins.get(0).mobile;
+        email0 = dataSet.enterpriseAdmins.get(0).email;
+        password0 = dataSet.enterpriseAdmins.get(0).password;
+        provinceId0 = dataSet.enterpriseRegionDatas.get(0).provinceId;
+        cityId0 = dataSet.enterpriseRegionDatas.get(0).cityId;
         //TODO:
     }
 
@@ -118,4 +141,88 @@ public class EnterpriseRegistAT extends EVSTestBase {
         CaptchaRegistResponse captchaRegistResponse = CaptchaRegist.postCaptchaRegistRequest(mobile);
         assertThat(captchaRegistResponse.result.code, equalTo(code));
     }
+
+    @Test(description = "企业注册: 验证当使用合法参数注册时企业注册成功")
+    public void testEnterpriseRegistSuccess() {
+        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName0, enterprisewebsite0, cityId0, adminRealName0, mobile0, email0, password0, provinceId0);
+        assertThat(enterpriseRegistResponse.result.code, equalTo(0));
+        assertThat(enterpriseRegistResponse.enterpriseStatus, equalTo(0));
+    }
+
+    /**
+     * Verify mobile and catcha.
+     */
+    @Test(description = "验证手机号与验证码校验成功")
+    public void testVerifyMobileAndCaptchaSuccess() {
+        Long startTime = new Date().getTime();
+        EVSCaptcha captcha = CaptchaRegist.postAndGetCaptchas(mobile0).get(0);
+
+        String StrCaptcha = captcha.getCaptcha();
+        VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, StrCaptcha);
+        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(0));
+    }
+
+    @Test(description = "验证手机号与验证码校验的手机号码相关ErrorCode",
+            dataProvider = "genCaptchaRegistErrorCodeTestData")
+    public void testVerifyMobileAndCaptchaErrorCodeWhenMobileInvalid(String mobile, int code) {
+        EVSCaptcha captcha = CaptchaRegist.postAndGetCaptchas(mobile0).get(0);
+
+        String StrCaptcha = captcha.getCaptcha();
+        VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile, StrCaptcha);
+        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(code));
+    }
+
+    @DataProvider
+    public static Object[][] genVerifyCaptchaErrorCodeTestData() {
+        return new Object[][]{
+                {"", 301} // 验证码为空
+                , {" ", 301} // 验证码为空
+                , {"12345a", 301} // 验证码格式错误
+                , {"12345 ", 301} // 验证码格式错误
+                , {"123456", 301} // 验证码错误
+        };
+    }
+
+    @Test(description = "验证手机号与验证码校验的验证码相关ErrorCode",
+            dataProvider = "genVerifyCaptchaErrorCodeTestData")
+    public void testVerifyMobileAndCaptchaErrorCodeWhenCaptchaInvalid(String captcha, int code) {
+        VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, captcha);
+        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(code));
+    }
+
+    @Test(description = "验证手机号与验证码校验当验证码和手机号码不匹配")
+    public void testVerifyMobileAndCaptchaErrorCodeWhenMobileAndCaptchaDoNotMatch() {
+        EVSCaptcha captcha = CaptchaRegist.postAndGetCaptchas(mobile0).get(0);
+        String mobile1 = "13648087441";
+        String StrCaptcha = captcha.getCaptcha();
+        VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile1, StrCaptcha);
+        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(301));
+    }
+
+    @Test(description = "验证手机号与验证码校验当验证码过期")
+    public void testVerifyMobileAndCaptchaErrorCodeWhenCaptchaExpeired() {
+        EVSCaptcha captcha0 = CaptchaRegist.postAndGetCaptchas(mobile0).get(0);
+        EVSCaptcha captcha1 = CaptchaRegist.postAndGetCaptchas(mobile0).get(0);
+        String StrCaptcha0 = captcha0.getCaptcha();
+        VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, StrCaptcha0);
+        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(301));
+    }
+
+// Cancel Admin Api tests:
+
+    @Test(description = "验证企业管理员忘记我成功")
+    public void testCancelAdminSuccess() {
+        CaptchaRegistResponse captchaRegistResponse = CaptchaRegist.postCaptchaRegistRequest(mobile0);
+        assertThat(captchaRegistResponse.result.code, equalTo(0));
+        List<EVSEnterpriseAdmin> enterpriseAdmin = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0);
+        long enterpriseAdminId = enterpriseAdmin.get(0).getId();
+        List<EVSEnterpriseAdminCredential> enterpriseAdminCredential = EVSEnterpriseAdminCredential.dao.findEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId);
+        password0 = enterpriseAdminCredential.get(0).getPassword();
+
+        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0,password0);
+        assertThat(cancelAdminResponse.result.code,equalTo(0));
+        assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId),equalTo(0));
+    }
+
+
 }
