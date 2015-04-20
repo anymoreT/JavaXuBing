@@ -1,9 +1,5 @@
 package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
-import com.hcwins.vehicle.ta.evs.apidao.EVSCaptcha;
-
-import java.util.List;
-
 /**
  * Created by wenji on 10/04/15.
  */
@@ -21,10 +17,6 @@ public class VerifyMobileAndCaptcha {
         VerifyMobileAndCaptchaRequest.post();
         return VerifyMobileAndCaptchaRequest.getLastResponseAsObj();
     }
-
-
-
-
 
 
 }

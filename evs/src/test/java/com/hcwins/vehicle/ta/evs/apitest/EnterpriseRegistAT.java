@@ -2,17 +2,9 @@ package com.hcwins.vehicle.ta.evs.apitest;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
 import com.hcwins.vehicle.ta.evs.apidao.EVSCaptcha;
-
-import com.hcwins.vehicle.ta.evs.apiobj.enterprise.CaptchaRegist;
-import com.hcwins.vehicle.ta.evs.apiobj.enterprise.CaptchaRegistResponse;
-import com.hcwins.vehicle.ta.evs.apiobj.enterprise.EnterpriseRegist;
-import com.hcwins.vehicle.ta.evs.apiobj.enterprise.EnterpriseRegistResponse;
-
 import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdmin;
 import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredential;
-import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredentialDao;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -219,9 +211,9 @@ public class EnterpriseRegistAT extends EVSTestBase {
         List<EVSEnterpriseAdminCredential> enterpriseAdminCredential = EVSEnterpriseAdminCredential.dao.findEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId);
         password0 = enterpriseAdminCredential.get(0).getPassword();
 
-        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0,password0);
-        assertThat(cancelAdminResponse.result.code,equalTo(0));
-        assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId),equalTo(0));
+        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0, password0);
+        assertThat(cancelAdminResponse.result.code, equalTo(0));
+        assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId), equalTo(0));
     }
 
 

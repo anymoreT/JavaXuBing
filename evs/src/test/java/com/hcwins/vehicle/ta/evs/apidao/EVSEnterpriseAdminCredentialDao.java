@@ -16,13 +16,13 @@ public abstract class EVSEnterpriseAdminCredentialDao extends BaseDao {
         return super.findById(EVSEnterpriseAdminCredential.class, id);
     }
 
-    @SqlQuery("select * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:EVS_EnterpriseAdmin.Id")
+    @SqlQuery("select * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
     public abstract List<EVSEnterpriseAdminCredential> findEnterpriseAdminCredentialByEnterpriseAdminId(
             @Bind("enterpriseAdminId") long enterpriseAdminId
     );
 
-    @SqlQuery("select count * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:EVS_EnterpriseAdmin.Id")
-    public abstract List<EVSEnterpriseAdminCredential> countEnterpriseAdminCredentialByEnterpriseAdminId(
+    @SqlQuery("select count * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
+    public abstract int countEnterpriseAdminCredentialByEnterpriseAdminId(
             @Bind("enterpriseAdminId") long enterpriseAdminId
     );
 

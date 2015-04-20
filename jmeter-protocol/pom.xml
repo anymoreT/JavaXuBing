@@ -21,9 +21,23 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.hcwins.vehicle.protocol</groupId>
-            <artifactId>obd</artifactId>
+            <artifactId>hs</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
         </dependency>
     </dependencies>
 

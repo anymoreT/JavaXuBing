@@ -1,6 +1,7 @@
 package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 import com.hcwins.vehicle.ta.acp.sampler.data.ACPLocationReceiveMessageData;
+import org.apache.jmeter.samplers.SampleResult;
 import org.apache.jorphan.logging.LoggingManager;
 import org.apache.log.Logger;
 
@@ -16,8 +17,10 @@ public class ACPClientLocationReceiveMessage extends AbstractACPClient {
         //
     }
 
-    public ACPClientLocationReceiveMessage(ACPSampler acpSampler) {
-        super(acpSampler);
+    public ACPClientLocationReceiveMessage(ACPSampler acpSampler, String requestData) {
+        super(acpSampler, requestData);
+
+        //
     }
 
     @Override
@@ -26,11 +29,21 @@ public class ACPClientLocationReceiveMessage extends AbstractACPClient {
     }
 
     @Override
-    public void write(OutputStream os, String s) throws IOException {
+    public void setUp() {
+        super.setUp();
+
+        setACPMessageData(getGson().fromJson(getRequestData(), ACPLocationReceiveMessageData.class));
+    }
+
+    @Override
+    public void write(OutputStream os, SampleResult sr) throws IOException {
+        getACPMessageData().generateMessageData();
+        sr.setSamplerData(getACPMessageData().getCurrentMessageDataAsReadableString());
         if (log.isDebugEnabled()) {
-            log.debug(acpSampler + " WriteS: " + s);
+            log.debug(getAcpSampler() + " WriteS: " + getACPMessageData().getCurrentMessageDataAsReadableString());
         }
-        os.write(s.getBytes(getCharset()));
+        os.write(getACPMessageData().getCurrentMessageData());
+        os.write("\n".getBytes());
         os.flush();
     }
 
@@ -46,7 +59,7 @@ public class ACPClientLocationReceiveMessage extends AbstractACPClient {
                 break;
             }
             if (log.isDebugEnabled()) {
-                log.debug(acpSampler + " ReadS: " + w.size() + " -> " + w.toString());
+                log.debug(getAcpSampler() + " ReadS: " + w.size() + " -> " + w.toString());
             }
             return w.toString();
         } catch (IOException ex) {

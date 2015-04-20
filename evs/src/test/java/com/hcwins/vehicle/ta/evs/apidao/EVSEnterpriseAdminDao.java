@@ -10,7 +10,7 @@ import java.util.List;
  * Created by wenji on 13/04/15.
  */
 @RegisterMapper(EVSEnterpriseAdmin.Mapper.class)
-public abstract class EVSEnterpriseAdminDao extends BaseDao{
+public abstract class EVSEnterpriseAdminDao extends BaseDao {
     public EVSEnterpriseAdmin findById(long id) {
         return super.findById(EVSEnterpriseAdmin.class, id);
     }

@@ -185,9 +185,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
 
                 InputStream is = sock.getInputStream();
                 OutputStream os = sock.getOutputStream();
-                String req = getRequestData();
-                res.setSamplerData(req);
-                acpClient.write(os, req);
+                acpClient.write(os, res);
                 String resData = acpClient.read(is);
                 res.setResponseCodeOK();
                 res.setResponseMessageOK();
@@ -243,9 +241,9 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
         }
 
         try {
-            Constructor<?> c = javaClass.getDeclaredConstructor(ACPSampler.class);
+            Constructor<?> c = javaClass.getDeclaredConstructor(ACPSampler.class, String.class);
             c.setAccessible(true);
-            acpClient = (ACPClient) c.newInstance(this);
+            acpClient = (ACPClient) c.newInstance(this, getRequestData());
         } catch (Exception ex) {
             log.error(this + " Exception creating: " + getClassname(), ex);
         }

@@ -11,7 +11,10 @@ public class CancelAdminRequest extends BaseRequest {
 
     public String mobile;
     public String password;
-    public String getAPI() { return api;}
+
+    public String getAPI() {
+        return api;
+    }
 
 
     public CancelAdminResponse getLastResponseAsObj() {

@@ -1,34 +1,32 @@
 package com.hcwins.vehicle.ta.evs.apidao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
-
 import com.hcwins.vehicle.ta.evs.EVSUtil;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by wenji on 13/04/15.
  */
 @Annotations.Entity(table = "EVS_EnterpriseAdmin", mapper = EVSEnterpriseAdmin.Mapper.class)
-public class EVSEnterpriseAdmin extends BaseEntity{
+public class EVSEnterpriseAdmin extends BaseEntity {
+    /*
+id bigint not null auto_increment,
+createTime datetime,
+updateTime datetime,
+email varchar(50),
+isLocked bit not null,
+loginFailureCount integer not null,
+mobile varchar(11) not null,
+realName varchar(50) not null,
+status varchar(255) not null,
+unLockTime datetime,
+enterpriseId bigint not null,
+     */
 
-/*
-        id bigint not null auto_increment,
-        createTime datetime,
-        updateTime datetime,
-        email varchar(50),
-        isLocked bit not null,
-        loginFailureCount integer not null,
-        mobile varchar(11) not null,
-        realName varchar(50) not null,
-        status varchar(255) not null,
-        unLockTime datetime,
-        enterpriseId bigint not null,
-
- */
     protected String email;
     protected Boolean isLocked;
     protected Integer loginFailureCount;
@@ -44,7 +42,7 @@ public class EVSEnterpriseAdmin extends BaseEntity{
     }
 
 
-    public EVSEnterpriseAdmin(long id, Date createTime, Date updateTime, String email, Boolean isLocked, Integer loginFailureCount, String mobile,String realName, Status status, Date unLockTime, long enterpriseId) {
+    public EVSEnterpriseAdmin(long id, Date createTime, Date updateTime, String email, Boolean isLocked, Integer loginFailureCount, String mobile, String realName, Status status, Date unLockTime, long enterpriseId) {
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -57,7 +55,6 @@ public class EVSEnterpriseAdmin extends BaseEntity{
         this.unLockTime = unLockTime;
         this.enterpriseId = enterpriseId;
     }
-
 
 
     public String getEmail() {
@@ -112,13 +109,17 @@ public class EVSEnterpriseAdmin extends BaseEntity{
         return unLockTime;
     }
 
-    public void setUnLockTime(Date unLockTime) {this.unLockTime = unLockTime;}
+    public void setUnLockTime(Date unLockTime) {
+        this.unLockTime = unLockTime;
+    }
 
     public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(long enterpriseId) {this.enterpriseId = enterpriseId;}
+    public void setEnterpriseId(long enterpriseId) {
+        this.enterpriseId = enterpriseId;
+    }
 
     public static class Mapper implements ResultSetMapper<EVSEnterpriseAdmin> {
         public EVSEnterpriseAdmin map(int index, ResultSet r, StatementContext ctx) throws SQLException {

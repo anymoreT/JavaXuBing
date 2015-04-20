@@ -1,14 +1,10 @@
 package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
-import com.hcwins.vehicle.ta.evs.EVSUtil;
-
-import java.util.HashMap;
-
 /**
  * Created by xiangzhai on 10/04/15.
  */
 public class EnterpriseRegist {
-    public static EnterpriseRegistRequest getEnterpriseRegistRequest(String enterpriseName, String enterpriseWebsite, String cityId, String adminRealName, String adminMobile, String adminEmail, String adminPassword, String provinceId){
+    public static EnterpriseRegistRequest getEnterpriseRegistRequest(String enterpriseName, String enterpriseWebsite, String cityId, String adminRealName, String adminMobile, String adminEmail, String adminPassword, String provinceId) {
         EnterpriseRegistRequest enterpriseRegistRequest = new EnterpriseRegistRequest();
         enterpriseRegistRequest.enterpriseName = enterpriseName;
         enterpriseRegistRequest.enterpriseWebsite = enterpriseWebsite;
@@ -21,7 +17,7 @@ public class EnterpriseRegist {
         return enterpriseRegistRequest;
     }
 
-    public static EnterpriseRegistResponse postEnterpriseRegistRequest(String enterpriseName, String enterpriseWebsite, String cityId, String adminRealName, String adminMobile, String adminEmail, String adminPassword, String provinceId){
+    public static EnterpriseRegistResponse postEnterpriseRegistRequest(String enterpriseName, String enterpriseWebsite, String cityId, String adminRealName, String adminMobile, String adminEmail, String adminPassword, String provinceId) {
         EnterpriseRegistRequest enterpriseRegistRequest = getEnterpriseRegistRequest(enterpriseName, enterpriseWebsite, cityId, adminRealName, adminMobile, adminEmail, adminPassword, provinceId);
         enterpriseRegistRequest.post();
         return enterpriseRegistRequest.getLastResponseAsObj();

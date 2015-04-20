@@ -10,7 +10,11 @@
     <dependencySets>
         <dependencySet>
             <outputDirectory>/</outputDirectory>
+            <!-- excludes>
+                <exclude>org.apache.jmeter:*:jar</exclude>
+            </excludes -->
             <includes>
+                <include>com.google.code.gson:*:jar</include>
                 <include>com.hcwins.vehicle.protocol:*:jar</include>
                 <include>com.hcwins.vehicle.ta:*:jar</include>
             </includes>

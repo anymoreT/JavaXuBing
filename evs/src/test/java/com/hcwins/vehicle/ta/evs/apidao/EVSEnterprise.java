@@ -47,7 +47,7 @@ cityId bigint
     protected String website;
     protected long cityId;
 
-    public EVSEnterprise (long id, Date createTime, Date updateTime, String detailAddress, String enterpriseName, String licenseNumber, long licensePic, String mail, String nature, String representative, String scale, String status, String telephone, String website, Long cityId) {
+    public EVSEnterprise(long id, Date createTime, Date updateTime, String detailAddress, String enterpriseName, String licenseNumber, long licensePic, String mail, String nature, String representative, String scale, String status, String telephone, String website, Long cityId) {
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;

@@ -6,7 +6,7 @@ import com.hcwins.vehicle.ta.evs.apiobj.BaseRequest;
 /**
  * Created by xiangzhai on 10/04/15.
  */
-public class EnterpriseRegistRequest extends BaseRequest{
+public class EnterpriseRegistRequest extends BaseRequest {
     protected final static String api = EVSUtil.getAPISet().enterprise.enterpriseRegist;
 
     public String enterpriseName;
@@ -26,9 +26,11 @@ public class EnterpriseRegistRequest extends BaseRequest{
     public String provinceId;
 
 
-    public String getAPI() { return api ; }
+    public String getAPI() {
+        return api;
+    }
 
-    public EnterpriseRegistResponse getLastResponseAsObj(){
+    public EnterpriseRegistResponse getLastResponseAsObj() {
         return getLastResponseAsObj(EnterpriseRegistResponse.class);
     }
 
