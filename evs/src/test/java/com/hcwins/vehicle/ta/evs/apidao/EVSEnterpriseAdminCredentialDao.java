@@ -2,6 +2,7 @@ package com.hcwins.vehicle.ta.evs.apidao;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
+import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.List;
@@ -23,6 +24,11 @@ public abstract class EVSEnterpriseAdminCredentialDao extends BaseDao {
 
     @SqlQuery("select count * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
     public abstract int countEnterpriseAdminCredentialByEnterpriseAdminId(
+            @Bind("enterpriseAdminId") long enterpriseAdminId
+    );
+
+    @SqlUpdate("delete from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
+    public abstract int deleteEnterpriseAdminCredentialByEnterpriseAdminId(
             @Bind("enterpriseAdminId") long enterpriseAdminId
     );
 
