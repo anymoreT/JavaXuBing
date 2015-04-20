@@ -1,16 +1,13 @@
 package com.hcwins.vehicle.ta.evs.apitest;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
-import com.hcwins.vehicle.ta.evs.apidao.EVSCaptcha;
+import com.hcwins.vehicle.ta.evs.apidao.*;
 
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.CaptchaRegist;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.CaptchaRegistResponse;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.EnterpriseRegist;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.EnterpriseRegistResponse;
 
-import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdmin;
-import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredential;
-import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredentialDao;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.*;
 
 import org.slf4j.Logger;
@@ -32,14 +29,14 @@ import static org.hamcrest.Matchers.*;
 public class EnterpriseRegistAT extends EVSTestBase {
     static final Logger logger = LoggerFactory.getLogger(EnterpriseRegistAT.class);
 
-    String enterpriseName0;
-    String enterprisewebsite0;
-    String adminRealName0;
-    String mobile0;
-    String email0;
-    String password0;
-    String provinceId0;
-    String cityId0;
+    String enterpriseName0, enterpriseName1;
+    String enterprisewebsite0, enterprisewebsite1;
+    String adminRealName0, adminRealName1;
+    String mobile0, mobile1;
+    String email0, email1;
+    String password0, password1;
+    String provinceId0, provinceId1;
+    String cityId0, cityId1;
 
     @BeforeClass
     public void beforeClass() {
@@ -52,6 +49,15 @@ public class EnterpriseRegistAT extends EVSTestBase {
         password0 = dataSet.enterpriseAdmins.get(0).password;
         provinceId0 = dataSet.enterpriseRegionDatas.get(0).provinceId;
         cityId0 = dataSet.enterpriseRegionDatas.get(0).cityId;
+
+        enterpriseName1 = dataSet.enterprises.get(1).enterpriseName;
+        enterprisewebsite1 = dataSet.enterprises.get(1).enterpriseWebsite;
+        adminRealName1 = dataSet.enterpriseAdmins.get(1).realName;
+        mobile1 = dataSet.enterpriseAdmins.get(1).mobile;
+        email1 = dataSet.enterpriseAdmins.get(1).email;
+        password1 = dataSet.enterpriseAdmins.get(1).password;
+        provinceId1 = dataSet.enterpriseRegionDatas.get(1).provinceId;
+        cityId1 = dataSet.enterpriseRegionDatas.get(1).cityId;
         //TODO:
     }
 
@@ -59,6 +65,11 @@ public class EnterpriseRegistAT extends EVSTestBase {
     public void afterClass() {
         //TODO:
         super.afterClass();
+        Long enterpriseId = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0).get(0).getEnterpriseId();
+        Long enterpriseAdminId = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0).get(0).getId();
+        EVSEnterpriseAdminCredential.dao.deleteEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId);
+        EVSEnterpriseAdmin.dao.deleteEnterpriseAdminByMobileAndEmail(mobile0, email0);
+        EVSEnterprise.dao.deleteEnterpriseById(enterpriseId);
     }
 
     @Test(description = "验证成功获取验证码")
@@ -142,11 +153,57 @@ public class EnterpriseRegistAT extends EVSTestBase {
         assertThat(captchaRegistResponse.result.code, equalTo(code));
     }
 
-    @Test(description = "企业注册: 验证当使用合法参数注册时企业注册成功")
+    @Test(description = "企业注册接口测试: 验证全部参数正确时注册成功", dependsOnMethods = {"testEnterpriseRegistErrorCode"}, alwaysRun = true)
     public void testEnterpriseRegistSuccess() {
         EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName0, enterprisewebsite0, cityId0, adminRealName0, mobile0, email0, password0, provinceId0);
         assertThat(enterpriseRegistResponse.result.code, equalTo(0));
         assertThat(enterpriseRegistResponse.enterpriseStatus, equalTo(0));
+        EVSEnterprise enterprise1 = EVSEnterprise.dao.findEnterpriseByName(enterpriseName0).get(0);
+        assertThat(enterprise1.getEnterpriseName(), equalTo(enterpriseName0));
+        assertThat(enterprise1.getWebsite(), equalTo(enterprisewebsite0));
+        assertThat(Long.toString(enterprise1.getCityId()), equalTo(cityId0));
+        assertThat(enterprise1.getStatus(), equalTo("UNAUDITED"));
+    }
+
+    @DataProvider
+    public static Object[][] genEnterpriseRegistErrorCodeTestData() {
+        return new Object[][] {
+                {"", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 401}       //企业名称为空
+                ,{"try", "www.hcwins.cn", "", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 500}         //城市为空
+                ,{"try", "www.hcwins.cn", "987654", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 503}   //城市不存在
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "", 501}         //省份为空
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "987654", 502}   //省份不存在
+                ,{"try", "www.hcwins.cn", "140100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 504}   //此省份下没有此城市
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "1588110000", "meimei.han@hcwins.com", "123456", "510000", 205}    //手机号格式错误
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "158811000001", "meimei.han@hcwins.com", "123456", "510000", 205}  //手机号格式错误
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "1588110000a", "meimei.han@hcwins.com", "123456", "510000", 205}   //手机号格式错误
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "", "510000", 210}         //密码为空
+                ,{"try", "www.hcwins.cn", "510100", "", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 213}            //管理员姓名为空
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han&hcwins*bom", "123456", "510000", 215}   //管理员邮件格式错误
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", " ", "123456", "510000", 215}                       //管理员邮件格式错误
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "01", "510000", 217}       //密码长度不足
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", "510000", 227}   //密码长度超长
+                //,{" ", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 401}     //企业名称为空
+                ,{"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "", "123456", "510000", 212}                        //管理员邮件为空
+        };
+    }
+
+    @Test(description = "企业注册接口测试: 验证企业注册的错误码", dataProvider = "genEnterpriseRegistErrorCodeTestData")
+    public void testEnterpriseRegistErrorCode(String enterpriseName, String enterprisewebsite, String cityId, String adminRealName, String mobile, String email, String password, String provinceId, int code){
+        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName, enterprisewebsite, cityId, adminRealName, mobile, email, password, provinceId);
+        assertThat(enterpriseRegistResponse.result.code, equalTo(code));
+    }
+
+    @Test(description = "企业注册接口测试: 验证管理员手机号已注册", dependsOnMethods = {"testEnterpriseRegistSuccess"})
+    public void testAdminMobileHaveRegisted() {
+        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName1, enterprisewebsite1, cityId1, adminRealName1, mobile0, email1, password1, provinceId1);
+        assertThat(enterpriseRegistResponse.result.code, equalTo(204));
+    }
+
+    @Test(description = "企业注册接口测试: 验证管理员邮件已注册", dependsOnMethods = {"testAdminMobileHaveRegisted"})
+    public void testAdminMailHaveRegisted() {
+        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName1,enterprisewebsite1, cityId1,adminRealName1, mobile1, email0,password1, provinceId1);
+        assertThat(enterpriseRegistResponse.result.code, equalTo(214));
     }
 
     /**
@@ -223,6 +280,5 @@ public class EnterpriseRegistAT extends EVSTestBase {
         assertThat(cancelAdminResponse.result.code,equalTo(0));
         assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId),equalTo(0));
     }
-
 
 }
