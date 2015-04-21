@@ -137,8 +137,8 @@ public class EnterpriseRegistAT extends EVSTestBase {
     @Test(description = "验证手机号与验证码校验的手机号码相关ErrorCode",
             dataProvider = "genCaptchaRegistErrorCodeTestData")
     public void testVerifyMobileAndCaptchaErrorCodeWhenMobileInvalid(String mobile, int code) {
+        EVSUtil.sleep("slow down the execution for different create time", 5);
         EVSCaptcha captcha = CaptchaRegist.postAndGetCaptchas(mobile0).get(0);
-
         String StrCaptcha = captcha.getCaptcha();
         VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile, StrCaptcha);
         assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(code));
