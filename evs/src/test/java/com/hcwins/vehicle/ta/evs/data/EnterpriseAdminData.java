@@ -5,11 +5,17 @@ package com.hcwins.vehicle.ta.evs.data;
  */
 public class EnterpriseAdminData {
     public String mobile;
+    public String realName;
+    public String email;
+    public String password;
 
     @Override
     public String toString() {
-        return "EnterpriseAdmin{" +
+        return "EnterpriseAdminData{" +
                 "mobile='" + mobile + '\'' +
+                ", realName='" + realName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

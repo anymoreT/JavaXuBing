@@ -12,16 +12,14 @@ import java.util.Date;
  * Created by wenji on 13/04/15.
  */
 @Annotations.Entity(table = "EVS_EnterpriseAdminCredential", mapper = EVSEnterpriseAdminCredential.Mapper.class)
-public class EVSEnterpriseAdminCredential extends BaseEntity{
-
+public class EVSEnterpriseAdminCredential extends BaseEntity {
      /*
-        id bigint not null auto_increment,
-        createTime datetime,
-        updateTime datetime,
-        credentialName varchar(255) not null,
-        password varchar(255) not null,
-        enterpriseAdminId bigint not null,
-
+id bigint not null auto_increment,
+createTime datetime,
+updateTime datetime,
+credentialName varchar(255) not null,
+password varchar(255) not null,
+enterpriseAdminId bigint not null,
       */
 
     protected String credentialName;

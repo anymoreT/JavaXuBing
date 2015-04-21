@@ -1,5 +1,7 @@
 !com.hcwins.vehicle.ta.evs.APISet
 enterprise: !com.hcwins.vehicle.ta.evs.apiset.EnterpriseAPI
-    CaptchaRegist: /enterprise/captchaRegist/v1
-    VerifyMobileAndCaptcha: /enterprise/verifyMobileAndCaptcha/v1
-    CancelAdmin: /enterprise/cancelAdmin/v1
+    captchaRegist: /enterprise/captchaRegist
+    enterpriseRegist: /enterprise/regist/v1
+    VerifyMobileAndCaptcha: /enterprise/verifyMobileAndCaptcha
+    CancelAdmin: /enterprise/cancelAdmin
+

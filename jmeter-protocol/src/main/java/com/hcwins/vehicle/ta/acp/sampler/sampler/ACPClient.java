@@ -1,17 +1,21 @@
 package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
+import org.apache.jmeter.samplers.SampleResult;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 public interface ACPClient {
-    void setUp();
+    public String getDefaultRequestData();
 
-    void tearDown();
+    public void setUp();
 
-    void write(OutputStream os, String s) throws IOException;
+    public void tearDown();
 
-    String read(InputStream is) throws ACPException;
+    public void write(OutputStream os, SampleResult sr) throws IOException;
 
-    String getCharset();
+    public String read(InputStream is) throws ACPException;
+
+    public String getCharset();
 }

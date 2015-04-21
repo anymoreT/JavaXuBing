@@ -2,9 +2,27 @@
 enterprises:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
       enterpriseName: try
+      enterpriseWebsite: www.hcwins.cn
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
+      enterpriseName: try2
+      enterpriseWebsite: www.hcwins2.cn
 
 enterpriseAdmins:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
       mobile: 15881100000
+      realName: hanmeimei
+      email: meimei.han@hcwins.com
+      password: 123456
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
       mobile: 15881100001
+      realName: lilei
+      email: lei.li@hcwins.com
+      password: 654321
+
+enterpriseRegionDatas:
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData
+      provinceId: 510000
+      cityId: 510100
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData
+      provinceId: 140000
+      cityId: 140100
