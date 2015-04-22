@@ -4,3 +4,4 @@ enterprise: !com.hcwins.vehicle.ta.evs.apiset.EnterpriseAPI
     enterpriseRegist: /enterprise/regist/v1
     VerifyMobileAndCaptcha: /enterprise/verifyMobileAndCaptcha
     CancelAdmin: /enterprise/cancelAdmin
+
