@@ -14,8 +14,9 @@
                 <exclude>org.apache.jmeter:*:jar</exclude>
             </excludes -->
             <includes>
-                <include>com.google.code.gson:*:jar</include>
                 <include>com.hcwins.vehicle.protocol:*:jar</include>
+                <include>commons-lang:*:jar</include>
+                <include>com.google.code.gson:*:jar</include>
                 <include>com.hcwins.vehicle.ta:*:jar</include>
             </includes>
             <unpack>true</unpack>

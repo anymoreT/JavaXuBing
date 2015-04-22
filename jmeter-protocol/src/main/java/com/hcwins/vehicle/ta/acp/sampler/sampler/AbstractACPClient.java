@@ -2,7 +2,7 @@ package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hcwins.vehicle.ta.acp.sampler.data.AbstractACPMessageData;
+import com.hcwins.vehicle.ta.acp.sampler.data.AbstractACPMessage;
 
 import java.lang.reflect.Modifier;
 import java.nio.charset.Charset;
@@ -13,7 +13,7 @@ public abstract class AbstractACPClient implements ACPClient {
 
     private Gson gson;
 
-    private AbstractACPMessageData messageData;
+    private AbstractACPMessage message;
 
     public AbstractACPClient() {
         //
@@ -50,12 +50,12 @@ public abstract class AbstractACPClient implements ACPClient {
         this.gson = gson;
     }
 
-    public AbstractACPMessageData getACPMessageData() {
-        return messageData;
+    public AbstractACPMessage getACPMessage() {
+        return message;
     }
 
-    public void setACPMessageData(AbstractACPMessageData messageData) {
-        this.messageData = messageData;
+    public void setACPMessage(AbstractACPMessage message) {
+        this.message = message;
     }
 
     @Override
