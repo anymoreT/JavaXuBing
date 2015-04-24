@@ -13,23 +13,24 @@ import java.util.List;
 
 @RegisterMapper(EVSEnterpriseAdminCredential.Mapper.class)
 public abstract class EVSEnterpriseAdminCredentialDao extends BaseDao {
-    public EVSEnterpriseAdminCredential findById(long id) {
+    public EVSEnterpriseAdminCredential findById(Long id) {
         return super.findById(EVSEnterpriseAdminCredential.class, id);
     }
 
     @SqlQuery("select * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
     public abstract List<EVSEnterpriseAdminCredential> findEnterpriseAdminCredentialByEnterpriseAdminId(
-            @Bind("enterpriseAdminId") long enterpriseAdminId
+            @Bind("enterpriseAdminId") Long enterpriseAdminId
     );
 
     @SqlQuery("select count * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
     public abstract int countEnterpriseAdminCredentialByEnterpriseAdminId(
-            @Bind("enterpriseAdminId") long enterpriseAdminId
+            @Bind("enterpriseAdminId") Long enterpriseAdminId
     );
 
-    @SqlUpdate("delete from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
+    //TODO: refactor the necessary to delete records
+    //      update the unique fields based on timestamp as work around
+    @SqlUpdate("delete * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
     public abstract int deleteEnterpriseAdminCredentialByEnterpriseAdminId(
-            @Bind("enterpriseAdminId") long enterpriseAdminId
+            @Bind("enterpriseAdminId") Long enterpriseAdminId
     );
-
 }

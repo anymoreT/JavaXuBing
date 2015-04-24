@@ -29,7 +29,7 @@ status varchar(255)
 
     protected String captcha;
     protected Date lastAccessTime;
-    protected long maxInactiveInternal;
+    protected Long maxInactiveInternal;
     protected String mobile;
     protected Module module;
     protected Status status;
@@ -46,9 +46,9 @@ status varchar(255)
         ENTEPRISE_PASS, //企业管理员忘记密码
     }
 
-    public static long Conf_MaxInactiveInternal = 30 * 60 * 1000L;
+    public static Long Conf_MaxInactiveInternal = 30 * 60 * 1000L;
 
-    public EVSCaptcha(long id, Date createTime, Date updateTime, String captcha, Date lastAccessTime, long maxInactiveInternal, String mobile, Module module, Status status) {
+    public EVSCaptcha(Long id, Date createTime, Date updateTime, String captcha, Date lastAccessTime, Long maxInactiveInternal, String mobile, Module module, Status status) {
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -76,11 +76,11 @@ status varchar(255)
         this.lastAccessTime = lastAccessTime;
     }
 
-    public long getMaxInactiveInternal() {
+    public Long getMaxInactiveInternal() {
         return maxInactiveInternal;
     }
 
-    public void setMaxInactiveInternal(long maxInactiveInternal) {
+    public void setMaxInactiveInternal(Long maxInactiveInternal) {
         this.maxInactiveInternal = maxInactiveInternal;
     }
 
@@ -127,16 +127,13 @@ status varchar(255)
     @Override
     public String toString() {
         return "EVSCaptcha{" +
-                "id=" + id +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", captcha='" + captcha + '\'' +
+                "captcha='" + captcha + '\'' +
                 ", lastAccessTime=" + lastAccessTime +
                 ", maxInactiveInternal=" + maxInactiveInternal +
                 ", mobile='" + mobile + '\'' +
                 ", module=" + module +
                 ", status=" + status +
-                '}';
+                "} " + super.toString();
     }
 
     public static EVSCaptchaDao dao = EVSUtil.getDAO(EVSCaptchaDao.class);

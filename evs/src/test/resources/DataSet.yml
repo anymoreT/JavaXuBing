@@ -19,10 +19,12 @@ enterpriseAdmins:
       email: lei.li@hcwins.com
       password: 654321
 
-enterpriseRegionDatas:
+enterpriseRegions:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData
-      provinceId: 510000
-      cityId: 510100
+      provinceName: 510000
+      cityName: 510100
+      countryName: 510100
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData
-      provinceId: 140000
-      cityId: 140100
+      provinceName: 140000
+      cityName: 140100
+      countryName: 140100

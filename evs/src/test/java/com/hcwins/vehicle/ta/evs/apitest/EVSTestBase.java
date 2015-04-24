@@ -16,12 +16,44 @@ import org.testng.annotations.BeforeSuite;
  * Created by tommy on 3/23/15.
  */
 public class EVSTestBase {
-    static final Logger logger = LoggerFactory.getLogger(EVSTestBase.class);
+    private static final Logger logger = LoggerFactory.getLogger(EVSTestBase.class);
 
-    TestBed testBed;
-    APISet apiSet;
-    DataSet dataSet;
-    Handle handle;
+    private TestBed testBed;
+    private APISet apiSet;
+    private DataSet dataSet;
+    private Handle handle;
+
+    public TestBed getTestBed() {
+        return testBed;
+    }
+
+    public void setTestBed(TestBed testBed) {
+        this.testBed = testBed;
+    }
+
+    public APISet getApiSet() {
+        return apiSet;
+    }
+
+    public void setApiSet(APISet apiSet) {
+        this.apiSet = apiSet;
+    }
+
+    public DataSet getDataSet() {
+        return dataSet;
+    }
+
+    public void setDataSet(DataSet dataSet) {
+        this.dataSet = dataSet;
+    }
+
+    public Handle getHandle() {
+        return handle;
+    }
+
+    public void setHandle(Handle handle) {
+        this.handle = handle;
+    }
 
     @BeforeSuite
     public void beforeSuite() {
@@ -45,12 +77,14 @@ public class EVSTestBase {
     @BeforeClass
     public void beforeClass() {
         logger.debug("before class");
+
         //TODO:
     }
 
     @AfterClass
     public void afterClass() {
         //TODO:
+
         logger.debug("after class");
     }
 }

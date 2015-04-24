@@ -12,7 +12,7 @@ import java.util.List;
  */
 @RegisterMapper(EVSEnterpriseAdmin.Mapper.class)
 public abstract class EVSEnterpriseAdminDao extends BaseDao {
-    public EVSEnterpriseAdmin findById(long id) {
+    public EVSEnterpriseAdmin findById(Long id) {
         return super.findById(EVSEnterpriseAdmin.class, id);
     }
 
@@ -22,10 +22,11 @@ public abstract class EVSEnterpriseAdminDao extends BaseDao {
 
     );
 
+    //TODO: refactor the necessary to delete records
+    //      update the unique fields based on timestamp as work around
     @SqlUpdate("delete from EVS_EnterpriseAdmin where mobile=:mobile and email=:email")
     public abstract int deleteEnterpriseAdminByMobileAndEmail(
             @Bind("mobile") String mobile,
             @Bind("email") String email
     );
-
 }

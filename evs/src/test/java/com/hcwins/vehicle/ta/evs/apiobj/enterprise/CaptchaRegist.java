@@ -10,7 +10,7 @@ import java.util.List;
 public class CaptchaRegist {
     public static CaptchaRegistRequest getCaptchaRegistRequest(String mobile) {
         CaptchaRegistRequest captchaRegistRequest = new CaptchaRegistRequest();
-        captchaRegistRequest.mobile = mobile;
+        captchaRegistRequest.setMobile(mobile);
         return captchaRegistRequest;
     }
 

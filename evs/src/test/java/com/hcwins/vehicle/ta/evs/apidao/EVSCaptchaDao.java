@@ -13,7 +13,7 @@ import java.util.List;
  */
 @RegisterMapper(EVSCaptcha.Mapper.class)
 public abstract class EVSCaptchaDao extends BaseDao {
-    public EVSCaptcha findById(long id) {
+    public EVSCaptcha findById(Long id) {
         return super.findById(EVSCaptcha.class, id);
     }
 

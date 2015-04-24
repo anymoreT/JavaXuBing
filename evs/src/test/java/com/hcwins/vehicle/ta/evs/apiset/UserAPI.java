@@ -3,14 +3,12 @@ package com.hcwins.vehicle.ta.evs.apiset;
 /**
  * Created by tommy on 3/23/15.
  */
-public class EnterpriseAPI {
+public class UserAPI {
     private String captchaRegist;
     private String verifyMobileAndCaptcha;
     private String regist;
 
     private String login;
-
-    private String cancelAdmin;
 
     public String getCaptchaRegist() {
         return captchaRegist;
@@ -42,13 +40,5 @@ public class EnterpriseAPI {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getCancelAdmin() {
-        return cancelAdmin;
-    }
-
-    public void setCancelAdmin(String cancelAdmin) {
-        this.cancelAdmin = cancelAdmin;
     }
 }

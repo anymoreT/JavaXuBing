@@ -34,15 +34,14 @@ enterpriseId bigint not null,
     protected String realName;
     protected Status status;
     protected Date unLockTime;
-    protected long enterpriseId;
+    protected Long enterpriseId;
 
     public static enum Status {
         BINDED,
         UNBINDED
     }
 
-
-    public EVSEnterpriseAdmin(long id, Date createTime, Date updateTime, String email, Boolean isLocked, Integer loginFailureCount, String mobile, String realName, Status status, Date unLockTime, long enterpriseId) {
+    public EVSEnterpriseAdmin(Long id, Date createTime, Date updateTime, String email, Boolean isLocked, Integer loginFailureCount, String mobile, String realName, Status status, Date unLockTime, Long enterpriseId) {
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -56,7 +55,6 @@ enterpriseId bigint not null,
         this.enterpriseId = enterpriseId;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -65,11 +63,11 @@ enterpriseId bigint not null,
         this.email = email;
     }
 
-    public Boolean getIsLoced() {
+    public Boolean getIsLocked() {
         return isLocked;
     }
 
-    public void setIsLocked(boolean isLocked) {
+    public void setIsLocked(Boolean isLocked) {
         this.isLocked = isLocked;
     }
 
@@ -89,7 +87,7 @@ enterpriseId bigint not null,
         this.mobile = mobile;
     }
 
-    public String getRealname() {
+    public String getRealName() {
         return realName;
     }
 
@@ -117,7 +115,7 @@ enterpriseId bigint not null,
         return enterpriseId;
     }
 
-    public void setEnterpriseId(long enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 
@@ -139,22 +137,18 @@ enterpriseId bigint not null,
         }
     }
 
-
     @Override
     public String toString() {
         return "EVSEnterpriseAdmin{" +
-                "id=" + id +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", email='" + email + '\'' +
+                "email='" + email + '\'' +
                 ", isLocked=" + isLocked +
                 ", loginFailureCount=" + loginFailureCount +
                 ", mobile='" + mobile + '\'' +
-                ", realName=" + realName +
+                ", realName='" + realName + '\'' +
+                ", status=" + status +
                 ", unLockTime=" + unLockTime +
                 ", enterpriseId=" + enterpriseId +
-                ", status=" + status +
-                '}';
+                "} " + super.toString();
     }
 
     public static EVSEnterpriseAdminDao dao = EVSUtil.getDAO(EVSEnterpriseAdminDao.class);

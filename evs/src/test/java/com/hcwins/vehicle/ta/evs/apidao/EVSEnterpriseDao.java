@@ -12,7 +12,7 @@ import java.util.List;
  */
 @RegisterMapper(EVSEnterprise.Mapper.class)
 public abstract class EVSEnterpriseDao extends BaseDao {
-    public EVSEnterprise findById(long id) {
+    public EVSEnterprise findById(Long id) {
         return super.findById(EVSEnterprise.class, id);
     }
 
@@ -21,8 +21,10 @@ public abstract class EVSEnterpriseDao extends BaseDao {
             @Bind("enterpriseName") String enterpriseName
     );
 
+    //TODO: refactor the necessary to delete records
+    //      update the unique fields based on timestamp as work around
     @SqlUpdate("delete from EVS_Enterprise where id=:id")
     public abstract int deleteEnterpriseById(
-            @Bind("id") long id
+            @Bind("id") Long id
     );
 }

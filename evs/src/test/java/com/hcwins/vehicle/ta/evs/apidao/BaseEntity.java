@@ -6,15 +6,15 @@ import java.util.Date;
  * Created by tommy on 3/27/15.
  */
 public class BaseEntity {
-    protected long id;
+    protected Long id;
     protected Date createTime;
     protected Date updateTime;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -32,5 +32,14 @@ public class BaseEntity {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
     }
 }

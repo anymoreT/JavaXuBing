@@ -23,49 +23,53 @@ import static org.hamcrest.Matchers.*;
  * Created by tommy on 3/20/15.
  */
 public class EnterpriseRegistAT extends EVSTestBase {
-    static final Logger logger = LoggerFactory.getLogger(EnterpriseRegistAT.class);
+    private static final Logger logger = LoggerFactory.getLogger(EnterpriseRegistAT.class);
 
-    String enterpriseName0, enterpriseName1;
-    String enterprisewebsite0, enterprisewebsite1;
-    String adminRealName0, adminRealName1;
-    String mobile0, mobile1;
-    String email0, email1;
-    String password0, password1;
-    String provinceId0, provinceId1;
-    String cityId0, cityId1;
+    private String enterpriseName0, enterpriseName1;
+    private String enterprisewebsite0, enterprisewebsite1;
+    private String adminRealName0, adminRealName1;
+    private String mobile0, mobile1;
+    private String email0, email1;
+    private String password0, password1;
+    private Long provinceId0, provinceId1;
+    private Long cityId0, cityId1;
 
     @BeforeClass
     public void beforeClass() {
         super.beforeClass();
-        enterpriseName0 = dataSet.enterprises.get(0).enterpriseName;
-        enterprisewebsite0 = dataSet.enterprises.get(0).enterpriseWebsite;
-        adminRealName0 = dataSet.enterpriseAdmins.get(0).realName;
-        mobile0 = dataSet.enterpriseAdmins.get(0).mobile;
-        email0 = dataSet.enterpriseAdmins.get(0).email;
-        password0 = dataSet.enterpriseAdmins.get(0).password;
-        provinceId0 = dataSet.enterpriseRegionDatas.get(0).provinceId;
-        cityId0 = dataSet.enterpriseRegionDatas.get(0).cityId;
 
-        enterpriseName1 = dataSet.enterprises.get(1).enterpriseName;
-        enterprisewebsite1 = dataSet.enterprises.get(1).enterpriseWebsite;
-        adminRealName1 = dataSet.enterpriseAdmins.get(1).realName;
-        mobile1 = dataSet.enterpriseAdmins.get(1).mobile;
-        email1 = dataSet.enterpriseAdmins.get(1).email;
-        password1 = dataSet.enterpriseAdmins.get(1).password;
-        provinceId1 = dataSet.enterpriseRegionDatas.get(1).provinceId;
-        cityId1 = dataSet.enterpriseRegionDatas.get(1).cityId;
+        enterpriseName0 = getDataSet().getEnterprises().get(0).getEnterpriseName();
+        enterprisewebsite0 = getDataSet().getEnterprises().get(0).getEnterpriseWebsite();
+        adminRealName0 = getDataSet().getEnterpriseAdmins().get(0).getRealName();
+        mobile0 = getDataSet().getEnterpriseAdmins().get(0).getMobile();
+        email0 = getDataSet().getEnterpriseAdmins().get(0).getEmail();
+        password0 = getDataSet().getEnterpriseAdmins().get(0).getPassword();
+        provinceId0 = getDataSet().getEnterpriseRegions().get(0).getProvinceId();
+        cityId0 = getDataSet().getEnterpriseRegions().get(0).getCityId();
+
+        enterpriseName1 = getDataSet().getEnterprises().get(1).getEnterpriseName();
+        enterprisewebsite1 = getDataSet().getEnterprises().get(1).getEnterpriseWebsite();
+        adminRealName1 = getDataSet().getEnterpriseAdmins().get(1).getRealName();
+        mobile1 = getDataSet().getEnterpriseAdmins().get(1).getMobile();
+        email1 = getDataSet().getEnterpriseAdmins().get(1).getEmail();
+        password1 = getDataSet().getEnterpriseAdmins().get(1).getPassword();
+        provinceId1 = getDataSet().getEnterpriseRegions().get(1).getProvinceId();
+        cityId1 = getDataSet().getEnterpriseRegions().get(1).getCityId();
+
         //TODO:
     }
 
     @AfterClass
     public void afterClass() {
-        //TODO:
-        super.afterClass();
         Long enterpriseId = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0).get(0).getEnterpriseId();
         Long enterpriseAdminId = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0).get(0).getId();
         EVSEnterpriseAdminCredential.dao.deleteEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId);
         EVSEnterpriseAdmin.dao.deleteEnterpriseAdminByMobileAndEmail(mobile0, email0);
         EVSEnterprise.dao.deleteEnterpriseById(enterpriseId);
+
+        //TODO: rollback the evn? how?
+
+        super.afterClass();
     }
 
     @Test(description = "验证成功获取验证码")
@@ -75,7 +79,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
         EVSUtil.sleep("slow down the execution for different create time", 5);
 
         CaptchaRegistResponse captchaRegistResponse = CaptchaRegist.postCaptchaRegistRequest(mobile0);
-        assertThat(captchaRegistResponse.result.code, equalTo(0));
+        assertThat(captchaRegistResponse.getResult().getCode(), equalTo(0));
 
         List<EVSCaptcha> captchas = CaptchaRegist.getCaptchaRegists(mobile0);
         assertThat(captchas.size(), equalTo(1));
@@ -146,19 +150,20 @@ public class EnterpriseRegistAT extends EVSTestBase {
             dataProvider = "genCaptchaRegistErrorCodeTestData")
     public void testCaptchaRegistErrorCode(String mobile, int code) {
         CaptchaRegistResponse captchaRegistResponse = CaptchaRegist.postCaptchaRegistRequest(mobile);
-        assertThat(captchaRegistResponse.result.code, equalTo(code));
+        assertThat(captchaRegistResponse.getResult().getCode(), equalTo(code));
     }
 
-    @Test(description = "企业注册接口测试: 验证全部参数正确时注册成功", dependsOnMethods = {"testEnterpriseRegistErrorCode"}, alwaysRun = true)
+    @Test(description = "企业注册接口测试: 验证全部参数正确时注册成功",
+            dependsOnMethods = {"testEnterpriseRegistErrorCode"}, alwaysRun = true)
     public void testEnterpriseRegistSuccess() {
-        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName0, enterprisewebsite0, cityId0, adminRealName0, mobile0, email0, password0, provinceId0);
-        assertThat(enterpriseRegistResponse.result.code, equalTo(0));
-        assertThat(enterpriseRegistResponse.enterpriseStatus, equalTo(0));
+        RegistResponse registResponse = Regist.postRegistRequest(enterpriseName0, enterprisewebsite0, cityId0, adminRealName0, mobile0, email0, password0, provinceId0);
+        assertThat(registResponse.getResult().getCode(), equalTo(0));
+        assertThat(registResponse.getEnterpriseStatus(), equalTo(0));
         EVSEnterprise enterprise1 = EVSEnterprise.dao.findEnterpriseByName(enterpriseName0).get(0);
         assertThat(enterprise1.getEnterpriseName(), equalTo(enterpriseName0));
         assertThat(enterprise1.getWebsite(), equalTo(enterprisewebsite0));
-        assertThat(Long.toString(enterprise1.getCityId()), equalTo(cityId0));
-        assertThat(enterprise1.getStatus(), equalTo("UNAUDITED"));
+        assertThat(enterprise1.getCityId(), equalTo(cityId0));
+        assertThat(enterprise1.getStatus(), equalTo(EVSEnterprise.Status.UNAUDITED));
     }
 
     @DataProvider
@@ -184,22 +189,25 @@ public class EnterpriseRegistAT extends EVSTestBase {
         };
     }
 
-    @Test(description = "企业注册接口测试: 验证企业注册的错误码", dataProvider = "genEnterpriseRegistErrorCodeTestData")
-    public void testEnterpriseRegistErrorCode(String enterpriseName, String enterprisewebsite, String cityId, String adminRealName, String mobile, String email, String password, String provinceId, int code) {
-        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName, enterprisewebsite, cityId, adminRealName, mobile, email, password, provinceId);
-        assertThat(enterpriseRegistResponse.result.code, equalTo(code));
+    @Test(description = "企业注册接口测试: 验证企业注册的错误码",
+            dataProvider = "genEnterpriseRegistErrorCodeTestData")
+    public void testEnterpriseRegistErrorCode(String enterpriseName, String enterprisewebsite, Long cityId, String adminRealName, String mobile, String email, String password, Long provinceId, int code) {
+        RegistResponse registResponse = Regist.postRegistRequest(enterpriseName, enterprisewebsite, cityId, adminRealName, mobile, email, password, provinceId);
+        assertThat(registResponse.getResult().getCode(), equalTo(code));
     }
 
-    @Test(description = "企业注册接口测试: 验证管理员手机号已注册", dependsOnMethods = {"testEnterpriseRegistSuccess"})
+    @Test(description = "企业注册接口测试: 验证管理员手机号已注册",
+            dependsOnMethods = {"testEnterpriseRegistSuccess"})
     public void testAdminMobileHaveRegisted() {
-        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName1, enterprisewebsite1, cityId1, adminRealName1, mobile0, email1, password1, provinceId1);
-        assertThat(enterpriseRegistResponse.result.code, equalTo(204));
+        RegistResponse registResponse = Regist.postRegistRequest(enterpriseName1, enterprisewebsite1, cityId1, adminRealName1, mobile0, email1, password1, provinceId1);
+        assertThat(registResponse.getResult().getCode(), equalTo(204));
     }
 
-    @Test(description = "企业注册接口测试: 验证管理员邮件已注册", dependsOnMethods = {"testAdminMobileHaveRegisted"})
+    @Test(description = "企业注册接口测试: 验证管理员邮件已注册",
+            dependsOnMethods = {"testAdminMobileHaveRegisted"})
     public void testAdminMailHaveRegisted() {
-        EnterpriseRegistResponse enterpriseRegistResponse = EnterpriseRegist.postEnterpriseRegistRequest(enterpriseName1, enterprisewebsite1, cityId1, adminRealName1, mobile1, email0, password1, provinceId1);
-        assertThat(enterpriseRegistResponse.result.code, equalTo(214));
+        RegistResponse registResponse = Regist.postRegistRequest(enterpriseName1, enterprisewebsite1, cityId1, adminRealName1, mobile1, email0, password1, provinceId1);
+        assertThat(registResponse.getResult().getCode(), equalTo(214));
     }
 
     /**
@@ -212,7 +220,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
 
         String StrCaptcha = captcha.getCaptcha();
         VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, StrCaptcha);
-        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(0));
+        assertThat(VerifyMobileAndCaptchaResponse.getResult().getCode(), equalTo(0));
     }
 
     @Test(description = "验证手机号与验证码校验的手机号码相关ErrorCode",
@@ -222,7 +230,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
         EVSCaptcha captcha = CaptchaRegist.postAndGetCaptchas(mobile0).get(0);
         String StrCaptcha = captcha.getCaptcha();
         VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile, StrCaptcha);
-        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(code));
+        assertThat(VerifyMobileAndCaptchaResponse.getResult().getCode(), equalTo(code));
     }
 
     @DataProvider
@@ -240,7 +248,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
             dataProvider = "genVerifyCaptchaErrorCodeTestData")
     public void testVerifyMobileAndCaptchaErrorCodeWhenCaptchaInvalid(String captcha, int code) {
         VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, captcha);
-        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(code));
+        assertThat(VerifyMobileAndCaptchaResponse.getResult().getCode(), equalTo(code));
     }
 
     @Test(description = "验证手机号与验证码校验当验证码和手机号码不匹配")
@@ -249,7 +257,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
         String mobile1 = "13648087441";
         String StrCaptcha = captcha.getCaptcha();
         VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile1, StrCaptcha);
-        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(301));
+        assertThat(VerifyMobileAndCaptchaResponse.getResult().getCode(), equalTo(301));
     }
 
     @Test(description = "验证手机号与验证码校验当验证码过期")
@@ -258,7 +266,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
         EVSCaptcha captcha1 = CaptchaRegist.postAndGetCaptchas(mobile0).get(0);
         String StrCaptcha0 = captcha0.getCaptcha();
         VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, StrCaptcha0);
-        assertThat(VerifyMobileAndCaptchaResponse.result.code, equalTo(301));
+        assertThat(VerifyMobileAndCaptchaResponse.getResult().getCode(), equalTo(301));
     }
 
 // Cancel Admin Api tests:
@@ -266,15 +274,14 @@ public class EnterpriseRegistAT extends EVSTestBase {
     @Test(description = "验证企业管理员忘记我成功")
     public void testCancelAdminSuccess() {
         CaptchaRegistResponse captchaRegistResponse = CaptchaRegist.postCaptchaRegistRequest(mobile0);
-        assertThat(captchaRegistResponse.result.code, equalTo(0));
+        assertThat(captchaRegistResponse.getResult().getCode(), equalTo(0));
         List<EVSEnterpriseAdmin> enterpriseAdmin = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0);
         long enterpriseAdminId = enterpriseAdmin.get(0).getId();
         List<EVSEnterpriseAdminCredential> enterpriseAdminCredential = EVSEnterpriseAdminCredential.dao.findEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId);
         password0 = enterpriseAdminCredential.get(0).getPassword();
 
         CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0, password0);
-        assertThat(cancelAdminResponse.result.code, equalTo(0));
+        assertThat(cancelAdminResponse.getResult().getCode(), equalTo(0));
         assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId), equalTo(0));
     }
-
 }

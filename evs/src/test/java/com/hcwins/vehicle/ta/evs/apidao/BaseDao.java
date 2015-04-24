@@ -7,7 +7,7 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
  * Created by tommy on 3/27/15.
  */
 public class BaseDao {
-    public <EntityType extends BaseEntity> EntityType findById(Class<EntityType> entityType, long id) {
+    public <EntityType extends BaseEntity> EntityType findById(Class<EntityType> entityType, Long id) {
         EntityType ret = null;
         try {
             ret = EVSUtil.getDBHandle()

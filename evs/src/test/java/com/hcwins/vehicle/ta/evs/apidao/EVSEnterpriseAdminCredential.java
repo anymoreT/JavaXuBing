@@ -24,10 +24,9 @@ enterpriseAdminId bigint not null,
 
     protected String credentialName;
     protected String password;
-    protected long enterpriseAdminId;
+    protected Long enterpriseAdminId;
 
-
-    public EVSEnterpriseAdminCredential(long id, Date createTime, Date updateTime, String credentialName, String password, long enterpriseAdminId) {
+    public EVSEnterpriseAdminCredential(Long id, Date createTime, Date updateTime, String credentialName, String password, Long enterpriseAdminId) {
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -52,11 +51,11 @@ enterpriseAdminId bigint not null,
         this.password = password;
     }
 
-    public long getEnterpriseAdminId() {
+    public Long getEnterpriseAdminId() {
         return enterpriseAdminId;
     }
 
-    public void setEnterpriseAdminId(long enterpriseAdminId) {
+    public void setEnterpriseAdminId(Long enterpriseAdminId) {
         this.enterpriseAdminId = enterpriseAdminId;
     }
 
@@ -73,17 +72,13 @@ enterpriseAdminId bigint not null,
         }
     }
 
-
     @Override
     public String toString() {
         return "EVSEnterpriseAdminCredential{" +
-                "id=" + id +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", credentialName='" + credentialName + '\'' +
-                ", password=" + password +
+                "credentialName='" + credentialName + '\'' +
+                ", password='" + password + '\'' +
                 ", enterpriseAdminId=" + enterpriseAdminId +
-                '}';
+                "} " + super.toString();
     }
 
     public static EVSEnterpriseAdminCredentialDao dao = EVSUtil.getDAO(EVSEnterpriseAdminCredentialDao.class);

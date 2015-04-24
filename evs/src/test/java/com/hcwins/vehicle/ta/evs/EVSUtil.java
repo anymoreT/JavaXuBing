@@ -3,6 +3,8 @@ package com.hcwins.vehicle.ta.evs;
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.hcwins.vehicle.ta.evs.apiobj.BaseAccountRequest;
+import com.hcwins.vehicle.ta.evs.apiobj.BaseAccountResponse;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 import org.skife.jdbi.v2.DBI;
@@ -16,6 +18,7 @@ import java.io.FileReader;
 import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.jayway.restassured.RestAssured.given;
@@ -24,11 +27,11 @@ import static com.jayway.restassured.RestAssured.given;
  * Created by tommy on 3/23/15.
  */
 public class EVSUtil {
-    static final Logger logger = LoggerFactory.getLogger(EVSUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(EVSUtil.class);
 
-    static final String testBedYaml = System.getProperty("TB", EVSUtil.class.getResource("/FuncTestTB.yml").getFile());
-    static final String apiSetYaml = System.getProperty("API", EVSUtil.class.getResource("/APISet.yml").getFile());
-    static final String dataSetYaml = System.getProperty("DATA", EVSUtil.class.getResource("/DataSet.yml").getFile());
+    private static final String testBedYaml = System.getProperty("TB", EVSUtil.class.getResource("/FuncTestTB.yml").getFile());
+    private static final String apiSetYaml = System.getProperty("API", EVSUtil.class.getResource("/APISet.yml").getFile());
+    private static final String dataSetYaml = System.getProperty("DATA", EVSUtil.class.getResource("/DataSet.yml").getFile());
 
     private TestBed testBed;
     private APISet apiSet;
@@ -37,6 +40,15 @@ public class EVSUtil {
     private Handle handle;
 
     private Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.PROTECTED).create();
+
+    private static enum CacheType {
+        ENTERPRISE_SESSION,
+        USER_SESSION,
+    }
+
+    private HashMap<CacheType, HashMap<String, Object>> cacheMap = new HashMap<CacheType, HashMap<String, Object>>();
+    private HashMap<CacheType, String> currentCacheKeyMap = new HashMap<CacheType, String>();
+    private EVSSession currentSession;
 
     private static EVSUtil evsUtil = new EVSUtil();
 
@@ -90,8 +102,8 @@ public class EVSUtil {
     private Handle initDBHandle() {
         Handle handle = null;
         try {
-            logger.debug("trying to connect to db with {}", testBed.jdbcConnectionString);
-            dbi = new DBI(testBed.jdbcConnectionString);
+            logger.debug("trying to connect to db with {}", testBed.getJdbcConnectionString());
+            dbi = new DBI(testBed.getJdbcConnectionString());
             dbi.setSQLLog(new SLF4JLog());
             handle = dbi.open();
             logger.debug("success to connect to db");
@@ -149,6 +161,69 @@ public class EVSUtil {
         return getInstance().gson;
     }
 
+    public static HashMap<String, Object> getCache(CacheType cacheType) {
+        if (!getInstance().cacheMap.containsKey(cacheType)) {
+            getInstance().cacheMap.put(cacheType, new HashMap<String, Object>());
+        }
+        return getInstance().cacheMap.get(cacheType);
+    }
+
+    public static String getCurrentCacheKey(CacheType cacheType) {
+        return getInstance().currentCacheKeyMap.get(cacheType);
+    }
+
+    public static EVSSession getCurrentSession() {
+        return getInstance().currentSession;
+    }
+
+    public void setCurrentSession(EVSSession currentSession) {
+        this.currentSession = currentSession;
+    }
+
+    public static String getCurrentToken() {
+        return getCurrentSession().getLoginResponse().getToken();
+    }
+
+    public static void cacheSession(EVSSession.AccountType accountType, BaseAccountRequest loginRequest, BaseAccountResponse loginResponse) {
+        CacheType cacheType = EVSSession.AccountType.ENTERPRISE == accountType ? CacheType.ENTERPRISE_SESSION : CacheType.USER_SESSION;
+        EVSSession session = new EVSSession(accountType, loginRequest, loginResponse);
+        getCache(cacheType).put(session.getKey(), session);
+        getInstance().currentCacheKeyMap.put(cacheType, loginRequest.getAccount());
+        getInstance().setCurrentSession(session);
+    }
+
+    public static void cacheEnterpriseSession(BaseAccountRequest loginRequest, BaseAccountResponse loginResponse) {
+        cacheSession(EVSSession.AccountType.ENTERPRISE, loginRequest, loginResponse);
+    }
+
+    public static EVSSession getEnterpriseSession(String account) {
+        return (EVSSession) getCache(CacheType.ENTERPRISE_SESSION).get(EVSSession.AccountType.ENTERPRISE.name() + ":" + account);
+    }
+
+    public static String getEnterpriseToken(String account) {
+        return getEnterpriseSession(account).getLoginResponse().getToken();
+    }
+
+    public static String getCurrentEnterpriseToken() {
+        return getEnterpriseToken(getCurrentCacheKey(CacheType.ENTERPRISE_SESSION));
+    }
+
+    public static void cacheUserSession(BaseAccountRequest loginRequest, BaseAccountResponse loginResponse) {
+        cacheSession(EVSSession.AccountType.USER, loginRequest, loginResponse);
+    }
+
+    public static EVSSession getUserSession(String account) {
+        return (EVSSession) getCache(CacheType.USER_SESSION).get(EVSSession.AccountType.USER.name() + ":" + account);
+    }
+
+    public static String getUserToken(String account) {
+        return getUserSession(account).getLoginResponse().getToken();
+    }
+
+    public static String getCurrentUserToken() {
+        return getUserToken(getCurrentCacheKey(CacheType.USER_SESSION));
+    }
+
     public static String getTimeStamp() {
         return new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
     }
@@ -193,11 +268,11 @@ public class EVSUtil {
     }
 
     public static Response callPostJson(String api, String json, Map<String, String> headers, int expectedHttpStatusCode) {
-        String url = getTestBed().apiBaseUrl + api;
+        String url = getTestBed().getApiBaseUrl() + api;
 
         updateHeader(headers);
 
-        logger.debug("trying to call {} with {}", url, json);
+        logger.debug("trying to call {} with {}, headers {} ", url, json, headers);
         RequestSpecification request = given();
         request = request.contentType("application/json");
         request = null != headers ? request.headers(headers) : request;

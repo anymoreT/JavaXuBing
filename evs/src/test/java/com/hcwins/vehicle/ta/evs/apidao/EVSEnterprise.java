@@ -10,6 +10,7 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
 
 @Annotations.Entity(table = "EVS_Enterprise", mapper = EVSEnterprise.Mapper.class)
@@ -37,17 +38,24 @@ cityId bigint
     protected String detailAddress;
     protected String enterpriseName;
     protected String licenseNumber;
-    protected Long licensePic;
+    protected byte[] licensePic;
     protected String mail;
     protected String nature;
     protected String representative;
     protected String scale;
-    protected String status;
+    protected Status status;
     protected String telephone;
     protected String website;
-    protected long cityId;
+    protected Long cityId;
 
-    public EVSEnterprise(long id, Date createTime, Date updateTime, String detailAddress, String enterpriseName, String licenseNumber, long licensePic, String mail, String nature, String representative, String scale, String status, String telephone, String website, Long cityId) {
+    public static enum Status {
+        UNAUDITED,
+        REFUSED,
+        AVAILABLE,
+        UNAVAILABLE;
+    }
+
+    public EVSEnterprise(Long id, Date createTime, Date updateTime, String detailAddress, String enterpriseName, String licenseNumber, byte[] licensePic, String mail, String nature, String representative, String scale, Status status, String telephone, String website, Long cityId) {
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -113,11 +121,11 @@ cityId bigint
         this.licenseNumber = licenseNumber;
     }
 
-    public Long getLicensePic() {
+    public byte[] getLicensePic() {
         return licensePic;
     }
 
-    public void setLicensePic(Long licensePic) {
+    public void setLicensePic(byte[] licensePic) {
         this.licensePic = licensePic;
     }
 
@@ -145,19 +153,19 @@ cityId bigint
         this.scale = scale;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public long getCityId() {
+    public Long getCityId() {
         return cityId;
     }
 
-    public void setCityId(long cityId) {
+    public void setCityId(Long cityId) {
         this.cityId = cityId;
     }
 
@@ -170,12 +178,12 @@ cityId bigint
                     r.getString("detailAddress"),
                     r.getString("enterpriseName"),
                     r.getString("licenseNumber"),
-                    r.getLong("licensePic"),
+                    r.getBytes("licensePic"),
                     r.getString("mail"),
                     r.getString("nature"),
                     r.getString("representative"),
                     r.getString("scale"),
-                    r.getString("status"),
+                    Status.valueOf(r.getString("status")),
                     r.getString("telephone"),
                     r.getString("website"),
                     r.getLong("cityId")
@@ -186,24 +194,20 @@ cityId bigint
     @Override
     public String toString() {
         return "EVSEnterprise{" +
-                "id=" + id +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", detailAddress=" + detailAddress +
+                "detailAddress='" + detailAddress + '\'' +
                 ", enterpriseName='" + enterpriseName + '\'' +
-                ", licenseNumber=" + licenseNumber +
-                ", licensePic=" + licensePic +
-                ", mail=" + mail +
-                ", nature=" + nature +
-                ", representative=" + representative +
-                ", scale=" + scale +
+                ", licenseNumber='" + licenseNumber + '\'' +
+                ", licensePic=" + Arrays.toString(licensePic) +
+                ", mail='" + mail + '\'' +
+                ", nature='" + nature + '\'' +
+                ", representative='" + representative + '\'' +
+                ", scale='" + scale + '\'' +
                 ", status=" + status +
-                ", telephone=" + telephone +
-                ", website=" + website +
+                ", telephone='" + telephone + '\'' +
+                ", website='" + website + '\'' +
                 ", cityId=" + cityId +
-                "}";
+                "} " + super.toString();
     }
 
     public static EVSEnterpriseDao dao = EVSUtil.getDAO(EVSEnterpriseDao.class);
-
 }

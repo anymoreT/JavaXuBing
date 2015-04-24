@@ -10,7 +10,6 @@ import java.util.Map;
  */
 public abstract class BaseRequest {
     protected String loggerId = EVSUtil.getLoggerId();
-    public String token;
 
     protected Response lastResponse;
 

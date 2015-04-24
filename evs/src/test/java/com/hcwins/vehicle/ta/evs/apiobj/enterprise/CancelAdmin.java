@@ -6,8 +6,8 @@ package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 public class CancelAdmin {
     public static CancelAdminRequest getCancelAdminRequest(String mobile, String password) {
         CancelAdminRequest cancelAdminRequest = new CancelAdminRequest();
-        cancelAdminRequest.mobile = mobile;
-        cancelAdminRequest.password = password;
+        cancelAdminRequest.setMobile(mobile);
+        cancelAdminRequest.setPassword(password);
         return cancelAdminRequest;
     }
 
@@ -16,6 +16,4 @@ public class CancelAdmin {
         cancelAdminRequest.post();
         return cancelAdminRequest.getLastResponseAsObj();
     }
-
-
 }
