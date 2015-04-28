@@ -2,6 +2,7 @@ package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
 import com.hcwins.vehicle.ta.evs.apiobj.BaseRequest;
+import org.slf4j.Logger;
 
 /**
  * Created by xiangzhai on 10/04/15.
@@ -11,12 +12,12 @@ public class RegistRequest extends BaseRequest {
 
     private String enterpriseName;
     private String enterpriseWebsite;
-    private long cityId;
+    private Object cityId;
     private String adminRealName;
     private String adminMobile;
     private String adminEmail;
     private String adminPassword;
-    private long provinceId;
+    private Object provinceId;
 
     @Override
     public String getAPI() {
@@ -39,11 +40,11 @@ public class RegistRequest extends BaseRequest {
         this.enterpriseWebsite = enterpriseWebsite;
     }
 
-    public long getCityId() {
+    public Object getCityId() {
         return cityId;
     }
 
-    public void setCityId(long cityId) {
+    public void setCityId(Object cityId) {
         this.cityId = cityId;
     }
 
@@ -79,11 +80,11 @@ public class RegistRequest extends BaseRequest {
         this.adminPassword = adminPassword;
     }
 
-    public long getProvinceId() {
+    public Object getProvinceId() {
         return provinceId;
     }
 
-    public void setProvinceId(long provinceId) {
+    public void setProvinceId(Object provinceId) {
         this.provinceId = provinceId;
     }
 

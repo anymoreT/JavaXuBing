@@ -253,7 +253,7 @@ public class EVSUtil {
     }
 
     public static void updateHeader(Map<String, String> header) {
-//
+        //header.put("charset", "utf8");
     }
 
     public static Response callPost(String url, RequestSpecification requestSpec, int expectedHttpStatusCode) {
@@ -274,7 +274,7 @@ public class EVSUtil {
 
         logger.debug("trying to call {} with {}, headers {} ", url, json, headers);
         RequestSpecification request = given();
-        request = request.contentType("application/json");
+        request = request.contentType("application/json;charset=UTF-8");
         request = null != headers ? request.headers(headers) : request;
         request = request.body(json);
         Response response = callPost(url, request, expectedHttpStatusCode);

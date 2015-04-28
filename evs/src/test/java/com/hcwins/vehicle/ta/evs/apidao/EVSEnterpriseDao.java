@@ -1,6 +1,7 @@
 package com.hcwins.vehicle.ta.evs.apidao;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.SqlBatch;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
@@ -22,9 +23,9 @@ public abstract class EVSEnterpriseDao extends BaseDao {
     );
 
     //TODO: refactor the necessary to delete records
-    //      update the unique fields based on timestamp as work around
-    @SqlUpdate("delete from EVS_Enterprise where id=:id")
-    public abstract int deleteEnterpriseById(
-            @Bind("id") Long id
+    @SqlUpdate("update EVS_Enterprise set mail=:mail where enterpriseName=:enterpriseName")
+    public abstract int updateEmailByName(
+            @Bind("enterpriseName") String enterpriseName,
+            @Bind("mail") String mail
     );
 }

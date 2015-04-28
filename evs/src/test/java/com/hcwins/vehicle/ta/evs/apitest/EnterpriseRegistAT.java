@@ -1,10 +1,7 @@
 package com.hcwins.vehicle.ta.evs.apitest;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
-import com.hcwins.vehicle.ta.evs.apidao.EVSCaptcha;
-import com.hcwins.vehicle.ta.evs.apidao.EVSEnterprise;
-import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdmin;
-import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredential;
+import com.hcwins.vehicle.ta.evs.apidao.*;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +28,10 @@ public class EnterpriseRegistAT extends EVSTestBase {
     private String mobile0, mobile1;
     private String email0, email1;
     private String password0, password1;
+    private String provinceName0,getProvinceName1;
     private Long provinceId0, provinceId1;
     private Long cityId0, cityId1;
+    private String cityName0, cityName1;
 
     @BeforeClass
     public void beforeClass() {
@@ -44,8 +43,10 @@ public class EnterpriseRegistAT extends EVSTestBase {
         mobile0 = getDataSet().getEnterpriseAdmins().get(0).getMobile();
         email0 = getDataSet().getEnterpriseAdmins().get(0).getEmail();
         password0 = getDataSet().getEnterpriseAdmins().get(0).getPassword();
-        provinceId0 = getDataSet().getEnterpriseRegions().get(0).getProvinceId();
-        cityId0 = getDataSet().getEnterpriseRegions().get(0).getCityId();
+        provinceName0 = getDataSet().getEnterpriseRegions().get(0).getProvinceName();
+        provinceId0 = EVSProvince.dao.getProvinceIdByName(provinceName0).get(0).getId();
+        cityName0 = getDataSet().getEnterpriseRegions().get(0).getCityName();
+        cityId0 = EVSCity.dao.findCityIdByName(cityName0).get(0).getId();
 
         enterpriseName1 = getDataSet().getEnterprises().get(1).getEnterpriseName();
         enterprisewebsite1 = getDataSet().getEnterprises().get(1).getEnterpriseWebsite();
@@ -53,22 +54,23 @@ public class EnterpriseRegistAT extends EVSTestBase {
         mobile1 = getDataSet().getEnterpriseAdmins().get(1).getMobile();
         email1 = getDataSet().getEnterpriseAdmins().get(1).getEmail();
         password1 = getDataSet().getEnterpriseAdmins().get(1).getPassword();
-        provinceId1 = getDataSet().getEnterpriseRegions().get(1).getProvinceId();
-        cityId1 = getDataSet().getEnterpriseRegions().get(1).getCityId();
+        getProvinceName1 = getDataSet().getEnterpriseRegions().get(1).getProvinceName();
+        provinceId1 = EVSProvince.dao.getProvinceIdByName(getProvinceName1).get(0).getId();
+        cityName1 = getDataSet().getEnterpriseRegions().get(1).getCityName();
+        cityId1 = EVSCity.dao.findCityIdByName(cityName1).get(0).getId();
 
-        //TODO:
+        //TODO:clean the env of last
+        String timestamp = Long.toString(new Date().getTime());
+        String newemail = email0 + timestamp;
+        String newmobile = newemail.substring(newemail.length()-11,newemail.length());
+        EVSEnterpriseAdmin.dao.updateEmailByMobile(mobile0,newemail);
+        EVSEnterpriseAdmin.dao.updateMobileByEmail(newemail, newmobile);
+        EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(email0,newemail);
+        EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(mobile0,newmobile);
     }
 
     @AfterClass
     public void afterClass() {
-        Long enterpriseId = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0).get(0).getEnterpriseId();
-        Long enterpriseAdminId = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0).get(0).getId();
-        EVSEnterpriseAdminCredential.dao.deleteEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId);
-        EVSEnterpriseAdmin.dao.deleteEnterpriseAdminByMobileAndEmail(mobile0, email0);
-        EVSEnterprise.dao.deleteEnterpriseById(enterpriseId);
-
-        //TODO: rollback the evn? how?
-
         super.afterClass();
     }
 
@@ -169,23 +171,23 @@ public class EnterpriseRegistAT extends EVSTestBase {
     @DataProvider
     public static Object[][] genEnterpriseRegistErrorCodeTestData() {
         return new Object[][]{
-                {"", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 401}       //企业名称为空
-                , {"try", "www.hcwins.cn", "", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 500}         //城市为空
-                , {"try", "www.hcwins.cn", "987654", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 503}   //城市不存在
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "", 501}         //省份为空
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "987654", 502}   //省份不存在
-                , {"try", "www.hcwins.cn", "140100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 504}   //此省份下没有此城市
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "1588110000", "meimei.han@hcwins.com", "123456", "510000", 205}    //手机号格式错误
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "158811000001", "meimei.han@hcwins.com", "123456", "510000", 205}  //手机号格式错误
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "1588110000a", "meimei.han@hcwins.com", "123456", "510000", 205}   //手机号格式错误
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "", "510000", 210}         //密码为空
-                , {"try", "www.hcwins.cn", "510100", "", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 213}            //管理员姓名为空
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han&hcwins*bom", "123456", "510000", 215}   //管理员邮件格式错误
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", " ", "123456", "510000", 215}                       //管理员邮件格式错误
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "01", "510000", 217}       //密码长度不足
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", "510000", 227}   //密码长度超长
-                //,{" ", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", "510000", 401}     //企业名称为空
-                , {"try", "www.hcwins.cn", "510100", "hanmeimei", "15881100000", "", "123456", "510000", 212}                        //管理员邮件为空
+                {"", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 401}        //企业名称为空
+                , {"try", "www.hcwins.cn", null, "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 500}                   //城市为空
+                , {"try", "www.hcwins.cn", Long.valueOf(987654), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 503}   //城市不存在
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", null, 501}                   //省份为空
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", Long.valueOf(987654), 502}   //省份不存在
+                , {"try", "www.hcwins.cn", Long.valueOf(140100), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 504}   //此省份下没有此城市
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "1588110000", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 205}    //手机号格式错误
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "158811000001", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 205}  //手机号格式错误
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "1588110000a", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 205}   //手机号格式错误
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "", Long.valueOf(510000), 210}         //密码为空
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "", "15881100000", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 213}            //管理员姓名为空
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "meimei.han&hcwins*bom", "123456", Long.valueOf(510000), 215}   //管理员邮件格式错误
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", " ", "123456", Long.valueOf(510000), 215}                       //管理员邮件格式错误
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "01", Long.valueOf(510000), 217}       //密码长度不足
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", Long.valueOf(510000), 227}   //密码长度超长
+                //,{" ", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "meimei.han@hcwins.com", "123456", Long.valueOf(510000), 401}     //企业名称为空
+                , {"try", "www.hcwins.cn", Long.valueOf(510100), "hanmeimei", "15881100000", "", "123456", Long.valueOf(510000), 212}                         //管理员邮件为空
         };
     }
 
