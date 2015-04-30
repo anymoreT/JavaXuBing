@@ -33,4 +33,7 @@ public abstract class EVSEnterpriseAdminDao extends BaseDao {
         @Bind("email") String email,
         @Bind("mobile") String mobile
     );
+
+    @SqlQuery("select count(*) from EVS_EnterpriseAdmin")
+    public abstract int findCounts();
 }

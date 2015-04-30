@@ -32,4 +32,7 @@ public abstract class EVSEnterpriseAdminCredentialDao extends BaseDao {
         @Bind("OLD") String OLD,
         @Bind("NEW") String NEW
     );
+
+    @SqlQuery("select count(*) from EVS_EnterpriseAdminCredential")
+    public abstract int findCounts();
 }

@@ -293,4 +293,36 @@ public class EVSUtil {
     public static Response callPostJson(String api, String json) {
         return callPostJson(api, json, 200);
     }
+
+    public static String getUniqValue(int items, int returnLength, boolean isNumOnly) {
+        String uqstr = "";
+        String sitems = String.valueOf(items);
+        while (sitems.length() < 4) {
+            sitems = "0" + sitems;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("ss");
+        String second = sdf.format(new Date());
+
+        if (isNumOnly) {
+            switch (returnLength) {
+                case 11:
+                    uqstr = String.format("13191%s%s", sitems, second);
+                    break;
+                default:
+                    break;
+            }
+            return uqstr;
+        } else {
+            switch (returnLength) {
+                case 11:
+                    uqstr = String.format("AT000%s%s", sitems, second);
+                    break;
+                default:
+                    break;
+            }
+            return uqstr;
+        }
+
+    }
 }
