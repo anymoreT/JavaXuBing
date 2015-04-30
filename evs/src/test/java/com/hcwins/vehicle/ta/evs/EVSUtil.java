@@ -253,7 +253,7 @@ public class EVSUtil {
     }
 
     public static void updateHeader(Map<String, String> header) {
-//
+        //header.put("charset", "utf8");
     }
 
     public static Response callPost(String url, RequestSpecification requestSpec, int expectedHttpStatusCode) {
@@ -274,7 +274,7 @@ public class EVSUtil {
 
         logger.debug("trying to call {} with {}, headers {} ", url, json, headers);
         RequestSpecification request = given();
-        request = request.contentType("application/json");
+        request = request.contentType("application/json;charset=UTF-8");
         request = null != headers ? request.headers(headers) : request;
         request = request.body(json);
         Response response = callPost(url, request, expectedHttpStatusCode);
@@ -292,5 +292,37 @@ public class EVSUtil {
 
     public static Response callPostJson(String api, String json) {
         return callPostJson(api, json, 200);
+    }
+
+    public static String getUniqValue(int items, int returnLength, boolean isNumOnly) {
+        String uqstr = "";
+        String sitems = String.valueOf(items);
+        while (sitems.length() < 4) {
+            sitems = "0" + sitems;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("ss");
+        String second = sdf.format(new Date());
+
+        if (isNumOnly) {
+            switch (returnLength) {
+                case 11:
+                    uqstr = String.format("13191%s%s", sitems, second);
+                    break;
+                default:
+                    break;
+            }
+            return uqstr;
+        } else {
+            switch (returnLength) {
+                case 11:
+                    uqstr = String.format("AT000%s%s", sitems, second);
+                    break;
+                default:
+                    break;
+            }
+            return uqstr;
+        }
+
     }
 }

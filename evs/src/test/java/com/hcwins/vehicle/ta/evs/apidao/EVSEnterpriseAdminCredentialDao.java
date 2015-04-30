@@ -27,10 +27,12 @@ public abstract class EVSEnterpriseAdminCredentialDao extends BaseDao {
             @Bind("enterpriseAdminId") Long enterpriseAdminId
     );
 
-    //TODO: refactor the necessary to delete records
-    //      update the unique fields based on timestamp as work around
-    @SqlUpdate("delete * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
-    public abstract int deleteEnterpriseAdminCredentialByEnterpriseAdminId(
-            @Bind("enterpriseAdminId") Long enterpriseAdminId
+    @SqlUpdate("update EVS_EnterpriseAdminCredential set credentialName=:NEW where credentialName=:OLD")
+    public abstract int updateCredentialNameByEmailOrMobile(
+        @Bind("OLD") String OLD,
+        @Bind("NEW") String NEW
     );
+
+    @SqlQuery("select count(*) from EVS_EnterpriseAdminCredential")
+    public abstract int findCounts();
 }

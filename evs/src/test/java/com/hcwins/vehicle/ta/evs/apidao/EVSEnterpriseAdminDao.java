@@ -22,11 +22,18 @@ public abstract class EVSEnterpriseAdminDao extends BaseDao {
 
     );
 
-    //TODO: refactor the necessary to delete records
-    //      update the unique fields based on timestamp as work around
-    @SqlUpdate("delete from EVS_EnterpriseAdmin where mobile=:mobile and email=:email")
-    public abstract int deleteEnterpriseAdminByMobileAndEmail(
-            @Bind("mobile") String mobile,
-            @Bind("email") String email
+    @SqlUpdate("update EVS_EnterpriseAdmin set email=:email where mobile=:mobile")
+    public abstract int updateEmailByMobile(
+        @Bind("mobile") String mobile,
+        @Bind("email") String email
     );
+
+    @SqlUpdate("update EVS_EnterpriseAdmin set mobile=:mobile where email=:email")
+    public abstract int updateMobileByEmail(
+        @Bind("email") String email,
+        @Bind("mobile") String mobile
+    );
+
+    @SqlQuery("select count(*) from EVS_EnterpriseAdmin")
+    public abstract int findCounts();
 }

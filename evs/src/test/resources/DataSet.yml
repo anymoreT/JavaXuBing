@@ -1,30 +1,38 @@
 !com.hcwins.vehicle.ta.evs.DataSet
 enterprises:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
-      enterpriseName: try
-      enterpriseWebsite: www.hcwins.cn
+      enterpriseName: 和诚文视try1
+      enterpriseWebsite: www.hcwins1.cn
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
-      enterpriseName: try2
+      enterpriseName: 和诚文视try2
       enterpriseWebsite: www.hcwins2.cn
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
+      enterpriseName: 和诚文视try3
+      enterpriseWebsite: www.hcwins3.cn
 
 enterpriseAdmins:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
       mobile: 15881100000
-      realName: hanmeimei
+      realName: 韩meimei
       email: meimei.han@hcwins.com
       password: 123456
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
       mobile: 15881100001
-      realName: lilei
+      realName: 李lei
       email: lei.li@hcwins.com
       password: 654321
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
+      mobile: 15881100002
+      realName: 李Polly
+      email: polly.li@hcwins.com
+      password: polly123
 
 enterpriseRegions:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData
-      provinceName: 510000
-      cityName: 510100
+      provinceName: 四川省
+      cityName: 成都市
       countryName: 510100
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData
-      provinceName: 140000
-      cityName: 140100
+      provinceName: 山西省
+      cityName: 太原市
       countryName: 140100
