@@ -60,8 +60,8 @@ public class EnterpriseRegistAT extends EVSTestBase {
         cityId1 = EVSCity.dao.findCityIdByName(cityName1).get(0).getId();
 
         //TODO:clean the env of last
-        String newemail = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.findCounts(), 11, false);
-        String newmobile = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.findCounts(), 11, true);
+        String newemail = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.count(),"AT000");
+        String newmobile = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.count(),"15968");
         EVSEnterpriseAdmin.dao.updateEmailByMobile(mobile0, newemail);
         EVSEnterpriseAdmin.dao.updateMobileByEmail(newemail, newmobile);
         EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(email0,newemail);

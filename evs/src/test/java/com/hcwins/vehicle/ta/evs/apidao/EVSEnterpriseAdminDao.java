@@ -35,5 +35,5 @@ public abstract class EVSEnterpriseAdminDao extends BaseDao {
     );
 
     @SqlQuery("select count(*) from EVS_EnterpriseAdmin")
-    public abstract int findCounts();
+    public abstract int count();
 }
