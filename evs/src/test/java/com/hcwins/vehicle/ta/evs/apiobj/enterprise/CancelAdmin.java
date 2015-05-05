@@ -1,5 +1,6 @@
 package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
+import java.util.Map;
 /**
  * Created by wenji on 13/04/15.
  */
@@ -11,9 +12,9 @@ public class CancelAdmin {
         return cancelAdminRequest;
     }
 
-    public static CancelAdminResponse postCancelAdminRequest(String mobile, String password) {
+    public static CancelAdminResponse postCancelAdminRequest(String mobile, String password,Map head) {
         CancelAdminRequest cancelAdminRequest = getCancelAdminRequest(mobile, password);
-        cancelAdminRequest.post();
+        cancelAdminRequest.post(head);
         return cancelAdminRequest.getLastResponseAsObj();
     }
 }

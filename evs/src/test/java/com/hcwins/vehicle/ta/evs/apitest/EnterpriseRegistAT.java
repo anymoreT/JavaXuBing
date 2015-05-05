@@ -3,6 +3,7 @@ package com.hcwins.vehicle.ta.evs.apitest;
 import com.hcwins.vehicle.ta.evs.EVSUtil;
 import com.hcwins.vehicle.ta.evs.apidao.*;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.*;
+import org.hamcrest.Matchers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -11,7 +12,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -32,7 +35,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
     private Long provinceId0, provinceId1;
     private Long cityId0, cityId1;
     private String cityName0, cityName1;
-
+    private Map<String, String> head, head0;
     @BeforeClass
     public void beforeClass() {
         super.beforeClass();
@@ -67,6 +70,21 @@ public class EnterpriseRegistAT extends EVSTestBase {
         EVSEnterpriseAdmin.dao.updateMobileByEmail(newemail, newmobile);
         EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(email0,newemail);
         EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(mobile0,newmobile);
+
+        //setup
+        VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, CaptchaRegist.postAndGetCaptchas(mobile0).get(0).getCaptcha());
+        Regist.postRegistRequest(enterpriseName0, enterprisewebsite0, cityId0, adminRealName0, mobile0, email0, password0, provinceId0);
+        LoginResponse lgResponse=Login.postLoginRepuest(mobile0, password0, true);
+        String token = "TOKEN=" + lgResponse.getToken();
+        System.out.println(token);
+        head = new HashMap<String, String>();
+        head.put("Cookie",token);
+
+        EVSEnterpriseAdmin.dao.updatStatusBymobile(EVSEnterpriseAdmin.Status.BINDED, mobile0);
+        logger.debug("&&&&&&&&&&&&&&&&&&&&&&&&&");
+        logger.debug("$$$$$$$$$$$$$$$$$$$$$$$$$"+EVSEnterpriseAdmin.dao.findEnterpriseIdByMobile(mobile0).size());
+        Long enterpriseId = EVSEnterpriseAdmin.dao.findEnterpriseIdByMobile(mobile0).get(0).getEnterpriseId();
+        EVSEnterprise.dao.updateEnterpriseStatusById(EVSEnterprise.Status.AVAILABLE, enterpriseId);
     }
 
     @AfterClass
@@ -270,20 +288,122 @@ public class EnterpriseRegistAT extends EVSTestBase {
         VerifyMobileAndCaptchaResponse VerifyMobileAndCaptchaResponse = VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, StrCaptcha0);
         assertThat(VerifyMobileAndCaptchaResponse.getResult().getCode(), equalTo(301));
     }
-
-// Cancel Admin Api tests:
+    /**
+     * Cancel Admin Api tests:
+     */
 
     @Test(description = "验证企业管理员忘记我成功")
     public void testCancelAdminSuccess() {
-        CaptchaRegistResponse captchaRegistResponse = CaptchaRegist.postCaptchaRegistRequest(mobile0);
-        assertThat(captchaRegistResponse.getResult().getCode(), equalTo(0));
         List<EVSEnterpriseAdmin> enterpriseAdmin = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0);
         long enterpriseAdminId = enterpriseAdmin.get(0).getId();
-        List<EVSEnterpriseAdminCredential> enterpriseAdminCredential = EVSEnterpriseAdminCredential.dao.findEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId);
-        password0 = enterpriseAdminCredential.get(0).getPassword();
-
-        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0, password0);
+        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0, password0, head);
         assertThat(cancelAdminResponse.getResult().getCode(), equalTo(0));
         assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId), equalTo(0));
     }
+
+    @DataProvider
+    public static Object[][] genVerifyCancelAdminErrorCodeTestData() {
+        return new Object[][]{
+                {"", "123456", 203} // 手机号码为空
+                , {" ","123456", 205} // 手机号码为空
+                , {"1588110000a","123456", 205} // 手机号码格式错误
+                , {"1588110000", "123456", 205} // 手机号码格式错误
+                , {"1588110000 ","123456", 205} // 手机号码格式错误
+                , {"158811000001","123456", 205} // 手机号码格式错误
+                , {"15881100000","654321", 206} // 手机号码与密码不匹配
+                , {"13648087441","123456", 207} // 手机号未注册
+                , {"15881100000","", 210} // 密码为空
+                , {"15881100000","12345", 217} // 密码长度不足
+                , {"15881100000","12345673432243524354353454544363463565656556565", 227} // 密码长度超长
+        };
+    }
+
+   @Test(description = "验证忘记我的相关ErrorCode",
+            dataProvider = "genVerifyCancelAdminErrorCodeTestData")
+    public void testVerifyCancelAdminErrorCode(String mobile, String passord, int code) {
+       Login.postLoginRepuest("15283837023", "123456", true);
+       CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile, passord,head);
+       assertThat(cancelAdminResponse.getResult().getCode(), equalTo(code));
+    }
+
+    @Test(description = "验证企业管理员忘记我失败当账户未登录")
+    public void testCancelAdminFailedWhenUserNotLogin() {
+        List<EVSEnterpriseAdmin> enterpriseAdmin = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0);
+        long enterpriseAdminId = enterpriseAdmin.get(0).getId();
+        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0, password0, null);
+        assertThat(cancelAdminResponse.getResult().getCode(), equalTo(219));
+        assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId), greaterThan(0));
+    }
+
+    /**
+     * 企业管理员查看待审批的用户列表接口
+     * getUnauditUsers Api Tests:
+     */
+
+    @Test(description = "验证企业管理员查看待审批的用户列表成功")
+    public void testGetUnauditUsersSuccess() {
+        int pageSize = 10;
+        int pageNo = 1;
+        GetUnauditUsersResponse getUnauditUsersResponse = GetUnauditUsers.postGetUnauditUsersRequest(pageSize,pageNo,head);
+        assertThat(getUnauditUsersResponse.getResult().getCode(), equalTo(0));
+        assertThat(getUnauditUsersResponse.getSubscribers().size(),equalTo(EVSSubscriber.dao.countSubscriberByStatus(EVSSubscriber.SubscriberStatus.UNAUDITED)));
+        int[] status = new int[getUnauditUsersResponse.getSubscribers().size()];
+        for (int i=0; i< getUnauditUsersResponse.getSubscribers().size()-1; i++){
+            status[i] = getUnauditUsersResponse.getSubscribers().size();
+            assertThat(status[i],equalTo(0));
+        }
+    }
+
+    @Test(description = "验证企业当管理员不存在时查看待审批的用户列表失败")
+    public void testGetUnauditUsersFailedWithNotExistAdmin() {
+        int pageSize = 10;
+        int pageNo = 1;
+        head0 = new HashMap<String, String>();
+        head0.put("Cookie","TOKEN=dacc16f618674b0ca9108de4a6e5b632");
+        GetUnauditUsersResponse getUnauditUsersResponse = GetUnauditUsers.postGetUnauditUsersRequest(pageSize,pageNo,head0);
+        assertThat(getUnauditUsersResponse.getResult().getCode(), equalTo(219));
+    }
+
+    @Test(description = "验证企业当管理员未登录时查看待审批的用户列表失败")
+    public void testGetUnauditUsersFailedWhenNotLogin() {
+        int pageSize = 10;
+        int pageNo = 1;
+        GetUnauditUsersResponse getUnauditUsersResponse = GetUnauditUsers.postGetUnauditUsersRequest(pageSize,pageNo,null);
+        assertThat(getUnauditUsersResponse.getResult().getCode(), equalTo(219));
+    }
+
+    /**
+     * 企业管理员查看待审批的用户详细信息接口
+     * getUnauditUsers Api Tests:
+     */
+
+    @Test(description = "验证企业管理员查看待审批的用户详细信息成功")
+    public void testGetUnauditUsersInfoSuccess() {
+        Long subscriberId0 = EVSSubscriber.dao.findSubscriberByStatus("UNAUDITED").get(0).getId();
+        GetUnauditUserInfoResponse getUnauditUserInfosResponse = GetUnauditUserInfo.postGetUnauditUserInfoRequest(subscriberId0, head);
+        assertThat(getUnauditUserInfosResponse.getResult().getCode(), equalTo(0));
+        assertThat(getUnauditUserInfosResponse.getApiSubscriber().getSubscirberId(), equalTo(subscriberId0));
+        assertThat(getUnauditUserInfosResponse.getApiSubscriber().getRealName(), equalTo(EVSSubscriber.dao.findById(subscriberId0).getRealName()));
+        assertThat(getUnauditUserInfosResponse.getApiSubscriber().getMobile(), equalTo(EVSSubscriber.dao.findById(subscriberId0).getMobile()));
+        assertThat(getUnauditUserInfosResponse.getApiSubscriber().getStatus(), equalTo(0));
+        assertThat(EVSSubscriber.dao.findById(subscriberId0).getStatus(),equalTo(EVSSubscriber.SubscriberStatus.UNAUDITED));
+    }
+
+    @Test(description = "验证未选择要查看的待审核用户时查看待审批的用户详细信息失败")
+    public void testGetUnauditUsersInfoFailedWithMissSubscriberId() {
+        GetUnauditUserInfoResponse getUnauditUserInfosResponse = GetUnauditUserInfo.postGetUnauditUserInfoRequest(null, head);
+        assertThat(getUnauditUserInfosResponse.getResult().getCode(), equalTo(221));
+    }
+
+    @Test(description = "验证验证企业当管理员未登录时查看待审批的用户详细信息失败")
+    public void testGetUnauditUsersInfoFailedWhenAdminNotLogin() {
+        Long subscriberId0 = EVSSubscriber.dao.findSubscriberByStatus("UNAUDITED").get(0).getId();
+        GetUnauditUserInfoResponse getUnauditUserInfosResponse = GetUnauditUserInfo.postGetUnauditUserInfoRequest(subscriberId0, null);
+        assertThat(getUnauditUserInfosResponse.getResult().getCode(), equalTo(219));
+    }
+
+
+
+
+    
 }

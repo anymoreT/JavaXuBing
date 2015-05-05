@@ -22,7 +22,7 @@ public abstract class EVSEnterpriseAdminCredentialDao extends BaseDao {
             @Bind("enterpriseAdminId") Long enterpriseAdminId
     );
 
-    @SqlQuery("select count * from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
+    @SqlQuery("select count(*) from EVS_EnterpriseAdminCredential where enterpriseAdminId=:enterpriseAdminId")
     public abstract int countEnterpriseAdminCredentialByEnterpriseAdminId(
             @Bind("enterpriseAdminId") Long enterpriseAdminId
     );
