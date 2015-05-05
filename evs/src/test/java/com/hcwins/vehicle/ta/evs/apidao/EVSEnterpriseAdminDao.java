@@ -33,15 +33,4 @@ public abstract class EVSEnterpriseAdminDao extends BaseDao {
         @Bind("email") String email,
         @Bind("mobile") String mobile
     );
-
-    @SqlQuery("select enterpriseId from EVS_EnterpriseAdmin where mobile=:mobile")
-    public abstract List<EVSEnterpriseAdmin> findEnterpriseIdByMobile(
-            @Bind("mobile") String mobile
-    );
-
-    @SqlUpdate("update EVS_EnterpriseAdmin set status=:status where mobile=:mobile")
-    public abstract int updatStatusBymobile(
-            @Bind("status") EVSEnterpriseAdmin.Status status,
-            @Bind("mobile") String mobile
-    );
 }

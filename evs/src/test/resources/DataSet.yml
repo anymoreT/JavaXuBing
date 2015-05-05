@@ -2,10 +2,13 @@
 enterprises:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
       enterpriseName: 和诚文视try1
-      enterpriseWebsite: www.hcwins.cn
+      enterpriseWebsite: www.hcwins1.cn
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
       enterpriseName: 和诚文视try2
       enterpriseWebsite: www.hcwins2.cn
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
+      enterpriseName: 和诚文视try3
+      enterpriseWebsite: www.hcwins3.cn
 
 enterpriseAdmins:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
@@ -18,6 +21,11 @@ enterpriseAdmins:
       realName: 李lei
       email: lei.li@hcwins.com
       password: 654321
+    - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
+      mobile: 15881100002
+      realName: 李Polly
+      email: polly.li@hcwins.com
+      password: polly123
 
 enterpriseRegions:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData

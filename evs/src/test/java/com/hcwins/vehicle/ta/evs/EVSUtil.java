@@ -253,7 +253,7 @@ public class EVSUtil {
     }
 
     public static void updateHeader(Map<String, String> header) {
-        //header.put("charset", "utf8");
+        //
     }
 
     public static Response callPost(String url, RequestSpecification requestSpec, int expectedHttpStatusCode) {
@@ -292,5 +292,15 @@ public class EVSUtil {
 
     public static Response callPostJson(String api, String json) {
         return callPostJson(api, json, 200);
+    }
+
+    public static String getUniqValue(int items, String prefix) {
+        String sitems = String.format("%04d",items);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("ss");
+        String second = sdf.format(new Date());
+
+        String uqstr = prefix+sitems+second;
+        return uqstr;
     }
 }

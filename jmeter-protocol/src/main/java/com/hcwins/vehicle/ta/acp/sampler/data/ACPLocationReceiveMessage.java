@@ -10,15 +10,17 @@ import java.util.Date;
  * Created by tommy on 4/18/15.
  */
 public class ACPLocationReceiveMessage extends AbstractACPMessage {
-    private String deviceId;//车载设备终端号
-    private String vehicleId;//汽车识别号
+    private String companyId;//公司ID
     private String oilCardNumber;//加油卡卡号
     private LocationReceiveMessage.PackageType packageType;//标记
-    private Date timestamp;//GPS 时间,BCD 码
+    private RandomDouble oilBalance;//加油卡余额
     private boolean gpsValidate;//GPS 数据是否有效  A 有效 V 无效
-    private float speed;
-    private float latitude;//纬度
-    private float longitude;//经度
+    private RandomDouble longitude;//经度
+    private RandomDouble latitude;//纬度
+    private FixedStepTimestamp timestamp;//GPS 时间,BCD 码
+    private RandomDouble speed;
+    private RandomDouble totalOilConsumption; //累积油耗
+    private RandomInt totalMileage;  //累积里程
     private LocationReceiveMessage.AccStatus accStatus;
     private LocationReceiveMessage.OilCardStatus oilCardStatus;
     private int satelliteNumber;//卫星数
@@ -31,20 +33,12 @@ public class ACPLocationReceiveMessage extends AbstractACPMessage {
         //
     }
 
-    public String getDeviceId() {
-        return deviceId;
+    public String getCompanyId() {
+        return companyId;
     }
 
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public String getVehicleId() {
-        return vehicleId;
-    }
-
-    public void setVehicleId(String vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 
     public String getOilCardNumber() {
@@ -63,12 +57,12 @@ public class ACPLocationReceiveMessage extends AbstractACPMessage {
         this.packageType = packageType;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public RandomDouble getOilBalance() {
+        return oilBalance;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setOilBalance(RandomDouble oilBalance) {
+        this.oilBalance = oilBalance;
     }
 
     public boolean isGpsValidate() {
@@ -79,28 +73,52 @@ public class ACPLocationReceiveMessage extends AbstractACPMessage {
         this.gpsValidate = gpsValidate;
     }
 
-    public float getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
-
-    public float getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
-    }
-
-    public float getLongitude() {
+    public RandomDouble getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(RandomDouble longitude) {
         this.longitude = longitude;
+    }
+
+    public RandomDouble getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(RandomDouble latitude) {
+        this.latitude = latitude;
+    }
+
+    public FixedStepTimestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(FixedStepTimestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public RandomDouble getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(RandomDouble speed) {
+        this.speed = speed;
+    }
+
+    public RandomDouble getTotalOilConsumption() {
+        return totalOilConsumption;
+    }
+
+    public void setTotalOilConsumption(RandomDouble totalOilConsumption) {
+        this.totalOilConsumption = totalOilConsumption;
+    }
+
+    public RandomInt getTotalMileage() {
+        return totalMileage;
+    }
+
+    public void setTotalMileage(RandomInt totalMileage) {
+        this.totalMileage = totalMileage;
     }
 
     public LocationReceiveMessage.AccStatus getAccStatus() {
@@ -148,15 +166,20 @@ public class ACPLocationReceiveMessage extends AbstractACPMessage {
         increaseIndex();
 
         LocationReceiveMessage vo = new LocationReceiveMessage();
+
         vo.setDeviceId(this.getDeviceId());
         vo.setVehicleId(this.getVehicleId());
+        vo.setCompanyId(this.getCompanyId());
         vo.setOilCardNumber(this.getOilCardNumber());
         vo.setPackageType(this.getPackageType());
-        vo.setTimestamp(this.getTimestamp());
+        vo.setOilBalance(this.getOilBalance().nextFloat());
         vo.setGpsValidate(this.isGpsValidate());
-        vo.setSpeed(this.getSpeed());
-        vo.setLatitude(this.getLatitude());
-        vo.setLongitude(this.getLongitude());
+        vo.setLatitude(this.getLatitude().nextFloat());
+        vo.setLongitude(this.getLongitude().nextFloat());
+        vo.setTimestamp(this.getTimestamp().next());
+        vo.setSpeed(this.getSpeed().nextFloat());
+        vo.setTotalOilConsumption(this.getTotalOilConsumption().nextFloat());
+        vo.setTotalMileage(this.getTotalMileage().next());
         vo.setAccStatus(this.getAccStatus());
         vo.setOilCardStatus(this.getOilCardStatus());
         vo.setSatelliteNumber(this.getSatelliteNumber());
@@ -173,13 +196,17 @@ public class ACPLocationReceiveMessage extends AbstractACPMessage {
 
         vo.setDeviceId("12548");
         vo.setVehicleId("vin1234");
+        vo.setCompanyId("com8");
         vo.setOilCardNumber("oilCard");
         vo.setPackageType(LocationReceiveMessage.PackageType.ADD);
-        vo.setTimestamp(new Date(1429513701040L));
+        vo.setOilBalance(new RandomDouble(100., 0., 0., 2));
         vo.setGpsValidate(true);
-        vo.setSpeed(23.23f);
-        vo.setLatitude(123.23f);
-        vo.setLongitude(23.0124f);
+        vo.setLatitude(new RandomDouble(123.23, 0., 0., 4));
+        vo.setLongitude(new RandomDouble(23.0124, 0., 0., 4));
+        vo.setTimestamp(new FixedStepTimestamp(new Date(1429513701040L), -1));
+        vo.setSpeed(new RandomDouble(23.23, 0., 0., 2));
+        vo.setTotalOilConsumption(new RandomDouble(1090.04, 0., 0., 2));
+        vo.setTotalMileage(new RandomInt(108000));
         vo.setAccStatus(LocationReceiveMessage.AccStatus.IGNITION);
         vo.setOilCardStatus(LocationReceiveMessage.OilCardStatus.ON_LINE);
         vo.setSatelliteNumber(23);

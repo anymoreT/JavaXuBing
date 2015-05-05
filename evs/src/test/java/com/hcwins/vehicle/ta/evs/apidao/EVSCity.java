@@ -69,7 +69,8 @@ public class EVSCity extends BaseEntity {
         return "EVSCity{" +
                 "name='" + name + '\'' +
                 ", provinceId=" + provinceId +
-                '}';
+                '}' + super.toString();
     }
+
     public static EVSCityDao dao = EVSUtil.getDAO(EVSCityDao.class);
 }

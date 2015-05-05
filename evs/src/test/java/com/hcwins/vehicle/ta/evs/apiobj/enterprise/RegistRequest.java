@@ -12,12 +12,12 @@ public class RegistRequest extends BaseRequest {
 
     private String enterpriseName;
     private String enterpriseWebsite;
-    private Object cityId;
+    private Long cityId;
     private String adminRealName;
     private String adminMobile;
     private String adminEmail;
     private String adminPassword;
-    private Object provinceId;
+    private Long provinceId;
 
     @Override
     public String getAPI() {
@@ -40,11 +40,11 @@ public class RegistRequest extends BaseRequest {
         this.enterpriseWebsite = enterpriseWebsite;
     }
 
-    public Object getCityId() {
+    public Long getCityId() {
         return cityId;
     }
 
-    public void setCityId(Object cityId) {
+    public void setCityId(Long cityId) {
         this.cityId = cityId;
     }
 
@@ -80,11 +80,11 @@ public class RegistRequest extends BaseRequest {
         this.adminPassword = adminPassword;
     }
 
-    public Object getProvinceId() {
+    public Long getProvinceId() {
         return provinceId;
     }
 
-    public void setProvinceId(Object provinceId) {
+    public void setProvinceId(Long provinceId) {
         this.provinceId = provinceId;
     }
 

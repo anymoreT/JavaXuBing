@@ -65,7 +65,10 @@ public class EVSProvince extends BaseEntity {
 
     @Override
     public String toString() {
-        return "EVSProvince{}";
+        return "EVSProvince{" +
+                "firstLetter='" + firstLetter + '\'' +
+                ", name='" + name + '\'' +
+                '}' + super.toString();
     }
 
     public static EVSProvinceDao dao = EVSUtil.getDAO(EVSProvinceDao.class);

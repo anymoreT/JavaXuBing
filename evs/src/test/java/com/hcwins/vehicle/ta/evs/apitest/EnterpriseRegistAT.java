@@ -63,10 +63,9 @@ public class EnterpriseRegistAT extends EVSTestBase {
         cityId1 = EVSCity.dao.findCityIdByName(cityName1).get(0).getId();
 
         //TODO:clean the env of last
-        String timestamp = Long.toString(new Date().getTime());
-        String newemail = email0 + timestamp;
-        String newmobile = newemail.substring(newemail.length()-11,newemail.length());
-        EVSEnterpriseAdmin.dao.updateEmailByMobile(mobile0,newemail);
+        String newemail = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.count(),"AT000");
+        String newmobile = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.count(),"15968");
+        EVSEnterpriseAdmin.dao.updateEmailByMobile(mobile0, newemail);
         EVSEnterpriseAdmin.dao.updateMobileByEmail(newemail, newmobile);
         EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(email0,newemail);
         EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(mobile0,newmobile);
@@ -233,6 +232,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
     /**
      * Verify mobile and catcha.
      */
+
     @Test(description = "验证手机号与验证码校验成功")
     public void testVerifyMobileAndCaptchaSuccess() {
         Long startTime = new Date().getTime();
