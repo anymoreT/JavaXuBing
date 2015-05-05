@@ -11,7 +11,6 @@ public class CancelAdminRequest extends BaseRequest {
 
     private String mobile;
     private String password;
-
     @Override
     public String getAPI() {
         return api;
