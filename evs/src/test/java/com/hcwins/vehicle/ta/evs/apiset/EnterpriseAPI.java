@@ -12,6 +12,10 @@ public class EnterpriseAPI {
 
     private String cancelAdmin;
 
+    private String getUnauditUsers;
+    private String getUnauditUserInfo;
+    private String permitUser;
+
     public String getCaptchaRegist() {
         return captchaRegist;
     }
@@ -50,5 +54,29 @@ public class EnterpriseAPI {
 
     public void setCancelAdmin(String cancelAdmin) {
         this.cancelAdmin = cancelAdmin;
+    }
+
+    public String getGetUnauditUsers() {
+        return getUnauditUsers;
+    }
+
+    public void setGetUnauditUsers(String getUnauditUsers) {
+        this.getUnauditUsers = getUnauditUsers;
+    }
+
+    public String getGetUnauditUserInfo() {
+        return getUnauditUserInfo;
+    }
+
+    public void setGetUnauditUserInfo(String getUnauditUserInfo) {
+        this.getUnauditUserInfo = getUnauditUserInfo;
+    }
+
+    public String getPermitUser() {
+        return permitUser;
+    }
+
+    public void setPermitUser(String permitUser) {
+        this.permitUser = permitUser;
     }
 }

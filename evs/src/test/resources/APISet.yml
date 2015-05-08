@@ -6,7 +6,10 @@ enterprise: !com.hcwins.vehicle.ta.evs.apiset.EnterpriseAPI
 
     login: /enterprise/login/v1
 
-    cancelAdmin: /enterprise/cancelAdmin/v1
+    cancelAdmin: /enterprise/cacelAdmin/v1
+    getUnauditUsers: /enterprise/getUnauditUsers/v1
+    getUnauditUserInfo: /enterprise/getUnauditUserInfo/v1
+    permitUser: /enterprise/permitUser/v1
 
 user: !com.hcwins.vehicle.ta.evs.apiset.UserAPI
     captchaRegist: /enterprise/captchaRegist/v1

@@ -28,4 +28,9 @@ public abstract class EVSEnterpriseDao extends BaseDao {
             @Bind("enterpriseName") String enterpriseName,
             @Bind("mail") String mail
     );
+    @SqlUpdate("update EVS_Enterprise set status=:status where Id=:Id")
+    public abstract int updateEnterpriseStatusById(
+            @Bind("status") EVSEnterprise.Status status,
+            @Bind("enterpriseId") Long Id
+    );
 }
