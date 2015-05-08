@@ -1,5 +1,6 @@
 package com.hcwins.vehicle.ta.evs.apiobj;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hcwins.vehicle.ta.evs.EVSUtil;
 import com.jayway.restassured.response.Response;
 
@@ -9,8 +10,10 @@ import java.util.Map;
  * Created by tommy on 3/24/15.
  */
 public abstract class BaseRequest {
+    @JsonIgnore
     protected String loggerId = EVSUtil.getLoggerId();
 
+    @JsonIgnore
     protected Response lastResponse;
 
     public abstract String getAPI();

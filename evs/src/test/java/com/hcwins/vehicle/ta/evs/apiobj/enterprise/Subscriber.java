@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by wenji on 28/04/15.
  */
-public class subscriber {
+public class Subscriber {
 
     /*
     "subscirberId": ,

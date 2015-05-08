@@ -1,12 +1,16 @@
 package com.hcwins.vehicle.ta.evs;
 
 import com.esotericsoftware.yamlbeans.YamlReader;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hcwins.vehicle.ta.evs.apiobj.BaseAccountRequest;
 import com.hcwins.vehicle.ta.evs.apiobj.BaseAccountResponse;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+import de.undercouch.bson4jackson.BsonFactory;
+import de.undercouch.bson4jackson.BsonGenerator;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.logging.SLF4JLog;
@@ -22,6 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.jayway.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 /**
  * Created by tommy on 3/23/15.
@@ -40,6 +46,7 @@ public class EVSUtil {
     private Handle handle;
 
     private Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.PROTECTED).create();
+    private BsonFactory bson = new BsonFactory().configure(BsonGenerator.Feature.WRITE_BIGDECIMALS_AS_STRINGS, true);
 
     private static enum CacheType {
         ENTERPRISE_SESSION,
@@ -161,6 +168,15 @@ public class EVSUtil {
         return getInstance().gson;
     }
 
+    public static ObjectMapper getBsonMapper() {
+        ObjectMapper om = new ObjectMapper(getInstance().bson);
+        om.setVisibilityChecker(
+                om.getSerializationConfig().getDefaultVisibilityChecker().
+                        withFieldVisibility(JsonAutoDetect.Visibility.ANY).
+                        withGetterVisibility(JsonAutoDetect.Visibility.NONE));
+        return om;
+    }
+
     public static HashMap<String, Object> getCache(CacheType cacheType) {
         if (!getInstance().cacheMap.containsKey(cacheType)) {
             getInstance().cacheMap.put(cacheType, new HashMap<String, Object>());
@@ -224,8 +240,20 @@ public class EVSUtil {
         return getUserToken(getCurrentCacheKey(CacheType.USER_SESSION));
     }
 
-    public static String getTimeStamp() {
-        return new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+    public static void switchCurrentSession(EVSSession.AccountType accountType, String account) {
+        if (EVSSession.AccountType.ENTERPRISE == accountType) {
+            getInstance().setCurrentSession(getEnterpriseSession(account));
+        } else {
+            getInstance().setCurrentSession(getUserSession(account));
+        }
+    }
+
+    public static void switchCurrentSessionToEnterprise(String account) {
+        switchCurrentSession(EVSSession.AccountType.ENTERPRISE, account);
+    }
+
+    public static void switchCurrentSessionToUser(String account) {
+        switchCurrentSession(EVSSession.AccountType.USER, account);
     }
 
     public static void sleep(String msg, int seconds) {
@@ -235,6 +263,25 @@ public class EVSUtil {
         } catch (InterruptedException e) {
             //
         }
+    }
+
+    public static String getTimeStamp() {
+        return new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+    }
+
+    public static String getUniqValue(int items, String prefix) {
+        String sitems = String.format("%04d", items);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("ss");
+        String second = sdf.format(new Date());
+
+        String uqstr = prefix + sitems + second;
+        return uqstr;
+    }
+
+    public static byte[] getImage(String file) {
+        //TODO:
+        return null;
     }
 
     public static String getLoggerId() {
@@ -261,46 +308,43 @@ public class EVSUtil {
         logger.debug("status code: {} content: {}", response.getStatusCode(), response.asString());
 
         if (0 < expectedHttpStatusCode) {
-//            assertThat(response.getStatusCode(), equalTo(expectedHttpStatusCode));
+            assertThat(response.getStatusCode(), equalTo(expectedHttpStatusCode));
         }
 
         return response;
     }
 
-    public static Response callPostJson(String api, String json, Map<String, String> headers, int expectedHttpStatusCode) {
+    public static <T> Response callPostJson(String api, T json, Map<String, String> headers, int expectedHttpStatusCode) {
         String url = getTestBed().getApiBaseUrl() + api;
 
         updateHeader(headers);
 
-        logger.debug("trying to call {} with {}, headers {} ", url, json, headers);
         RequestSpecification request = given();
-        request = request.contentType("application/json;charset=UTF-8");
         request = null != headers ? request.headers(headers) : request;
-        request = request.body(json);
+        if (json instanceof String) {
+            logger.debug("trying to call {} with {}, headers {} ", url, json, headers);
+            request = request.contentType("application/json;charset=UTF-8");
+            request = request.body(json);
+        } else {
+            logger.debug("trying to call {} with binary {}, headers {} ", url, json, headers);
+            request = request.contentType("application/bson");
+            request = request.body((byte[]) json);
+        }
         Response response = callPost(url, request, expectedHttpStatusCode);
 
         return response;
     }
 
-    public static Response callPostJson(String api, String json, Map<String, String> headers) {
+    public static <T> Response callPostJson(String api, T json, Map<String, String> headers) {
         return callPostJson(api, json, headers, 200);
     }
 
-    public static Response callPostJson(String api, String json, int expectedHttpStatusCode) {
+    public static <T> Response callPostJson(String api, T json, int expectedHttpStatusCode) {
         return callPostJson(api, json, null, expectedHttpStatusCode);
     }
 
-    public static Response callPostJson(String api, String json) {
+    public static <T> Response callPostJson(String api, T json) {
         return callPostJson(api, json, 200);
     }
-
-    public static String getUniqValue(int items, String prefix) {
-        String sitems = String.format("%04d",items);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("ss");
-        String second = sdf.format(new Date());
-
-        String uqstr = prefix+sitems+second;
-        return uqstr;
-    }
 }
+

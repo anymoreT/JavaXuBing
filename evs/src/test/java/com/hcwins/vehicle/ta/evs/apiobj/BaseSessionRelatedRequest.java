@@ -21,6 +21,10 @@ public abstract class BaseSessionRelatedRequest extends BaseRequest {
         return post(header, expectedHttpStatusCode);
     }
 
+    public Response post(String token) {
+        return post(token, 200);
+    }
+
     @Override
     public Response post() {
         return post(getToken(), 200);

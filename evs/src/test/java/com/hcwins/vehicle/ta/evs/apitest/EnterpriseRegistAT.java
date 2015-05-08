@@ -3,6 +3,7 @@ package com.hcwins.vehicle.ta.evs.apitest;
 import com.hcwins.vehicle.ta.evs.EVSUtil;
 import com.hcwins.vehicle.ta.evs.apidao.*;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.*;
+import com.hcwins.vehicle.ta.evs.apiworkflow.EnterpriseRegistAndLoginFlow;
 import org.hamcrest.Matchers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,17 +26,17 @@ import static org.hamcrest.Matchers.*;
 public class EnterpriseRegistAT extends EVSTestBase {
     private static final Logger logger = LoggerFactory.getLogger(EnterpriseRegistAT.class);
 
-    private String enterpriseName0, enterpriseName1;
-    private String enterprisewebsite0, enterprisewebsite1;
-    private String adminRealName0, adminRealName1;
-    private String mobile0, mobile1;
-    private String email0, email1;
-    private String password0, password1;
-    private String provinceName0,getProvinceName1;
-    private Long provinceId0, provinceId1;
-    private Long cityId0, cityId1;
-    private String cityName0, cityName1;
-    private Map<String, String> head, head0;
+    private String enterpriseName0, enterpriseName1,enterpriseName2;
+    private String enterprisewebsite0, enterprisewebsite1,enterprisewebsite2;
+    private String adminRealName0, adminRealName1,adminRealName2;
+    private String mobile0, mobile1,mobile2;
+    private String email0, email1,email2;
+    private String password0, password1,password2;
+    private String provinceName0,getProvinceName1,getProvinceName2;
+    private Long provinceId0, provinceId1,provinceId2;
+    private Long cityId0, cityId1,cityId2;
+    private String cityName0, cityName1,cityName2;
+    private Map<String, String> head0,head1,head2;
     @BeforeClass
     public void beforeClass() {
         super.beforeClass();
@@ -62,6 +63,17 @@ public class EnterpriseRegistAT extends EVSTestBase {
         cityName1 = getDataSet().getEnterpriseRegions().get(1).getCityName();
         cityId1 = EVSCity.dao.findCityIdByName(cityName1).get(0).getId();
 
+        enterpriseName2 = getDataSet().getEnterprises().get(2).getEnterpriseName();
+        enterprisewebsite2 = getDataSet().getEnterprises().get(2).getEnterpriseWebsite();
+        adminRealName2 = getDataSet().getEnterpriseAdmins().get(2).getRealName();
+        mobile2 = getDataSet().getEnterpriseAdmins().get(2).getMobile();
+        email2 = getDataSet().getEnterpriseAdmins().get(2).getEmail();
+        password2 = getDataSet().getEnterpriseAdmins().get(2).getPassword();
+        getProvinceName2 = getDataSet().getEnterpriseRegions().get(0).getProvinceName();
+        provinceId2 = EVSProvince.dao.getProvinceIdByName(getProvinceName1).get(0).getId();
+        cityName2 = getDataSet().getEnterpriseRegions().get(0).getCityName();
+        cityId2 = EVSCity.dao.findCityIdByName(cityName1).get(0).getId();
+
         //TODO:clean the env of last
         String newemail = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.count(),"AT000");
         String newmobile = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.count(),"15968");
@@ -71,19 +83,21 @@ public class EnterpriseRegistAT extends EVSTestBase {
         EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(mobile0,newmobile);
 
         //setup
-        VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, CaptchaRegist.postAndGetCaptchas(mobile0).get(0).getCaptcha());
+       /* VerifyMobileAndCaptcha.postVerifyMobileAndCaptchaRequest(mobile0, CaptchaRegist.postAndGetCaptchas(mobile0).get(0).getCaptcha());
         Regist.postRegistRequest(enterpriseName0, enterprisewebsite0, cityId0, adminRealName0, mobile0, email0, password0, provinceId0);
         LoginResponse lgResponse=Login.postLoginRepuest(mobile0, password0, true);
         String token = "TOKEN=" + lgResponse.getToken();
         System.out.println(token);
         head = new HashMap<String, String>();
-        head.put("Cookie",token);
+        head.put("Cookie",token);*/
 
-        EVSEnterpriseAdmin.dao.updatStatusBymobile(EVSEnterpriseAdmin.Status.BINDED, mobile0);
+        head2 = EnterpriseRegistAndLoginFlow.getInstance().getHead();
+
+        /*EVSEnterpriseAdmin.dao.updatStatusBymobile(EVSEnterpriseAdmin.Status.BINDED, mobile2);
         logger.debug("&&&&&&&&&&&&&&&&&&&&&&&&&");
-        logger.debug("$$$$$$$$$$$$$$$$$$$$$$$$$"+EVSEnterpriseAdmin.dao.findEnterpriseIdByMobile(mobile0).size());
-        Long enterpriseId = EVSEnterpriseAdmin.dao.findEnterpriseIdByMobile(mobile0).get(0).getEnterpriseId();
-        EVSEnterprise.dao.updateEnterpriseStatusById(EVSEnterprise.Status.AVAILABLE, enterpriseId);
+        logger.debug("$$$$$$$$$$$$$$$$$$$$$$$$$"+EVSEnterpriseAdmin.dao.findEnterpriseIdByMobile(mobile2).size());
+        Long enterpriseId = EVSEnterpriseAdmin.dao.findEnterpriseIdByMobile(mobile2).get(0).getEnterpriseId();
+        EVSEnterprise.dao.updateEnterpriseStatusById(EVSEnterprise.Status.AVAILABLE, enterpriseId);  */
     }
 
     @AfterClass
@@ -156,7 +170,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
     public static Object[][] genCaptchaRegistErrorCodeTestData() {
         return new Object[][]{
                 {"", 203} // 手机号码为空
-                //TODO: 204 need a registered mobile // 手机号码已注册
+                , {"15881100002", 204} // 手机号码已注册
                 , {" ", 205} // 手机号码为空
                 , {"1588110000a", 205} // 手机号码格式错误
                 , {"1588110000", 205} // 手机号码格式错误
@@ -294,9 +308,9 @@ public class EnterpriseRegistAT extends EVSTestBase {
 
     @Test(description = "验证企业管理员忘记我成功")
     public void testCancelAdminSuccess() {
-        List<EVSEnterpriseAdmin> enterpriseAdmin = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0);
+        List<EVSEnterpriseAdmin> enterpriseAdmin = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile2);
         long enterpriseAdminId = enterpriseAdmin.get(0).getId();
-        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0, password0, head);
+        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile2, password2, head2);
         assertThat(cancelAdminResponse.getResult().getCode(), equalTo(0));
         assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId), equalTo(0));
     }
@@ -304,33 +318,32 @@ public class EnterpriseRegistAT extends EVSTestBase {
     @DataProvider
     public static Object[][] genVerifyCancelAdminErrorCodeTestData() {
         return new Object[][]{
-                {"", "123456", 203} // 手机号码为空
-                , {" ","123456", 205} // 手机号码为空
-                , {"1588110000a","123456", 205} // 手机号码格式错误
-                , {"1588110000", "123456", 205} // 手机号码格式错误
-                , {"1588110000 ","123456", 205} // 手机号码格式错误
-                , {"158811000001","123456", 205} // 手机号码格式错误
-                , {"15881100000","654321", 206} // 手机号码与密码不匹配
-                , {"13648087441","123456", 207} // 手机号未注册
-                , {"15881100000","", 210} // 密码为空
-                , {"15881100000","12345", 217} // 密码长度不足
-                , {"15881100000","12345673432243524354353454544363463565656556565", 227} // 密码长度超长
+                {"", "polly123", 203} // 手机号码为空
+                , {" ","polly123", 205} // 手机号码为空
+                , {"1588110000a","polly123", 205} // 手机号码格式错误
+                , {"1588110000", "polly123", 205} // 手机号码格式错误
+                , {"1588110000 ","polly123", 205} // 手机号码格式错误
+                , {"158811000001","polly123", 205} // 手机号码格式错误
+                , {"15881100002","123456", 206} // 手机号码与密码不匹配
+                , {"13648087441","polly123", 207} // 手机号未注册
+                , {"15881100002","", 210} // 密码为空
+                , {"15881100002","12345", 217} // 密码长度不足
+                , {"15881100002","12345673432243524354353454544363463565656556565", 227} // 密码长度超长
         };
     }
 
    @Test(description = "验证忘记我的相关ErrorCode",
             dataProvider = "genVerifyCancelAdminErrorCodeTestData")
-    public void testVerifyCancelAdminErrorCode(String mobile, String passord, int code) {
-       Login.postLoginRepuest("15283837023", "123456", true);
-       CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile, passord,head);
+    public void testVerifyCancelAdminErrorCode(String mobile, String password, int code) {
+       CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile, password,head2);
        assertThat(cancelAdminResponse.getResult().getCode(), equalTo(code));
     }
 
     @Test(description = "验证企业管理员忘记我失败当账户未登录")
     public void testCancelAdminFailedWhenUserNotLogin() {
-        List<EVSEnterpriseAdmin> enterpriseAdmin = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile0);
+        List<EVSEnterpriseAdmin> enterpriseAdmin = EVSEnterpriseAdmin.dao.findEnterpriseAdminByMobile(mobile2);
         long enterpriseAdminId = enterpriseAdmin.get(0).getId();
-        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile0, password0, null);
+        CancelAdminResponse cancelAdminResponse = CancelAdmin.postCancelAdminRequest(mobile2, password2, null);
         assertThat(cancelAdminResponse.getResult().getCode(), equalTo(219));
         assertThat(EVSEnterpriseAdminCredential.dao.countEnterpriseAdminCredentialByEnterpriseAdminId(enterpriseAdminId), greaterThan(0));
     }
@@ -344,7 +357,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
     public void testGetUnauditUsersSuccess() {
         int pageSize = 10;
         int pageNo = 1;
-        GetUnauditUsersResponse getUnauditUsersResponse = GetUnauditUsers.postGetUnauditUsersRequest(pageSize,pageNo,head);
+        GetUnauditUsersResponse getUnauditUsersResponse = GetUnauditUsers.postGetUnauditUsersRequest(pageSize,pageNo,head2);
         assertThat(getUnauditUsersResponse.getResult().getCode(), equalTo(0));
         assertThat(getUnauditUsersResponse.getSubscribers().size(),equalTo(EVSSubscriber.dao.countSubscriberByStatus(EVSSubscriber.SubscriberStatus.UNAUDITED)));
         int[] status = new int[getUnauditUsersResponse.getSubscribers().size()];
@@ -361,7 +374,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
         head0 = new HashMap<String, String>();
         head0.put("Cookie","TOKEN=dacc16f618674b0ca9108de4a6e5b632");
         GetUnauditUsersResponse getUnauditUsersResponse = GetUnauditUsers.postGetUnauditUsersRequest(pageSize,pageNo,head0);
-        assertThat(getUnauditUsersResponse.getResult().getCode(), equalTo(219));
+        assertThat(getUnauditUsersResponse.getResult().getCode(), equalTo(223));
     }
 
     @Test(description = "验证企业当管理员未登录时查看待审批的用户列表失败")
@@ -380,7 +393,7 @@ public class EnterpriseRegistAT extends EVSTestBase {
     @Test(description = "验证企业管理员查看待审批的用户详细信息成功")
     public void testGetUnauditUsersInfoSuccess() {
         Long subscriberId0 = EVSSubscriber.dao.findSubscriberByStatus("UNAUDITED").get(0).getId();
-        GetUnauditUserInfoResponse getUnauditUserInfosResponse = GetUnauditUserInfo.postGetUnauditUserInfoRequest(subscriberId0, head);
+        GetUnauditUserInfoResponse getUnauditUserInfosResponse = GetUnauditUserInfo.postGetUnauditUserInfoRequest(subscriberId0, head2);
         assertThat(getUnauditUserInfosResponse.getResult().getCode(), equalTo(0));
         assertThat(getUnauditUserInfosResponse.getApiSubscriber().getSubscirberId(), equalTo(subscriberId0));
         assertThat(getUnauditUserInfosResponse.getApiSubscriber().getRealName(), equalTo(EVSSubscriber.dao.findById(subscriberId0).getRealName()));
@@ -391,11 +404,11 @@ public class EnterpriseRegistAT extends EVSTestBase {
 
     @Test(description = "验证未选择要查看的待审核用户时查看待审批的用户详细信息失败")
     public void testGetUnauditUsersInfoFailedWithMissSubscriberId() {
-        GetUnauditUserInfoResponse getUnauditUserInfosResponse = GetUnauditUserInfo.postGetUnauditUserInfoRequest(null, head);
+        GetUnauditUserInfoResponse getUnauditUserInfosResponse = GetUnauditUserInfo.postGetUnauditUserInfoRequest(null, head2);
         assertThat(getUnauditUserInfosResponse.getResult().getCode(), equalTo(221));
     }
 
-    @Test(description = "验证验证企业当管理员未登录时查看待审批的用户详细信息失败")
+    @Test(description = "验证当管理员未登录时查看待审批的用户详细信息失败")
     public void testGetUnauditUsersInfoFailedWhenAdminNotLogin() {
         Long subscriberId0 = EVSSubscriber.dao.findSubscriberByStatus("UNAUDITED").get(0).getId();
         GetUnauditUserInfoResponse getUnauditUserInfosResponse = GetUnauditUserInfo.postGetUnauditUserInfoRequest(subscriberId0, null);
