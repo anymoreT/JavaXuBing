@@ -15,7 +15,7 @@ public abstract class AbstractACPMessage implements ACPMessage {
     private String deviceId;//车载设备终端号
     private String vehicleId;//汽车识别号
 
-    protected int index = 0;
+    protected static int index = 0;
     protected AbstractMessage internalMessage;
 
     public AbstractACPMessage() {
@@ -42,8 +42,8 @@ public abstract class AbstractACPMessage implements ACPMessage {
         return index;
     }
 
-    public void increaseIndex() {
-        this.index++;
+    public static void increaseIndex() {
+        index++;
     }
 
     protected AbstractMessage getInternalMessage() {

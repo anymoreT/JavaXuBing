@@ -15,7 +15,7 @@ public interface ACPClient {
 
     public void write(OutputStream os, SampleResult sr) throws IOException;
 
-    public String read(InputStream is) throws ACPException;
+    public String read(InputStream is) throws ACPException, IOException;
 
     public String getCharset();
 }
