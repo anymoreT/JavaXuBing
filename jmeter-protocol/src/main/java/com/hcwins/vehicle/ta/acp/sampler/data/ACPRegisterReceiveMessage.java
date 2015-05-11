@@ -8,7 +8,6 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by xiangzhai on 06/05/15.
@@ -32,6 +31,8 @@ public class ACPRegisterReceiveMessage extends AbstractACPMessage {
 
     public ACPRegisterReceiveMessage() {
         super();
+
+        //
     }
 
     public int getSerial() {
@@ -159,6 +160,7 @@ public class ACPRegisterReceiveMessage extends AbstractACPMessage {
         increaseIndex();
 
         RegisterReceiveMessage vo = new RegisterReceiveMessage();
+
         vo.setDeviceId(this.getDeviceId());
         vo.setVehicleId(this.getVehicleId());
         vo.setSerial(index);
@@ -178,16 +180,16 @@ public class ACPRegisterReceiveMessage extends AbstractACPMessage {
         vo.setConfiguredLineInfoList(this.getConfiguredLineInfoList());
 
         setInternalMessage(vo);
+
         return getCurrentMessage();
     }
 
     public static ACPRegisterReceiveMessage getSampleMessageData() {
-        increaseIndex();
-
         ACPRegisterReceiveMessage vo = new ACPRegisterReceiveMessage();
+
         vo.setDeviceId("1404933");
         vo.setVehicleId("OSKP733");
-        vo.setSerial(index);
+        vo.setSerial(0);
         vo.setCompanyId("com8");
         vo.setRegisterType(RegisterReceiveMessage.RegisterType.REQUIRE_REGESITER_STATUS);
         vo.setWorkNumber(005210);
@@ -201,7 +203,7 @@ public class ACPRegisterReceiveMessage extends AbstractACPMessage {
         vo.setStationId("SQZQ");
         vo.setStationSerial(new RandomInt(9));
         vo.setDirectionType(RegisterReceiveMessage.DirectionType.FORWARD);
-        vo.setConfiguredLineInfoList(getLineInfoList(1,1));
+        vo.setConfiguredLineInfoList(getLineInfoList(1, 1));
 
         return vo;
     }

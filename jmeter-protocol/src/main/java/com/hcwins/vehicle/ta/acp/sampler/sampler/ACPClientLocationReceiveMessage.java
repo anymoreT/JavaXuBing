@@ -1,16 +1,11 @@
 package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
 import com.hcwins.vehicle.ta.acp.sampler.data.ACPLocationReceiveMessage;
-import org.apache.jmeter.samplers.SampleResult;
 import org.apache.jorphan.logging.LoggingManager;
 import org.apache.log.Logger;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 public class ACPClientLocationReceiveMessage extends AbstractACPClient {
-    private static final Logger log = LoggingManager.getLoggerForClass();
+    private static final Logger logger = LoggingManager.getLoggerForClass();
 
     public ACPClientLocationReceiveMessage() {
         //
@@ -35,18 +30,17 @@ public class ACPClientLocationReceiveMessage extends AbstractACPClient {
     }
 
     @Override
-    public void write(OutputStream os, SampleResult sr) throws IOException {
-        getACPMessage().generateMessage();
-        sr.setSamplerData(getACPMessage().getCurrentMessageAsReadableString());
-        if (log.isDebugEnabled()) {
-            log.debug(getAcpSampler() + " WriteS: " + getACPMessage().getCurrentMessageAsReadableString());
-        }
-        os.write(getACPMessage().getCurrentMessage());
-        os.flush();
+    public Logger getLogger() {
+        return logger;
     }
 
     @Override
-    public String read(InputStream is) throws ACPException {
+    public boolean returnMessageRequired() {
+        return false;
+    }
+
+    @Override
+    public String handleReturnMessage(byte[] msg) throws ACPException {
         return "OK - return message is not required for LocationReceiveMessage";
     }
 }

@@ -23,7 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ACPSampler extends AbstractSampler implements ThreadListener, Interruptible {
-    private static final Logger log = LoggingManager.getLoggerForClass();
+    private static final Logger logger = LoggingManager.getLoggerForClass();
 
     private static final Set<String> APPLIABLE_CONFIG_CLASSES = new HashSet<String>(
             Arrays.asList(new String[]{
@@ -66,8 +66,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
     private transient volatile Socket currentSocket;
 
     public ACPSampler() {
-        if (log.isDebugEnabled()) {
-            log.debug(this + " Created");
+        if (logger.isDebugEnabled()) {
+            logger.debug(this + " Created");
         }
     }
 
@@ -185,7 +185,10 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
 
                 InputStream is = sock.getInputStream();
                 OutputStream os = sock.getOutputStream();
-                acpClient.write(os, res);
+
+                String reqData = acpClient.write(os);
+                res.setSamplerData(reqData);
+
                 String resData = acpClient.read(is);
                 res.setResponseCodeOK();
                 res.setResponseMessageOK();
@@ -193,15 +196,15 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
 
                 isSuccessful = true;
             }
-        } catch (ACPException ex) {
-            log.error(this + " Error reading", ex);
-            res.setResponseCode("500");
-            res.setResponseMessage("Error reading " + ex.toString());
-            closeSocket(socketKey);
-        } catch (Exception ex) {
-            log.error(this + " Error sampling", ex);
+        } catch (IOException ex) {
+            logger.error(this + " Error sampling", ex);
             res.setResponseCode("500");
             res.setResponseMessage("Error sampling " + ex.toString());
+            closeSocket(socketKey);
+        } catch (ACPException ex) {
+            logger.error(this + " Error reading", ex);
+            res.setResponseCode("500");
+            res.setResponseMessage("Error reading " + ex.toString());
             closeSocket(socketKey);
         } finally {
             currentSocket = null;
@@ -210,8 +213,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             res.setSuccessful(isSuccessful);
 
             if (!reUseConnection || closeConnection) {
-                if (log.isDebugEnabled()) {
-                    log.debug(this + " Not set re-use flag or has close flag");
+                if (logger.isDebugEnabled()) {
+                    logger.debug(this + " Not set re-use flag or has close flag");
                 }
                 closeSocket(socketKey);
             }
@@ -223,8 +226,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
     private void initSampling() {
         acpClient = getACPClient();
 
-        if (log.isDebugEnabled()) {
-            log.debug(this + " Using Protocol Handler: " + (acpClient == null ? "NONE" : acpClient.getClass().getName()) + "@" + Integer.toHexString(acpClient.hashCode()));
+        if (logger.isDebugEnabled()) {
+            logger.debug(this + " Using Protocol Handler: " + (acpClient == null ? "NONE" : acpClient.getClass().getName()) + "@" + Integer.toHexString(acpClient.hashCode()));
         }
 
         if (acpClient != null) {
@@ -245,7 +248,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             c.setAccessible(true);
             acpClient = (ACPClient) c.newInstance(this, getRequestData());
         } catch (Exception ex) {
-            log.error(this + " Exception creating: " + getClassname(), ex);
+            logger.error(this + " Exception creating: " + getClassname(), ex);
         }
 
         return acpClient;
@@ -260,7 +263,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             try {
                 c = Class.forName(protoPrefix + className, false, Thread.currentThread().getContextClassLoader());
             } catch (ClassNotFoundException ey) {
-                log.error(this + " Could not find protocol class '" + className + "'", ey);
+                logger.error(this + " Could not find protocol class '" + className + "'", ey);
             }
         }
 
@@ -278,8 +281,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
         if (isReUseConnection()) {
             con = (Socket) cp.get(socketKey);
             if (con != null) {
-                if (log.isDebugEnabled()) {
-                    log.debug(this + " Reusing connection " + socketKey + ": " + con);
+                if (logger.isDebugEnabled()) {
+                    logger.debug(this + " Reusing connection " + socketKey + ": " + con);
                 }
             }
         }
@@ -287,8 +290,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             try {
                 closeSocket(socketKey);
 
-                if (log.isDebugEnabled()) {
-                    log.debug(this + " Creating connection " + socketKey
+                if (logger.isDebugEnabled()) {
+                    logger.debug(this + " Creating connection " + socketKey
                             + ": " + getServer() + ":" + getPort()
                             + " SoLinger " + getPropertyAsString(SO_LINGER, "")
                             + " Connect Timeout " + getConnectTimeout());
@@ -299,30 +302,30 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
                     con.setSoLinger(true, getSoLinger());
                 }
                 con.connect(sockAddr, getConnectTimeout());
-                if (log.isDebugEnabled()) {
-                    log.debug(this + " Created new connection " + socketKey + ": " + con);
+                if (logger.isDebugEnabled()) {
+                    logger.debug(this + " Created new connection " + socketKey + ": " + con);
                 }
                 cp.put(socketKey, con);
             } catch (UnknownHostException ex) {
-                log.warn(this + " Unknown host for " + socketKey, ex);
+                logger.warn(this + " Unknown host for " + socketKey, ex);
                 cp.put(ERRKEY, ex.toString());
                 return null;
             } catch (IOException ex) {
-                log.warn(this + " Could not create socket for " + socketKey, ex);
+                logger.warn(this + " Could not create socket for " + socketKey, ex);
                 cp.put(ERRKEY, ex.toString());
                 return null;
             }
         }
         try {
-            if (log.isDebugEnabled()) {
-                log.debug(this + " Setting " + socketKey + ": " + con
+            if (logger.isDebugEnabled()) {
+                logger.debug(this + " Setting " + socketKey + ": " + con
                         + " Timeout " + getTimeout()
                         + " NoDelay " + isNoDelay());
             }
             con.setSoTimeout(getTimeout()); // timeout of zero is interpreted as an infinite timeout
             con.setTcpNoDelay(isNoDelay());
         } catch (SocketException ex) {
-            log.warn(this + " Could not set timeout or nodelay for " + socketKey + ": " + con, ex);
+            logger.warn(this + " Could not set timeout or nodelay for " + socketKey + ": " + con, ex);
             cp.put(ERRKEY, ex.toString());
         }
 
@@ -333,13 +336,13 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
         Map<String, Object> cp = tp.get();
         Socket con = (Socket) cp.remove(socketKey);
         if (con != null) {
-            if (log.isDebugEnabled()) {
-                log.debug(this + " Closing connection " + socketKey + ": " + con);
+            if (logger.isDebugEnabled()) {
+                logger.debug(this + " Closing connection " + socketKey + ": " + con);
             }
             try {
                 con.close();
             } catch (IOException ex) {
-                log.warn(this + " Error closing socket " + socketKey + ": " + con + " " + ex);
+                logger.warn(this + " Error closing socket " + socketKey + ": " + con + " " + ex);
             }
         }
     }
@@ -356,7 +359,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
                 try {
                     ((Socket) element.getValue()).close();
                 } catch (IOException ex) {
-                    log.warn(this + " Error closing socket " + element.getKey() + ": " + element.getValue() + " " + ex);
+                    logger.warn(this + " Error closing socket " + element.getKey() + ": " + element.getValue() + " " + ex);
                 }
             }
         }
@@ -372,8 +375,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
 
     @Override
     public void threadStarted() {
-        if (log.isDebugEnabled()) {
-            log.debug(this + " Thread Started");
+        if (logger.isDebugEnabled()) {
+            logger.debug(this + " Thread Started");
         }
 
         firstSample = true;
@@ -381,8 +384,8 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
 
     @Override
     public void threadFinished() {
-        if (log.isDebugEnabled()) {
-            log.debug(this + " Thread Finished");
+        if (logger.isDebugEnabled()) {
+            logger.debug(this + " Thread Finished");
         }
 
         if (acpClient != null) {
@@ -399,7 +402,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
             try {
                 socket.close();
             } catch (IOException ex) {
-                log.warn(this + " Error closing socket " + socket + " " + ex);
+                logger.warn(this + " Error closing socket " + socket + " " + ex);
             }
             return true;
         }
@@ -411,7 +414,7 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
     static {
         try {
             String jarFileName = ACPSampler.class.getProtectionDomain().getCodeSource().getLocation().getFile();
-            log.info("Searching in ACPClient in " + jarFileName);
+            logger.info("Searching in ACPClient in " + jarFileName);
             JarFile jarFile = new JarFile(jarFileName);
             Enumeration<JarEntry> entires = jarFile.entries();
             Pattern pat = Pattern.compile(".*/(ACPClient[a-zA-Z]+Message)\\.class$");
@@ -419,13 +422,13 @@ public class ACPSampler extends AbstractSampler implements ThreadListener, Inter
                 Matcher mat = pat.matcher(entires.nextElement().getName());
                 if (mat.find()) {
                     String className = mat.group(1);
-                    log.info("Found ACPClient " + className);
+                    logger.info("Found ACPClient " + className);
                     ACPClient acpClient = ((ACPClient) Class.forName(ACPSampler.class.getPackage().getName() + "." + className, false, Thread.currentThread().getContextClassLoader()).newInstance());
                     acpClientImpls.put(className, acpClient);
                 }
             }
         } catch (Exception ex) {
-            log.error("Error getting ACPClient implementations", ex);
+            logger.error("Error getting ACPClient implementations", ex);
         }
     }
 
