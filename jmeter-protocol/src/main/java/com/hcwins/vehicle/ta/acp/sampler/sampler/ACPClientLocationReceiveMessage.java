@@ -38,9 +38,4 @@ public class ACPClientLocationReceiveMessage extends AbstractACPClient {
     public boolean returnMessageRequired() {
         return false;
     }
-
-    @Override
-    public String handleReturnMessage(byte[] msg) throws ACPException {
-        return "OK - return message is not required for LocationReceiveMessage";
-    }
 }

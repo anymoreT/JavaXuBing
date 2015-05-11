@@ -2,6 +2,7 @@ package com.hcwins.vehicle.ta.acp.sampler.data;
 
 import com.google.gson.GsonBuilder;
 import com.hcwins.vehicle.protocol.hs.LocationReceiveMessage;
+import com.hcwins.vehicle.ta.acp.sampler.sampler.ACPException;
 
 import java.lang.reflect.Modifier;
 import java.util.Date;
@@ -189,6 +190,11 @@ public class ACPLocationReceiveMessage extends AbstractACPMessage {
         setInternalMessage(vo);
 
         return getCurrentMessage();
+    }
+
+    @Override
+    public String handleReturnMessage(byte[] msg) throws ACPException {
+        return "OK - return message is not required for LocationReceiveMessage";
     }
 
     public static ACPLocationReceiveMessage getSampleMessageData() {

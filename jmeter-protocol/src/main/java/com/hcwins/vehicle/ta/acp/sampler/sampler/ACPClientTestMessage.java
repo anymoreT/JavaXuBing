@@ -1,9 +1,12 @@
 package com.hcwins.vehicle.ta.acp.sampler.sampler;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.jorphan.logging.LoggingManager;
 import org.apache.log.Logger;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 public class ACPClientTestMessage extends AbstractACPClient {
@@ -54,7 +57,20 @@ public class ACPClientTestMessage extends AbstractACPClient {
     }
 
     @Override
-    public String handleReturnMessage(byte[] msg) throws ACPException {
-        return new String(msg);
+    public String read(InputStream is) throws IOException, ACPException {
+        ByteArrayOutputStream w = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int x = 0;
+        do {
+            x = is.read(buffer);
+            w.write(buffer, 0, x);
+        } while (is.available() > 0);
+        IOUtils.closeQuietly(w);
+
+        String returnMessage = w.toString();
+        if (getLogger().isDebugEnabled()) {
+            getLogger().debug(getAcpSampler() + " ReadS: " + returnMessage);
+        }
+        return returnMessage;
     }
 }

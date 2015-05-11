@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hcwins.vehicle.ta.acp.sampler.data.AbstractACPMessage;
 import org.apache.commons.io.IOUtils;
-import org.apache.log.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -72,8 +71,6 @@ public abstract class AbstractACPClient implements ACPClient {
     public void tearDown() {
     }
 
-    public abstract Logger getLogger();
-
     @Override
     public String write(OutputStream os) throws IOException {
         getACPMessage().generateMessage();
@@ -84,8 +81,6 @@ public abstract class AbstractACPClient implements ACPClient {
         os.flush();
         return getACPMessage().getCurrentMessageAsReadableString();
     }
-
-    public abstract boolean returnMessageRequired();
 
     @Override
     public String read(InputStream is) throws IOException, ACPException {
@@ -102,14 +97,12 @@ public abstract class AbstractACPClient implements ACPClient {
         } while (is.available() > 0);
         IOUtils.closeQuietly(w);
 
-        String returnMessage = handleReturnMessage(w.toByteArray());
+        String returnMessage = getACPMessage().handleReturnMessage(w.toByteArray());
         if (getLogger().isDebugEnabled()) {
             getLogger().debug(getAcpSampler() + " ReadS: " + returnMessage);
         }
         return returnMessage;
     }
-
-    public abstract String handleReturnMessage(byte[] msg) throws ACPException;
 
     @Override
     public String getCharset() {

@@ -3,6 +3,7 @@ package com.hcwins.vehicle.ta.acp.sampler.data;
 import com.google.gson.GsonBuilder;
 import com.hcwins.vehicle.protocol.hs.ConfiguredLineInfo;
 import com.hcwins.vehicle.protocol.hs.RegisterReceiveMessage;
+import com.hcwins.vehicle.ta.acp.sampler.sampler.ACPException;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -182,6 +183,11 @@ public class ACPRegisterReceiveMessage extends AbstractACPMessage {
         setInternalMessage(vo);
 
         return getCurrentMessage();
+    }
+
+    @Override
+    public String handleReturnMessage(byte[] msg) throws ACPException {
+        return "NOK - this is a dummy method, need to handle ack message for registerMessage";
     }
 
     public static ACPRegisterReceiveMessage getSampleMessageData() {

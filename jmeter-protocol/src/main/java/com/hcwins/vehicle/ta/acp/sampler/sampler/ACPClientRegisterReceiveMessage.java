@@ -40,9 +40,4 @@ public class ACPClientRegisterReceiveMessage extends AbstractACPClient {
     public boolean returnMessageRequired() {
         return true;
     }
-
-    @Override
-    public String handleReturnMessage(byte[] msg) throws ACPException {
-        return "NOK - this is a dummy method, need to handle ack message for registerMessage";
-    }
 }
