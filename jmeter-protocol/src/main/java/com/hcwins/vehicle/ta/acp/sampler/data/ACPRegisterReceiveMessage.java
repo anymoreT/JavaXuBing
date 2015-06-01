@@ -3,6 +3,7 @@ package com.hcwins.vehicle.ta.acp.sampler.data;
 import com.google.gson.GsonBuilder;
 import com.hcwins.vehicle.protocol.hs.ConfiguredLineInfo;
 import com.hcwins.vehicle.protocol.hs.RegisterReceiveMessage;
+import com.hcwins.vehicle.protocol.hs.RegisterSendMessage;
 import com.hcwins.vehicle.ta.acp.sampler.sampler.ACPException;
 
 import java.lang.reflect.Modifier;
@@ -187,14 +188,15 @@ public class ACPRegisterReceiveMessage extends AbstractACPMessage {
 
     @Override
     public String handleReturnMessage(byte[] msg) throws ACPException {
-        return "NOK - this is a dummy method, need to handle ack message for registerMessage";
+        RegisterSendMessage rsm = new RegisterSendMessage(msg);
+        return rsm.toString();
     }
 
     public static ACPRegisterReceiveMessage getSampleMessageData() {
         ACPRegisterReceiveMessage vo = new ACPRegisterReceiveMessage();
 
-        vo.setDeviceId("1404933");
-        vo.setVehicleId("OSKP733");
+        vo.setDeviceId(deviceValue);
+        vo.setVehicleId(vehicleValue);
         vo.setSerial(0);
         vo.setCompanyId("com8");
         vo.setRegisterType(RegisterReceiveMessage.RegisterType.REQUIRE_REGESITER_STATUS);

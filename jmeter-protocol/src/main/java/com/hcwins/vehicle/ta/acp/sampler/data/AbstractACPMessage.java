@@ -18,6 +18,11 @@ public abstract class AbstractACPMessage implements ACPMessage {
     protected int index = 0;
     protected AbstractMessage internalMessage;
 
+    protected static final String deviceValue="1404933";
+    protected static final String vehicleValue="OSKP733";
+    protected static final String companyValue="com8";
+    protected static final String oilcardValue="oilCard";
+
     public AbstractACPMessage() {
         //
     }

@@ -200,10 +200,10 @@ public class ACPLocationReceiveMessage extends AbstractACPMessage {
     public static ACPLocationReceiveMessage getSampleMessageData() {
         ACPLocationReceiveMessage vo = new ACPLocationReceiveMessage();
 
-        vo.setDeviceId("12548");
-        vo.setVehicleId("vin1234");
-        vo.setCompanyId("com8");
-        vo.setOilCardNumber("oilCard");
+        vo.setDeviceId(deviceValue);
+        vo.setVehicleId(vehicleValue);
+        vo.setCompanyId(companyValue);
+        vo.setOilCardNumber(oilcardValue);
         vo.setPackageType(LocationReceiveMessage.PackageType.ADD);
         vo.setOilBalance(new RandomDouble(100., 0., 0., 2));
         vo.setGpsValidate(true);
