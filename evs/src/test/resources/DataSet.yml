@@ -2,13 +2,13 @@
 enterprises:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
       enterpriseName: 和诚文视try1
-      enterpriseWebsite: www.hcwins1.cn
+      website: www.hcwins1.cn
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
       enterpriseName: 和诚文视try2
-      enterpriseWebsite: www.hcwins2.cn
+      website: www.hcwins2.cn
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseData
       enterpriseName: 和诚文视try3
-      enterpriseWebsite: www.hcwins3.cn
+      website: www.hcwins3.cn
 
 enterpriseAdmins:
     - !com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData
@@ -36,3 +36,35 @@ enterpriseRegions:
       provinceName: 山西省
       cityName: 太原市
       countryName: 140100
+
+subscriberData:
+    - !com.hcwins.vehicle.ta.evs.data.SubscriberData
+      realName: 王丽丽
+      mobile: 13822110000
+      email: wanglili@163.com
+      password: 123456
+      drivingLicenseNumber: 89760020
+      drivingLicensePic:
+      drivingYears: 4
+      identityNo: 510132198209180210
+      identityPic:
+    - !com.hcwins.vehicle.ta.evs.data.SubscriberData
+      realName: 张晓月
+      mobile: 13822110001
+      email: zhangxiaoyue@163.com
+      password: 123456
+      drivingLicenseNumber: 89760021
+      drivingLicensePic:
+      drivingYears: 3
+      identityNo: 510132198309180211
+      identityPic:
+    - !com.hcwins.vehicle.ta.evs.data.SubscriberData
+      realName: 胡兵
+      mobile: 13822110002
+      email: hubing@163.com
+      password: 654321
+      drivingLicenseNumber: 89760022
+      drivingLicensePic:
+      drivingYears: 5
+      identityNo: 510132198409180212
+      identityPic:

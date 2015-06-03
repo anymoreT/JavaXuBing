@@ -29,8 +29,8 @@ public abstract class EVSEnterpriseAdminCredentialDao extends BaseDao {
 
     @SqlUpdate("update EVS_EnterpriseAdminCredential set credentialName=:presentValue where credentialName=:originalValue")
     public abstract int updateCredentialNameByEmailOrMobile(
-        @Bind("originalValue") String originalValue,
-        @Bind("presentValue") String presentValue
+            @Bind("originalValue") String originalValue,
+            @Bind("presentValue") String presentValue
     );
 
     @SqlQuery("select count(*) from EVS_EnterpriseAdminCredential")

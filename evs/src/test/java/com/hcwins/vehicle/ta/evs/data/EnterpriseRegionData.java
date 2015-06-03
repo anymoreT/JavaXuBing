@@ -1,5 +1,8 @@
 package com.hcwins.vehicle.ta.evs.data;
 
+import com.hcwins.vehicle.ta.evs.apidao.EVSCity;
+import com.hcwins.vehicle.ta.evs.apidao.EVSProvince;
+
 /**
  * Created by xiangzhai on 13/04/15.
  */
@@ -16,7 +19,9 @@ public class EnterpriseRegionData {
 
     private void retrieve() {
         if (!idRetrieved) {
-            //TODO: retrieve id from db or service
+            //TODO: retrieve id from db or service - missing countryId
+            provinceId = EVSProvince.dao.getProvinceIdByName(provinceName).get(0).getId();
+            cityId = EVSCity.dao.findCityIdByName(cityName).get(0).getId();
         }
     }
 

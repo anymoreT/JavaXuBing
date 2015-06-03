@@ -12,8 +12,8 @@ import java.util.Map;
 /**
  * Created by wenji on 08/05/15.
  */
-public abstract class BsonRequest extends BaseRequest {
-    private static final Logger logger = LoggerFactory.getLogger(BsonRequest.class);
+public abstract class BsonSessionRelatedRequest extends BaseSessionRelatedRequest {
+    private static final Logger logger = LoggerFactory.getLogger(BsonSessionRelatedRequest.class);
 
     public byte[] getBson() {
         try {
@@ -30,11 +30,15 @@ public abstract class BsonRequest extends BaseRequest {
     }
 
     public <ResponseType> ResponseType getLastResponseAsObj(Class<ResponseType> responseClass) {
-        try {
-            return EVSUtil.getBsonMapper().readValue(lastResponse.getBody().asByteArray(), responseClass);
-        } catch (IOException e) {
-            logger.error("failed to parse binary json", e);
-            return null;
+        if (lastResponse.contentType().startsWith("application/json")) {
+            return EVSUtil.getGson().fromJson(getLastResponse().asString(), responseClass);
+        } else {
+            try {
+                return EVSUtil.getBsonMapper().readValue(lastResponse.getBody().asByteArray(), responseClass);
+            } catch (IOException e) {
+                logger.error("failed to parse binary json", e);
+                return null;
+            }
         }
     }
 }

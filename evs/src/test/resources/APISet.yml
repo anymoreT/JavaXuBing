@@ -1,22 +1,31 @@
 !com.hcwins.vehicle.ta.evs.APISet
 enterprise: !com.hcwins.vehicle.ta.evs.apiset.EnterpriseAPI
     captchaRegist: /enterprise/captchaRegist/v1
+
     verifyMobileAndCaptcha: /enterprise/verifyMobileAndCaptcha/v1
+
     regist: /enterprise/regist/v1
 
     login: /enterprise/login/v1
 
     cancelAdmin: /enterprise/cacelAdmin/v1
+
     getUnauditUsers: /enterprise/getUnauditUsers/v1
+
     getUnauditUserInfo: /enterprise/getUnauditUserInfo/v1
+
     permitUser: /enterprise/permitUser/v1
 
 user: !com.hcwins.vehicle.ta.evs.apiset.UserAPI
-    captchaRegist: /enterprise/captchaRegist/v1
-    verifyMobileAndCaptcha: /enterprise/verifyMobileAndCaptcha/v1
-    regist: /enterprise/regist/v1
+    captchaRegist: /user/captchaRegist/v1
 
-    login: /enterprise/login/v1
+    verifyMobileAndCaptcha: /user/verifyMobileAndCaptcha/v1
+
+    regist: /user/regist/v1
+
+    login: /user/login/v1
+
+    completeInfo: /user/completeInfo/v1
 
 trip: !com.hcwins.vehicle.ta.evs.apiset.TripAPI
     getVehicles: /trip/getVehicles/v1

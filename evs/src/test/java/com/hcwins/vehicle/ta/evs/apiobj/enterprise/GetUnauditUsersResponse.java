@@ -1,25 +1,24 @@
 package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
-import com.hcwins.vehicle.ta.evs.apiobj.BaseAccountResponse;
+import com.hcwins.vehicle.ta.evs.apiobj.BaseResponse;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Created by wenji on 28/04/15.
  */
-public class GetUnauditUsersResponse extends BaseAccountResponse {
-    private ArrayList<subscriber> subscribers;
+public class GetUnauditUsersResponse extends BaseResponse{
+    private ArrayList<Subscriber> subscriberList;
 
-    public ArrayList<subscriber> getSubscribers() {
-        return subscribers;
+    public ArrayList<Subscriber> getSubscriberList() {
+        return subscriberList;
     }
 
-    public void setSubscribers(ArrayList<subscriber> subscribers) {
-        this.subscribers = subscribers;
+    public void setSubscriberList(ArrayList<Subscriber> subscriberList) {
+        this.subscriberList = subscriberList;
     }
-
-
-
-
 }
+
+
+
+

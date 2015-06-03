@@ -1,19 +1,19 @@
 package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
-import com.hcwins.vehicle.ta.evs.apiobj.BaseAccountRequest;
+import com.hcwins.vehicle.ta.evs.apiobj.BsonSessionRelatedRequest;
 
 /**
  * Created by wenji on 28/04/15.
  */
-public class GetUnauditUserInfoRequest extends BaseAccountRequest {
+public class GetUnauditUserInfoSessionRelatedRequest extends BsonSessionRelatedRequest {
     protected final static String api = EVSUtil.getAPISet().getEnterprise().getGetUnauditUserInfo();
     private Long subscriberId;
 
     @Override
 
     public String getAPI() {
-        return null;
+        return api;
     }
 
     public Long getSubscriberId() {

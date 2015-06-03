@@ -1,5 +1,9 @@
 package com.hcwins.vehicle.ta.evs.data;
 
+import com.hcwins.vehicle.ta.evs.EVSUtil;
+import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdmin;
+import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredential;
+
 /**
  * Created by tommy on 3/24/15.
  */
@@ -41,6 +45,14 @@ public class EnterpriseAdminData {
         this.password = password;
     }
 
+    public static void cleanRegistEnv(String mobile, String email){
+        String newemail = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.count(), "AT000");
+        String newmobile = EVSUtil.getUniqValue(EVSEnterpriseAdmin.dao.count(), "15968");
+        EVSEnterpriseAdmin.dao.updateEmailByMobile(mobile, newemail);
+        EVSEnterpriseAdmin.dao.updateMobileByEmail(newemail, newmobile);
+        EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(email, newemail);
+        EVSEnterpriseAdminCredential.dao.updateCredentialNameByEmailOrMobile(mobile, newmobile);
+    }
     @Override
     public String toString() {
         return "EnterpriseAdminData{" +

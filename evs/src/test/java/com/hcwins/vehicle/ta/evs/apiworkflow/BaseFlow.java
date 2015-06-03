@@ -12,7 +12,7 @@ public class BaseFlow {
     private static DataSet dataSet = EVSUtil.getDataSet();
 
     static String enterpriseName = dataSet.getEnterprises().get(2).getEnterpriseName();
-    static String enterpriseWebSite = dataSet.getEnterprises().get(2).getEnterpriseWebsite();
+    static String enterpriseWebSite = dataSet.getEnterprises().get(2).getWebsite();
     static String mobile = dataSet.getEnterpriseAdmins().get(2).getMobile();
     static String realName = dataSet.getEnterpriseAdmins().get(2).getRealName();
     static String email = dataSet.getEnterpriseAdmins().get(2).getEmail();

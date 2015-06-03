@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import java.util.Date;
 
 /**
- * Created by wenji on 13/04/15.
+ * Created by wenji on 26/05/15.
  */
-@Annotations.Entity(table = "EVS_EnterpriseAdminCredential", mapper = EVSEnterpriseAdminCredential.Mapper.class)
-public class EVSEnterpriseAdminCredential extends BaseEntity {
+@Annotations.Entity(table = "EVS_SubscriberCredential", mapper = EVSSubscriberCredential.Mapper.class)
+public class EVSSubscriberCredential extends BaseEntity {
      /*Table: EVS_EnterpriseAdminCredential
 Columns:
 id bigint not null auto_increment,
@@ -25,15 +25,15 @@ enterpriseAdminId bigint not null,
 
     protected String credentialName;
     protected String password;
-    protected Long enterpriseAdminId;
+    protected Long subscriberId;
 
-    public EVSEnterpriseAdminCredential(Long id, Date createTime, Date updateTime, String credentialName, String password, Long enterpriseAdminId) {
+    public EVSSubscriberCredential(Long id, Date createTime, Date updateTime, String credentialName, String password, Long subscriberId) {
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.credentialName = credentialName;
         this.password = password;
-        this.enterpriseAdminId = enterpriseAdminId;
+        this.subscriberId = subscriberId;
     }
 
     public String getCredentialName() {
@@ -52,36 +52,34 @@ enterpriseAdminId bigint not null,
         this.password = password;
     }
 
-    public Long getEnterpriseAdminId() {
-        return enterpriseAdminId;
+    public Long getSubscriberId() {
+        return subscriberId;
     }
 
-    public void setEnterpriseAdminId(Long enterpriseAdminId) {
-        this.enterpriseAdminId = enterpriseAdminId;
+    public void setSubscriberId(Long subscriberId) {
+        this.subscriberId = subscriberId;
     }
 
-    public static class Mapper implements ResultSetMapper<EVSEnterpriseAdminCredential> {
-        public EVSEnterpriseAdminCredential map(int index, ResultSet r, StatementContext ctx) throws SQLException {
-            return new EVSEnterpriseAdminCredential(
+    public static class Mapper implements ResultSetMapper<EVSSubscriberCredential> {
+        public EVSSubscriberCredential map(int index, ResultSet r, StatementContext ctx) throws SQLException {
+            return new EVSSubscriberCredential(
                     r.getLong("id"),
                     r.getTimestamp("createTime"),
                     r.getTimestamp("updateTime"),
                     r.getString("credentialName"),
                     r.getString("password"),
-                    r.getLong("enterpriseAdminId")
+                    r.getLong("subscriberId")
             );
         }
     }
 
     @Override
     public String toString() {
-        return "EVSEnterpriseAdminCredential{" +
+        return "EVSSubscriberCredential{" +
                 "credentialName='" + credentialName + '\'' +
                 ", password='" + password + '\'' +
-                ", enterpriseAdminId=" + enterpriseAdminId +
-                "} " + super.toString();
+                ", subscriberId=" + subscriberId +
+                '}';
     }
-
-    public static EVSEnterpriseAdminCredentialDao dao = EVSUtil.getDAO(EVSEnterpriseAdminCredentialDao.class);
+    public static EVSSubscriberCredentialDao dao = EVSUtil.getDAO(EVSSubscriberCredentialDao.class);
 }
-

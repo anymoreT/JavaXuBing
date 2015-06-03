@@ -9,6 +9,7 @@ public class UserAPI {
     private String regist;
 
     private String login;
+    private String completeInfo;
 
     public String getCaptchaRegist() {
         return captchaRegist;
@@ -41,4 +42,8 @@ public class UserAPI {
     public void setLogin(String login) {
         this.login = login;
     }
+
+    public String getCompleteInfo() {return completeInfo;}
+
+    public void setCompleteInfo(String completeInfo) {this.completeInfo = completeInfo;}
 }

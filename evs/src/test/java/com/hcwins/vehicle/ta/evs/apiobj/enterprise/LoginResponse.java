@@ -7,6 +7,11 @@ import com.hcwins.vehicle.ta.evs.apiobj.BaseAccountResponse;
  */
 public class LoginResponse extends BaseAccountResponse {
     private int enterpriseStatus;
+    private int errorCount;
+
+    public int getErrorCount() {return errorCount;}
+
+    public void setErrorCount(int errorCount) {this.errorCount = errorCount;}
 
     public int getEnterpriseStatus() {
         return enterpriseStatus;

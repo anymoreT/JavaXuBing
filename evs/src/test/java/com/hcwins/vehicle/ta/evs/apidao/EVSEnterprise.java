@@ -52,7 +52,7 @@ cityId bigint
         UNAUDITED,
         REFUSED,
         AVAILABLE,
-        UNAVAILABLE;
+        UNAVAILABLE
     }
 
     public EVSEnterprise(Long id, Date createTime, Date updateTime, String detailAddress, String enterpriseName, String licenseNumber, byte[] licensePic, String mail, String nature, String representative, String scale, Status status, String telephone, String website, Long cityId) {

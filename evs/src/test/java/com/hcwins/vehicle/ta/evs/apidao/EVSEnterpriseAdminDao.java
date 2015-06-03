@@ -24,20 +24,20 @@ public abstract class EVSEnterpriseAdminDao extends BaseDao {
 
     @SqlUpdate("update EVS_EnterpriseAdmin set email=:email where mobile=:mobile")
     public abstract int updateEmailByMobile(
-        @Bind("mobile") String mobile,
-        @Bind("email") String email
+            @Bind("mobile") String mobile,
+            @Bind("email") String email
     );
 
     @SqlUpdate("update EVS_EnterpriseAdmin set mobile=:mobile where email=:email")
     public abstract int updateMobileByEmail(
-        @Bind("email") String email,
-        @Bind("mobile") String mobile
+            @Bind("email") String email,
+            @Bind("mobile") String mobile
     );
 
     @SqlQuery("select count(*) from EVS_EnterpriseAdmin")
-       public abstract int count();
+    public abstract int count();
 
-    @SqlQuery("select enterpriseId from EVS_EnterpriseAdmin where mobile=:mobile")
+    @SqlQuery("select * from EVS_EnterpriseAdmin where mobile=:mobile")
     public abstract List<EVSEnterpriseAdmin> findEnterpriseIdByMobile(
             @Bind("mobile") String mobile
     );

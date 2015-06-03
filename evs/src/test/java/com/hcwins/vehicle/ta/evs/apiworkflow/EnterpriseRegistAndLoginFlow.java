@@ -2,10 +2,8 @@ package com.hcwins.vehicle.ta.evs.apiworkflow;
 
 import com.hcwins.vehicle.ta.evs.DataSet;
 import com.hcwins.vehicle.ta.evs.EVSUtil;
-import com.hcwins.vehicle.ta.evs.apidao.EVSCity;
 import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdmin;
 import com.hcwins.vehicle.ta.evs.apidao.EVSEnterpriseAdminCredential;
-import com.hcwins.vehicle.ta.evs.apidao.EVSProvince;
 import com.hcwins.vehicle.ta.evs.apiobj.enterprise.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,5 +80,12 @@ public class EnterpriseRegistAndLoginFlow extends BaseFlow {
 
     public String getToken() {
         return token;
+    }
+
+    public Map getHead() {
+        String tok = "TOKEN=" + token;
+        Map<String, String> head = new HashMap<String, String>();
+        head.put("Cookie", tok);
+        return head;
     }
 }

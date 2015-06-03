@@ -1,6 +1,7 @@
 package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
-import java.util.Map;
+import com.hcwins.vehicle.ta.evs.EVSUtil;
+
 /**
  * Created by wenji on 13/04/15.
  */
@@ -12,9 +13,16 @@ public class CancelAdmin {
         return cancelAdminRequest;
     }
 
-    public static CancelAdminResponse postCancelAdminRequest(String mobile, String password,Map head) {
+    public static CancelAdminResponse postCancelAdminRequest(String mobile, String password) {
         CancelAdminRequest cancelAdminRequest = getCancelAdminRequest(mobile, password);
-        cancelAdminRequest.post(head);
+        cancelAdminRequest.post(EVSUtil.getEnterpriseToken(mobile));
+        return cancelAdminRequest.getLastResponseAsObj();
+    }
+
+    public static CancelAdminResponse postCancelAdminRequest(String mobile, String password, String token) {
+        CancelAdminRequest cancelAdminRequest = getCancelAdminRequest(mobile, password);
+        cancelAdminRequest.post(token);
         return cancelAdminRequest.getLastResponseAsObj();
     }
 }
+
