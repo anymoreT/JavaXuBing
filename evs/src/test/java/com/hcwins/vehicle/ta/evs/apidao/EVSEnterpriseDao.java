@@ -1,7 +1,6 @@
 package com.hcwins.vehicle.ta.evs.apidao;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
-import org.skife.jdbi.v2.sqlobject.SqlBatch;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
@@ -28,9 +27,27 @@ public abstract class EVSEnterpriseDao extends BaseDao {
             @Bind("enterpriseName") String enterpriseName,
             @Bind("mail") String mail
     );
+
     @SqlUpdate("update EVS_Enterprise set status=:status where Id=:Id")
     public abstract int updateEnterpriseStatusById(
             @Bind("status") EVSEnterprise.Status status,
-            @Bind("enterpriseId") Long Id
+            @Bind("Id") Long enterpriseId
     );
+
+    @SqlUpdate("update EVS_Enterprise set enterpriseName=:enterpriseName where website=:website")
+    public abstract int updatEnterpriseNameByWebsite(
+            @Bind("website") String website,
+            @Bind("enterpriseName") String enterpriseName
+
+    );
+
+    @SqlUpdate("update EVS_Enterprise set website=:website where enterpriseName=:enterpriseName")
+    public abstract int updateWebsiteByEnterpriseName(
+            @Bind("enterpriseName") String enterpriseName,
+            @Bind("website") String website
+
+    );
+
+    @SqlQuery("select count(*) from EVS_Enterprise")
+    public abstract int count();
 }

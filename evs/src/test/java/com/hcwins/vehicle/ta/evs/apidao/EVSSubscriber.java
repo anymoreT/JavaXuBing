@@ -13,9 +13,10 @@ import java.util.Date;
 /**
  * Created by wenji on 28/04/15.
  */
-@Annotations.Entity(table = "EVS_EnterpriseAdmin", mapper = EVSEnterpriseAdmin.Mapper.class)
+@Annotations.Entity(table = "EVS_Subscriber", mapper = EVSSubscriber.Mapper.class)
 public class EVSSubscriber extends BaseEntity {
-    /*
+    /*Table: EVS_Subscriber
+Columns:
      id bigint not null auto_increment,
         createTime datetime,
         updateTime datetime,
@@ -47,6 +48,7 @@ public class EVSSubscriber extends BaseEntity {
     protected byte[] identityPic;
     protected Boolean isLocked;
     protected Boolean isSupervisor;
+    protected Integer loginFailureCount;
     protected String mobile;
     protected String name;
     protected String realName;
@@ -61,11 +63,14 @@ public class EVSSubscriber extends BaseEntity {
         UNAUDITED, REFUSED, AVAILABLE, UNAVAILABLE;
     }
 
-    public enum VehicleAptitude{
-        NOAPPLY,APPLYING,HASAPTITUDE,NOAPTITUDE;
+    public enum VehicleAptitude {
+        NOAPPLY, APPLYING, HASAPTITUDE, NOAPTITUDE;
     }
 
-    public EVSSubscriber(String drivingLicenseNumber, byte[] drivingLicensePic, Integer drivingYears, String email, String identityNo, byte[] identityPic, Boolean isLocked, Boolean isSupervisor, String name, String mobile, String realName, SubscriberStatus status, Date unLockTime, VehicleAptitude vehicleAptitude, Long enterpriseId, Long cityId, Long provinceId) {
+    public EVSSubscriber(long id, Timestamp createTime, Timestamp updateTime, String drivingLicenseNumber, byte[] drivingLicensePic, Integer drivingYears, String email, String identityNo, byte[] identityPic, Boolean isLocked, Boolean isSupervisor, Integer loginFailureCount, String name, String mobile, String realName, SubscriberStatus status, Date unLockTime, VehicleAptitude vehicleAptitude, Long enterpriseId, Long cityId, Long provinceId) {
+        this.id = id;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
         this.drivingLicenseNumber = drivingLicenseNumber;
         this.drivingLicensePic = drivingLicensePic;
         this.drivingYears = drivingYears;
@@ -74,6 +79,7 @@ public class EVSSubscriber extends BaseEntity {
         this.identityPic = identityPic;
         this.isLocked = isLocked;
         this.isSupervisor = isSupervisor;
+        this.loginFailureCount = loginFailureCount;
         this.name = name;
         this.mobile = mobile;
         this.realName = realName;
@@ -85,9 +91,6 @@ public class EVSSubscriber extends BaseEntity {
         this.provinceId = provinceId;
     }
 
-    public EVSSubscriber(long id, Timestamp createTime, Timestamp updateTime, String drivingLicenseNumber, String drivingLicensePic, int drivingYears, String email, String identityNo, String identityPic, boolean isLocked, boolean isSupervisor, String mobile, String name, String realName, int status, java.sql.Date unLockTime, int vehicleAptitude, long cityId, long enterpriseId, long provinceId) {
-
-    }
 
     public String getDrivingLicenseNumber() {
         return drivingLicenseNumber;
@@ -151,6 +154,14 @@ public class EVSSubscriber extends BaseEntity {
 
     public void setIsSupervisor(Boolean isSupervisor) {
         this.isSupervisor = isSupervisor;
+    }
+
+    public Integer getLoginFailureCount() {
+        return loginFailureCount;
+    }
+
+    public void setLoginFailureCount(Integer loginFailureCount) {
+        this.loginFailureCount = loginFailureCount;
     }
 
     public String getMobile() {
@@ -232,25 +243,27 @@ public class EVSSubscriber extends BaseEntity {
                     r.getTimestamp("createTime"),
                     r.getTimestamp("updateTime"),
                     r.getString("drivingLicenseNumber"),
-                    r.getString("drivingLicensePic"),
+                    r.getBytes("drivingLicensePic"),
                     r.getInt("drivingYears"),
                     r.getString("email"),
                     r.getString("identityNo"),
-                    r.getString("identityPic"),
+                    r.getBytes("identityPic"),
                     r.getBoolean("isLocked"),
                     r.getBoolean("isSupervisor"),
+                    r.getInt("loginFailureCount"),
                     r.getString("mobile"),
                     r.getString("name"),
                     r.getString("realName"),
-                    r.getInt("status"),
+                    SubscriberStatus.valueOf(r.getString("status")),
                     r.getDate("unLockTime"),
-                    r.getInt("vehicleAptitude"),
-                    r.getLong("cityId"),
+                    VehicleAptitude.valueOf(r.getString("vehicleAptitude")),
                     r.getLong("enterpriseId"),
+                    r.getLong("cityId"),
                     r.getLong("provinceId")
             );
         }
     }
+
     @Override
     public String toString() {
         return "EVSSubscriber{" +
@@ -262,6 +275,7 @@ public class EVSSubscriber extends BaseEntity {
                 ", identityPic=" + Arrays.toString(identityPic) +
                 ", isLocked=" + isLocked +
                 ", isSupervisor=" + isSupervisor +
+                ", loginFailureCount=" + loginFailureCount +
                 ", mobile='" + mobile + '\'' +
                 ", name='" + name + '\'' +
                 ", realName='" + realName + '\'' +
@@ -273,5 +287,6 @@ public class EVSSubscriber extends BaseEntity {
                 ", provinceId=" + provinceId +
                 '}';
     }
+
     public static EVSSubscriberDao dao = EVSUtil.getDAO(EVSSubscriberDao.class);
 }

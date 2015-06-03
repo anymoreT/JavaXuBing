@@ -13,7 +13,8 @@ import java.util.Date;
  */
 @Annotations.Entity(table = "EVS_EnterpriseAdmin", mapper = EVSEnterpriseAdmin.Mapper.class)
 public class EVSEnterpriseAdmin extends BaseEntity {
-    /*
+    /*Table: EVS_EnterpriseAdmin
+Columns:
 id bigint not null auto_increment,
 createTime datetime,
 updateTime datetime,

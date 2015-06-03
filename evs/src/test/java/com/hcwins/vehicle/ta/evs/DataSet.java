@@ -1,8 +1,6 @@
 package com.hcwins.vehicle.ta.evs;
 
-import com.hcwins.vehicle.ta.evs.data.EnterpriseAdminData;
-import com.hcwins.vehicle.ta.evs.data.EnterpriseData;
-import com.hcwins.vehicle.ta.evs.data.EnterpriseRegionData;
+import com.hcwins.vehicle.ta.evs.data.*;
 
 import java.util.List;
 
@@ -13,6 +11,7 @@ public class DataSet {
     private List<EnterpriseData> enterprises;
     private List<EnterpriseAdminData> enterpriseAdmins;
     private List<EnterpriseRegionData> enterpriseRegions;
+    private List<SubscriberData> subscriberData;
 
     public List<EnterpriseData> getEnterprises() {
         return enterprises;
@@ -38,12 +37,21 @@ public class DataSet {
         this.enterpriseRegions = enterpriseRegions;
     }
 
+    public List<SubscriberData> getSubscriberData() {
+        return subscriberData;
+    }
+
+    public void setSubscriberData(List<SubscriberData> subscriberData) {
+        this.subscriberData = subscriberData;
+    }
+
     @Override
     public String toString() {
         return "DataSet{" +
                 "enterprises=" + enterprises +
                 ", enterpriseAdmins=" + enterpriseAdmins +
-                ", enterpriseRegionDatas=" + enterpriseRegions +
+                ", enterpriseRegions=" + enterpriseRegions +
+                ", subscriberData=" + subscriberData +
                 '}';
     }
 }

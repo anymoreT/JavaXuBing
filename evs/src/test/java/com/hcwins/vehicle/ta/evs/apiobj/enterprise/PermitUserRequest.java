@@ -1,12 +1,12 @@
 package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
-import com.hcwins.vehicle.ta.evs.apiobj.BaseAccountRequest;
+import com.hcwins.vehicle.ta.evs.apiobj.BaseSessionRelatedRequest;
 
 /**
  * Created by wenji on 28/04/15.
  */
-public class PermitUserRequest extends BaseAccountRequest {
+public class PermitUserRequest extends BaseSessionRelatedRequest {
     protected final static String api = EVSUtil.getAPISet().getEnterprise().getPermitUser();
     private long subscriberId;
     private Boolean manager;
@@ -14,7 +14,7 @@ public class PermitUserRequest extends BaseAccountRequest {
     @Override
 
     public String getAPI() {
-        return null;
+        return api;
     }
 
     public long getSubscriberId() {

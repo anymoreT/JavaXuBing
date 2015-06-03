@@ -1,16 +1,17 @@
-package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
+package com.hcwins.vehicle.ta.evs.apiobj.user;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
-import com.hcwins.vehicle.ta.evs.apiobj.BaseSessionRelatedRequest;
+import com.hcwins.vehicle.ta.evs.apiobj.BaseRequest;
 
 /**
- * Created by wenji on 13/04/15.
+ * Created by xiangzhai on 10/04/15.
  */
-public class CancelAdminRequest extends BaseSessionRelatedRequest {
-    protected final static String api = EVSUtil.getAPISet().getEnterprise().getCancelAdmin();
+public class RegistRequest extends BaseRequest {
+    protected final static String api = EVSUtil.getAPISet().getUser().getRegist();
 
     private String mobile;
     private String password;
+
 
     @Override
     public String getAPI() {
@@ -34,10 +35,7 @@ public class CancelAdminRequest extends BaseSessionRelatedRequest {
     }
 
     @Override
-    public CancelAdminResponse getLastResponseAsObj() {
-        return getLastResponseAsObj(CancelAdminResponse.class);
+    public RegistResponse getLastResponseAsObj() {
+        return getLastResponseAsObj(RegistResponse.class);
     }
 }
-
-
-

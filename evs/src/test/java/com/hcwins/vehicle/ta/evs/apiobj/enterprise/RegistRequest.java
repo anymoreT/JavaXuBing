@@ -2,7 +2,6 @@ package com.hcwins.vehicle.ta.evs.apiobj.enterprise;
 
 import com.hcwins.vehicle.ta.evs.EVSUtil;
 import com.hcwins.vehicle.ta.evs.apiobj.BaseRequest;
-import org.slf4j.Logger;
 
 /**
  * Created by xiangzhai on 10/04/15.

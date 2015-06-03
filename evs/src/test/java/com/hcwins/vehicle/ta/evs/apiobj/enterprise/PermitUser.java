@@ -13,8 +13,8 @@ public class PermitUser {
         return permitUserRequest;
     }
 
-    public static PermitUserResponse postPermitUserResponse(long subscriberId, Boolean manager,Map head) {
-        PermitUserRequest permitUserRequest = getPermitUserRequest(subscriberId,manager);
+    public static PermitUserResponse postPermitUserResponse(long subscriberId, Boolean manager, Map head) {
+        PermitUserRequest permitUserRequest = getPermitUserRequest(subscriberId, manager);
         permitUserRequest.post(head);
         return permitUserRequest.getLastResponseAsObj();
     }

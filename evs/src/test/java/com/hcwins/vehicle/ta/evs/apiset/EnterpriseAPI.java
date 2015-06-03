@@ -64,9 +64,7 @@ public class EnterpriseAPI {
         this.getUnauditUsers = getUnauditUsers;
     }
 
-    public String getGetUnauditUserInfo() {
-        return getUnauditUserInfo;
-    }
+    public String getGetUnauditUserInfo() {return getUnauditUserInfo;}
 
     public void setGetUnauditUserInfo(String getUnauditUserInfo) {
         this.getUnauditUserInfo = getUnauditUserInfo;
