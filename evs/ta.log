@@ -1,0 +1,82 @@
+2015-04-02 17:36:35 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite: 28 - before suite
+2015-04-02 17:36:35 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/FuncTestTB.yml
+2015-04-02 17:36:35 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-04-02 17:36:35 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/APISet.yml
+2015-04-02 17:36:35 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=com.hcwins.vehicle.ta.evs.apiset.EnterpriseAPI@4d339552}
+2015-04-02 17:36:35 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc.ta/evs/target/test-classes/DataSet.yml
+2015-04-02 17:36:35 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-04-02 17:36:35 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-04-02 17:36:36 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] obtained in 495 millis
+2015-04-02 17:36:36 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 97 - success to connect to db
+2015-04-02 17:36:36 DEBUG com.hcwins.vehicle.ta.evs.TestBed.setUp: 28 - trying to setup testbed
+2015-04-02 17:36:36 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeClass: 47 - before class
+2015-04-02 17:36:36 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":""}
+2015-04-02 17:36:38 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":203,"desc":"EMPTY_MOBILE"}}
+2015-04-02 17:36:38 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":" "}
+2015-04-02 17:36:38 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-02 17:36:38 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000a"}
+2015-04-02 17:36:38 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-02 17:36:38 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000"}
+2015-04-02 17:36:38 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-02 17:36:38 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000 "}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"158811000001"}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 400 content: {"result":{"code":205,"desc":"INVALID_MOBILE"}}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 27 millis
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[update EVS_Captcha set module=? where id=?] took 18 millis
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[update EVS_Captcha set status=? where id=?] took 9 millis
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 0 millis
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-04-02 17:36:39 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where id=?] took 0 millis
+2015-04-02 17:36:39 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.sleep: 158 - sleeping 5 seconds: slow down the execution for different create time
+2015-04-02 17:36:44 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-02 17:36:45 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPost: 186 - status code: 200 content: {"result":{"code":0,"desc":"NO_ERROR"}}
+2015-04-02 17:36:45 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - statement:[select * from EVS_Captcha where mobile=? and module=? and status=?] took 1 millis
+2015-04-02 17:36:45 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.afterClass: 54 - after class
+2015-04-02 17:36:45 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] released
+2015-04-02 17:36:45 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.afterSuite: 42 - after suite
+2015-04-16 16:31:18 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeSuite: 28 - before suite
+2015-04-16 16:31:18 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 54 - trying to load testbed configuration with /home/tommy/WinData/workspace.hc/workspace.hc.ta/evs/target/test-classes/FuncTestTB.yml
+2015-04-16 16:31:18 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadTestBed: 57 - success to load testbed - TestBed{name='FT 0 EVS', host='127.0.0.1', apiBaseUrl='http://127.0.0.1:8080/evs', jdbcConnectionString='jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8'}
+2015-04-16 16:31:18 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 67 - trying to load api set configuration with /home/tommy/WinData/workspace.hc/workspace.hc.ta/evs/target/test-classes/APISet.yml
+2015-04-16 16:31:18 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadAPISet: 70 - success to load api set - APISet{enterprise=com.hcwins.vehicle.ta.evs.apiset.EnterpriseAPI@4d339552}
+2015-04-16 16:31:18 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 80 - trying to load data set configuration with /home/tommy/WinData/workspace.hc/workspace.hc.ta/evs/target/test-classes/DataSet.yml
+2015-04-16 16:31:18 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.loadDataSet: 83 - success to load data set - DataSet{enterprises=[Enterprise{enterpriseName='try'}], enterpriseAdmins=[EnterpriseAdmin{mobile='15881100000'}, EnterpriseAdmin{mobile='15881100001'}]}
+2015-04-16 16:31:18 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 93 - trying to connect to db with jdbc:mysql://127.0.0.1:3306/evs?user=root&password=&useUnicode=true&characterEncoding=UTF-8
+2015-04-16 16:31:19 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] obtained in 448 millis
+2015-04-16 16:31:19 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.initDBHandle: 97 - success to connect to db
+2015-04-16 16:31:19 DEBUG com.hcwins.vehicle.ta.evs.TestBed.setUp: 28 - trying to setup testbed
+2015-04-16 16:31:19 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.beforeClass: 47 - before class
+2015-04-16 16:31:19 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":""}
+2015-04-16 16:31:21 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":" "}
+2015-04-16 16:31:21 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000a"}
+2015-04-16 16:31:21 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000"}
+2015-04-16 16:31:21 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"1588110000 "}
+2015-04-16 16:31:21 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"158811000001"}
+2015-04-16 16:31:21 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-16 16:31:21 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-16 16:31:21 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.sleep: 158 - sleeping 5 seconds: slow down the execution for different create time
+2015-04-16 16:31:26 DEBUG com.hcwins.vehicle.ta.evs.EVSUtil.callPostJson: 200 - trying to call http://127.0.0.1:8080/evs/enterprise/captchaRegist with {"mobile":"15881100000"}
+2015-04-16 16:31:26 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.afterClass: 54 - after class
+2015-04-16 16:31:26 TRACE org.skife.jdbi.v2.logging.SLF4JLog$Level$1.log: 34 - Handle [org.skife.jdbi.v2.BasicHandle@63021689] released
+2015-04-16 16:31:26 DEBUG com.hcwins.vehicle.ta.evs.apitest.EVSTestBase.afterSuite: 42 - after suite
